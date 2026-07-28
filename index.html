@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="en" dir="ltr" data-lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hashem Alahdal — Full-Stack Developer</title>
+<meta name="description" content="Full-stack developer specializing in Laravel, React/TypeScript and Flutter — production-grade web & mobile marketplaces.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Amiri:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EDEEE2;
+    --paper-dim:#E2E2D0;
+    --ink:#1C231F;
+    --ink-soft:#565F55;
+    --rule:#B9B39A;
+    --accent:#24586A;
+    --accent-soft:#DCE6E5;
+    --stamp:#A6402F;
+    --radius:3px;
+    --max:1120px;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  html[dir="rtl"] body{ font-family:'IBM Plex Sans Arabic', sans-serif; }
+
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    background-image:
+      linear-gradient(var(--rule) 1px, transparent 1px),
+      linear-gradient(90deg, var(--rule) 1px, transparent 1px);
+    background-size: 42px 42px;
+    opacity:0.12;
+    pointer-events:none;
+    z-index:0;
+  }
+
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  .display{font-family:'Fraunces', serif; font-optical-sizing:auto;}
+  html[dir="rtl"] .display{font-family:'Amiri', serif;}
+  a{color:inherit;}
+
+  [data-i18n="ar"]{ display:none; }
+  html[data-lang="ar"] [data-i18n="en"]{ display:none; }
+  html[data-lang="ar"] [data-i18n="ar"]{ display:block; }
+  [data-i18n="en"].inline{ display:inline-flex; }
+  html[data-lang="ar"] [data-i18n="ar"].inline{ display:inline-flex; }
+
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 28px; position:relative; z-index:1;}
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position:sticky; top:0; z-index:50;
+    background:color-mix(in srgb, var(--paper) 88%, transparent);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--rule);
+  }
+  .nav-row{ display:flex; align-items:center; justify-content:space-between; padding:16px 0; }
+  .mark{
+    font-family:'IBM Plex Mono', monospace; font-weight:500; font-size:15px;
+    letter-spacing:0.02em; border:1px solid var(--ink); padding:4px 10px; border-radius:var(--radius);
+  }
+  .nav-tags{
+    display:flex; gap:18px; font-family:'IBM Plex Mono', monospace; font-size:11.5px;
+    letter-spacing:0.06em; color:var(--ink-soft); text-transform:uppercase;
+  }
+  @media (max-width: 720px){ .nav-tags{display:none;} }
+
+  /* ---------- LANG TOGGLE ---------- */
+  .lang-toggle{
+    position:relative; display:inline-flex; align-items:center; width:104px; height:34px;
+    background:var(--ink); border-radius:999px; padding:3px; cursor:pointer; border:none;
+    font-family:'IBM Plex Mono', monospace; direction:ltr;
+  }
+  .lang-toggle .thumb{
+    position:absolute; top:3px; left:3px; width:50px; height:28px;
+    background:var(--paper); border-radius:999px; transition:transform .32s cubic-bezier(.65,0,.35,1); z-index:1;
+  }
+  html[data-lang="ar"] .lang-toggle .thumb{ transform:translateX(48px); }
+  .lang-toggle .opt{ position:relative; z-index:2; width:50px; text-align:center; font-size:12px; letter-spacing:0.04em; color:var(--paper); transition:color .3s ease; }
+  html[data-lang="en"] .lang-toggle .opt.en{ color:var(--ink); }
+  html[data-lang="ar"] .lang-toggle .opt.ar{ color:var(--ink); }
+
+  /* ---------- HERO ---------- */
+  .hero{ padding:96px 0 72px; }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.12em;
+    text-transform:uppercase; color:var(--accent); margin:0 0 18px;
+  }
+  h1.name{ font-size:clamp(42px, 7vw, 76px); line-height:1.02; margin:0 0 14px; font-weight:500; }
+  .role{ font-size:clamp(17px, 2.2vw, 21px); color:var(--ink-soft); max-width:640px; margin:0 0 28px; font-weight:500; }
+  .lede{ max-width:620px; font-size:16.5px; color:var(--ink); margin:0 0 34px; }
+  .stamps{ display:flex; flex-wrap:wrap; gap:12px; }
+  .stamp{
+    font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:0.05em; text-transform:uppercase;
+    padding:7px 13px; border:1px dashed var(--ink-soft); border-radius:999px; color:var(--ink-soft);
+  }
+  .stamp.red{ border-color:var(--stamp); color:var(--stamp); }
+
+  /* ---------- SECTION SCAFFOLDING ---------- */
+  section{ padding:64px 0; border-top:1px solid var(--rule); }
+  .sec-head{ display:flex; align-items:baseline; gap:16px; margin-bottom:36px; flex-wrap:wrap; }
+  .sec-head h2{ font-family:'Fraunces', serif; font-weight:500; font-size:clamp(26px,3.6vw,34px); margin:0; }
+  html[dir="rtl"] .sec-head h2{ font-family:'Amiri', serif; }
+  .sec-num{ font-family:'IBM Plex Mono', monospace; color:var(--ink-soft); font-size:13px; }
+
+  /* ---------- LEDGER ---------- */
+  .ledger-row{ display:flex; align-items:baseline; gap:10px; padding:14px 0; border-bottom:1px solid var(--rule); }
+  .ledger-row .label{ font-size:16px; font-weight:500; white-space:nowrap; }
+  .ledger-row .dots{ flex:1; border-bottom:2px dotted var(--rule); height:0; margin-bottom:6px; }
+  .ledger-row .value{ font-family:'IBM Plex Mono', monospace; font-size:13.5px; color:var(--accent); white-space:nowrap; text-align:right; }
+  html[dir="rtl"] .ledger-row .value{ text-align:left; }
+
+  /* ---------- FEATURED PROJECT ---------- */
+  .feature-card{ background:var(--paper-dim); border:1px solid var(--rule); border-radius:var(--radius); padding:40px; }
+  @media (max-width:600px){ .feature-card{ padding:24px 18px; } }
+  .feature-top{ display:flex; justify-content:space-between; align-items:flex-start; gap:20px; flex-wrap:wrap; margin-bottom:8px; }
+  .feature-card h3{ font-family:'Fraunces', serif; font-size:clamp(24px,3vw,30px); margin:0 0 6px; font-weight:500; }
+  html[dir="rtl"] .feature-card h3{ font-family:'Amiri', serif; }
+  .feature-sub{ font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--ink-soft); text-transform:uppercase; letter-spacing:0.05em; }
+
+  .feature-desc{ max-width:700px; margin:18px 0 30px; color:var(--ink); }
+
+  /* browser + phone mockups */
+  .showcase-main{ margin-bottom:20px; }
+  .showcase-row{ display:grid; grid-template-columns:1fr 1fr; gap:20px; align-items:start; margin-bottom:24px; }
+  @media (max-width:700px){ .showcase-row{ grid-template-columns:1fr; } }
+
+  .browser-frame{
+    border:1px solid var(--rule); border-radius:8px; overflow:hidden; background:#fff;
+    box-shadow:0 18px 40px -20px rgba(28,35,31,0.35);
+  }
+  .browser-bar{
+    display:flex; align-items:center; gap:8px; padding:9px 12px; background:var(--paper-dim); border-bottom:1px solid var(--rule);
+  }
+  .browser-dots{ display:flex; gap:5px; }
+  .browser-dots span{ width:8px; height:8px; border-radius:50%; background:var(--rule); }
+  .browser-url{
+    flex:1; font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:var(--ink-soft);
+    background:var(--paper); border:1px solid var(--rule); border-radius:999px; padding:4px 12px; text-align:center;
+  }
+  .browser-frame img{ display:block; width:100%; height:auto; }
+
+  .showcase-phones{ display:flex; gap:24px; justify-content:center; margin-bottom:32px; }
+  .phone-block{ display:flex; flex-direction:column; align-items:center; }
+  .phone-block .phone-frame{ max-width:210px; }
+  .phone-frame{
+    width:100%; max-width:230px; border:8px solid var(--ink); border-radius:30px; overflow:hidden;
+    background:var(--ink); box-shadow:0 18px 40px -18px rgba(28,35,31,0.4);
+    position:relative;
+  }
+  .phone-frame img{ display:block; width:100%; height:auto; border-radius:22px; }
+  .phone-caption{ text-align:center; font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-soft); margin-top:10px; }
+
+  .receipt-list{ margin:0 0 30px; }
+  .receipt-row{ display:flex; gap:10px; align-items:baseline; padding:10px 0; border-bottom:1px dotted var(--rule); font-size:14.5px; }
+  .receipt-row:last-child{ border-bottom:none; }
+  .receipt-row .k{ font-weight:500; white-space:nowrap; }
+  .receipt-row .d{ flex:1; border-bottom:1px dotted var(--rule); height:0; margin-bottom:5px; }
+  .receipt-row .v{ color:var(--ink-soft); text-align:right; max-width:56%; }
+  html[dir="rtl"] .receipt-row .v{ text-align:left; }
+
+  .stat-row{ display:flex; gap:28px; flex-wrap:wrap; padding-top:18px; border-top:1px solid var(--rule); }
+  .stat{ font-family:'IBM Plex Mono', monospace; }
+  .stat .n{ font-size:22px; color:var(--accent); font-weight:500; display:block; }
+  .stat .l{ font-size:11px; color:var(--ink-soft); text-transform:uppercase; letter-spacing:0.05em; }
+
+  /* ---------- OTHER WORK ---------- */
+  .grid{ display:grid; grid-template-columns:repeat(3, 1fr); gap:20px; }
+  @media (max-width:860px){ .grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:560px){ .grid{ grid-template-columns:1fr; } }
+  .card{
+    border:1px solid var(--rule); border-radius:var(--radius); padding:24px; background:transparent;
+    transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+  }
+  .card:hover{ transform:translateY(-3px); background:var(--paper-dim); box-shadow:0 8px 22px -12px rgba(28,35,31,0.35); }
+  .card .tag{ font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:var(--accent); text-transform:uppercase; letter-spacing:0.06em; }
+  .card h4{ font-size:17px; margin:10px 0 8px; font-weight:600; }
+  .card p{ font-size:14px; color:var(--ink-soft); margin:0; }
+
+  /* ---------- SKILLS ---------- */
+  .tag-sheet{ display:flex; flex-wrap:wrap; gap:10px; }
+  .tag-sheet span{ font-family:'IBM Plex Mono', monospace; font-size:12.5px; padding:8px 14px; border:1px solid var(--ink); border-radius:999px; }
+
+  /* ---------- FOOTER ---------- */
+  footer{ padding:56px 0 70px; }
+  .footer-top{ display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:24px; }
+  footer h2{ font-family:'Fraunces', serif; font-weight:500; font-size:clamp(26px,4vw,40px); margin:0 0 6px; max-width:520px; }
+  html[dir="rtl"] footer h2{ font-family:'Amiri', serif; }
+  .contact-block{ margin:26px 0 0; }
+  .contact-line{
+    display:flex; flex-wrap:wrap; align-items:center; gap:10px;
+    font-family:'IBM Plex Mono', monospace; font-size:14px; color:var(--ink-soft); margin-bottom:8px;
+  }
+  .contact-line a{ color:var(--ink); border-bottom:1px solid transparent; transition:border-color .2s ease; }
+  .contact-line a:hover{ border-bottom-color:var(--ink); }
+  .contact-line .sep{ color:var(--rule); }
+  .foot-note{ margin-top:40px; font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--ink-soft); display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; }
+
+  .reveal{ opacity:0; transform:translateY(14px); transition:opacity .6s ease, transform .6s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+  @media (prefers-reduced-motion: reduce){
+    .reveal{ opacity:1; transform:none; transition:none; }
+    .lang-toggle .thumb{ transition:none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-row">
+    <div class="mark">HA/</div>
+    <div class="nav-tags">
+      <span data-i18n="en" class="inline">Laravel · React · Flutter</span>
+      <span data-i18n="ar" class="inline">Laravel · React · Flutter</span>
+    </div>
+    <button class="lang-toggle" id="langToggle" aria-label="Switch language / تبديل اللغة">
+      <span class="thumb"></span>
+      <span class="opt en">EN</span>
+      <span class="opt ar">AR</span>
+    </button>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- HERO -->
+  <section class="hero" style="border-top:none;">
+    <div data-i18n="en">
+      <p class="eyebrow reveal">Full-stack · Laravel · React & TypeScript · Flutter</p>
+      <h1 class="name display reveal">Hashem Alahdal</h1>
+      <p class="role reveal">Full-Stack Developer — Web &amp; Mobile Marketplace Specialist</p>
+      <p class="lede reveal">I build complete, production-ready platforms end-to-end — from database design to deployed web and mobile apps. I don't just write code to spec: I design the system, handle the edge cases &mdash; race conditions, payment idempotency, refund logic &mdash; and deliver something that actually holds up in production.</p>
+      <div class="stamps reveal">
+        <span class="stamp">Open for work</span>
+        <span class="stamp">Clients in Saudi Arabia &amp; beyond</span>
+        <span class="stamp red">Ships to production</span>
+      </div>
+    </div>
+    <div data-i18n="ar">
+      <p class="eyebrow reveal">مطوّر ويب متكامل (Full-Stack) · Laravel · React وTypeScript · Flutter</p>
+      <h1 class="name display reveal">هاشم الاهدل</h1>
+      <p class="role reveal">مطوّر ويب متكامل — متخصص في بناء المنصات والتطبيقات</p>
+      <p class="lede reveal">أنا مطوّر ويب متكامل متخصص في بناء منصات جاهزة للإنتاج من الألف إلى الياء — بدءًا من تصميم قاعدة البيانات وحتى إطلاق تطبيقات الويب والجوال. أعمل بشكل أساسي على Laravel وReact/TypeScript وFlutter، ولدي خبرة عملية في بناء أسواق إلكترونية ثنائية الاتجاه، ولوحات تحكم للأعمال، وأدوات مدعومة بالذكاء الاصطناعي لعملاء في السعودية وخارجها.</p>
+      <p class="lede reveal">أنا لا أكتفي بكتابة الكود حسب المتطلبات فقط — بل أصمم النظام بالكامل، وأتعامل مع الحالات الدقيقة (تعارض الطلبات المتزامنة، ضمان عدم تكرار عمليات الدفع، منطق الاسترداد)، وأسلّم منتجًا يعمل فعليًا في بيئة إنتاج حقيقية.</p>
+      <div class="stamps reveal">
+        <span class="stamp">متاح للعمل</span>
+        <span class="stamp">عملاء في السعودية وخارجها</span>
+        <span class="stamp red">جاهز للإنتاج</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPROACH LEDGER -->
+  <section id="approach">
+    <div data-i18n="en">
+      <div class="sec-head"><span class="sec-num">§01</span><h2>The approach</h2></div>
+      <div class="ledger-row reveal"><span class="label">Race conditions</span><span class="dots"></span><span class="value">→ date-safe holds</span></div>
+      <div class="ledger-row reveal"><span class="label">Payment idempotency</span><span class="dots"></span><span class="value">→ webhook-confirmed, no double charges</span></div>
+      <div class="ledger-row reveal"><span class="label">Refund logic</span><span class="dots"></span><span class="value">→ automatic, rule-based</span></div>
+      <div class="ledger-row reveal"><span class="label">Rounding errors</span><span class="dots"></span><span class="value">→ money stored as integers</span></div>
+      <div class="ledger-row reveal"><span class="label">Language</span><span class="dots"></span><span class="value">→ Arabic RTL + English, one codebase</span></div>
+    </div>
+    <div data-i18n="ar">
+      <div class="sec-head"><span class="sec-num">§٠١</span><h2>الأسلوب</h2></div>
+      <div class="ledger-row reveal"><span class="label">تعارض الطلبات المتزامنة</span><span class="dots"></span><span class="value">← حجز آمن للتواريخ</span></div>
+      <div class="ledger-row reveal"><span class="label">ضمان عدم تكرار عمليات الدفع</span><span class="dots"></span><span class="value">← تأكيد عبر Webhook</span></div>
+      <div class="ledger-row reveal"><span class="label">منطق الاسترداد</span><span class="dots"></span><span class="value">← تلقائي ومبني على قواعد</span></div>
+      <div class="ledger-row reveal"><span class="label">أخطاء التقريب</span><span class="dots"></span><span class="value">← المبالغ كأعداد صحيحة</span></div>
+      <div class="ledger-row reveal"><span class="label">اللغة</span><span class="dots"></span><span class="value">← عربي RTL وإنجليزي، قاعدة كود واحدة</span></div>
+    </div>
+  </section>
+
+  <!-- FEATURED PROJECT -->
+  <section id="nuzul">
+    <div data-i18n="en">
+      <div class="sec-head"><span class="sec-num">§02</span><h2>Featured project</h2></div>
+      <div class="feature-card reveal">
+        <div class="feature-top">
+          <div>
+            <p class="feature-sub">Web + Mobile · Solo-built</p>
+            <h3>Nuzul — Property Booking Marketplace</h3>
+          </div>
+        </div>
+        <p class="feature-desc">A full two-sided booking marketplace (Airbnb / Gathern-style) for short-term rentals in Saudi Arabia — guest and host web app, a native Flutter iOS app sharing one JSON API, and a full guest/host mode switch.</p>
+
+        <div class="showcase-main">
+          <div class="browser-frame">
+            <div class="browser-bar">
+              <div class="browser-dots"><span></span><span></span><span></span></div>
+              <div class="browser-url">nuzul.sa</div>
+            </div>
+            <img src="images/web-01-home.jpg" alt="Nuzul web home page — Arabic RTL, Mecca skyline hero, property search">
+          </div>
+        </div>
+        <div class="showcase-row">
+          <div class="browser-frame">
+            <div class="browser-bar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-url">nuzul.sa/search</div></div>
+            <img src="images/web-02-search.jpg" alt="Nuzul search results page with filters">
+          </div>
+          <div class="browser-frame">
+            <div class="browser-bar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-url">nuzul.sa/property</div></div>
+            <img src="images/web-03-property.jpg" alt="Nuzul property detail page with booking widget">
+          </div>
+        </div>
+        <div class="showcase-phones">
+          <div class="phone-block">
+            <div class="phone-frame"><img src="images/mobile-01-guest-home.jpg" alt="Nuzul mobile app — guest home screen"></div>
+            <p class="phone-caption">Guest — browse &amp; book</p>
+          </div>
+          <div class="phone-block">
+            <div class="phone-frame"><img src="images/mobile-02-host-properties.jpg" alt="Nuzul mobile app — host property list"></div>
+            <p class="phone-caption">Host — manage properties</p>
+          </div>
+        </div>
+
+        <div class="receipt-list" style="margin-top:30px;">
+          <div class="receipt-row"><span class="k">Web app</span><span class="d"></span><span class="v">Laravel, Inertia.js, React 19 + TS, Tailwind v4</span></div>
+          <div class="receipt-row"><span class="k">Mobile app</span><span class="d"></span><span class="v">Native Flutter (iOS), shared JSON API</span></div>
+          <div class="receipt-row"><span class="k">Booking engine</span><span class="d"></span><span class="v">Race-safe date holds, auto refunds, post-stay reviews</span></div>
+          <div class="receipt-row"><span class="k">Payments</span><span class="d"></span><span class="v">Moyasar, webhook confirmation, idempotent transactions</span></div>
+          <div class="receipt-row"><span class="k">Messaging</span><span class="d"></span><span class="v">Guest/host chat with a strict, separate support channel</span></div>
+          <div class="receipt-row"><span class="k">Language</span><span class="d"></span><span class="v">Arabic RTL default + English, custom design system</span></div>
+        </div>
+        <div class="stat-row">
+          <div class="stat"><span class="n">175+</span><span class="l">Pest tests</span></div>
+          <div class="stat"><span class="n">2</span><span class="l">apps, one API</span></div>
+          <div class="stat"><span class="n">int</span><span class="l">money, not float</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div data-i18n="ar">
+      <div class="sec-head"><span class="sec-num">§٠٢</span><h2>المشروع الرئيسي</h2></div>
+      <div class="feature-card reveal">
+        <div class="feature-top">
+          <div>
+            <p class="feature-sub">ويب + جوال · بناء فردي كامل</p>
+            <h3>نُزُل — منصة حجز عقارات</h3>
+          </div>
+        </div>
+        <p class="feature-desc">بنيت بمفردي منصة حجز عقارات ثنائية الاتجاه (على غرار Airbnb أو Gathern) للإيجار قصير المدى في السعودية — تطبيق ويب للضيوف والمضيفين، وتطبيق جوال أصلي بـ Flutter لنظام iOS يشارك واجهة برمجية (API) واحدة مع تطبيق الويب، مع إمكانية التبديل الكامل بين وضع الضيف ووضع المضيف.</p>
+
+        <div class="showcase-main">
+          <div class="browser-frame">
+            <div class="browser-bar">
+              <div class="browser-dots"><span></span><span></span><span></span></div>
+              <div class="browser-url">nuzul.sa</div>
+            </div>
+            <img src="images/web-01-home.jpg" alt="الصفحة الرئيسية لموقع نُزُل — عربي RTL، أفق مكة، بحث عن عقارات">
+          </div>
+        </div>
+        <div class="showcase-row">
+          <div class="browser-frame">
+            <div class="browser-bar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-url">nuzul.sa/search</div></div>
+            <img src="images/web-02-search.jpg" alt="نتائج البحث في نُزُل مع الفلاتر">
+          </div>
+          <div class="browser-frame">
+            <div class="browser-bar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-url">nuzul.sa/property</div></div>
+            <img src="images/web-03-property.jpg" alt="صفحة تفاصيل العقار مع أداة الحجز">
+          </div>
+        </div>
+        <div class="showcase-phones">
+          <div class="phone-block">
+            <div class="phone-frame"><img src="images/mobile-01-guest-home.jpg" alt="تطبيق نُزُل — شاشة الضيف الرئيسية"></div>
+            <p class="phone-caption">ضيف — تصفّح واحجز</p>
+          </div>
+          <div class="phone-block">
+            <div class="phone-frame"><img src="images/mobile-02-host-properties.jpg" alt="تطبيق نُزُل — قائمة عقارات المضيف"></div>
+            <p class="phone-caption">مضيف — إدارة العقارات</p>
+          </div>
+        </div>
+
+        <div class="receipt-list" style="margin-top:30px;">
+          <div class="receipt-row"><span class="k">تطبيق الويب</span><span class="d"></span><span class="v">Laravel وInertia.js وReact 19 مع TypeScript وTailwind v4</span></div>
+          <div class="receipt-row"><span class="k">تطبيق الجوال</span><span class="d"></span><span class="v">Flutter أصلي لنظام iOS، بنفس الـ API</span></div>
+          <div class="receipt-row"><span class="k">محرك الحجوزات</span><span class="d"></span><span class="v">حجز آمن للتواريخ، استرداد تلقائي، تقييمات بعد الإقامة</span></div>
+          <div class="receipt-row"><span class="k">الدفع</span><span class="d"></span><span class="v">Moyasar، تأكيد عبر Webhook، معالجة آمنة تمنع التكرار</span></div>
+          <div class="receipt-row"><span class="k">المحادثات</span><span class="d"></span><span class="v">محادثات فورية ضيف/مضيف، دعم منفصل، خصوصية صارمة</span></div>
+          <div class="receipt-row"><span class="k">اللغة</span><span class="d"></span><span class="v">عربي RTL أساسي وإنجليزي، هوية بصرية مخصصة</span></div>
+        </div>
+        <div class="stat-row">
+          <div class="stat"><span class="n">+١٧٥</span><span class="l">اختبار Pest</span></div>
+          <div class="stat"><span class="n">٢</span><span class="l">تطبيقين، API واحد</span></div>
+          <div class="stat"><span class="n">int</span><span class="l">مبالغ، لا كسور</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OTHER WORK -->
+  <section id="work">
+    <div data-i18n="en">
+      <div class="sec-head"><span class="sec-num">§03</span><h2>Other work</h2></div>
+      <div class="grid">
+        <div class="card reveal"><p class="tag">Dashboard</p><h4>RSN Operations Dashboard</h4><p>Internal ops tool for a ride-hailing company — referral/coupon tracking and driver performance. Built the React data layer and visualizations, integrated with backend systems for real-time insight.</p></div>
+        <div class="card reveal"><p class="tag">Case management</p><h4>Tanfeeth — Legal Case System</h4><p>Case tracking and workflow tooling for legal operations, built on Laravel and React.</p></div>
+        <div class="card reveal"><p class="tag">HR / Odoo</p><h4>HR Management System</h4><p>Built on Odoo 17 with Python, PostgreSQL and Docker Compose.</p></div>
+        <div class="card reveal"><p class="tag">Computer vision</p><h4>Offline OCR Pipeline</h4><p>Local vision-model pipeline (Ollama-served Qwen2.5/3-VL) extracting Arabic/English text from ID-style documents — CLI, Gradio UI, OpenCV cleanup for glare and security strips.</p></div>
+        <div class="card reveal"><p class="tag">Automation</p><h4>Competitor Price Intelligence</h4><p>Python + uiautomator2 drives 9 competitor ride-hailing apps daily across 16+ cities, syncing fares via REST to a dashboard — cron fleet, retry logic, ~150 daily checks.</p></div>
+        <div class="card reveal"><p class="tag">DevOps</p><h4>CI/CD &amp; Deployment</h4><p>Laravel apps deployed via Git/SSH with GitHub Actions automation.</p></div>
+      </div>
+    </div>
+    <div data-i18n="ar">
+      <div class="sec-head"><span class="sec-num">§٠٣</span><h2>مشاريع أخرى</h2></div>
+      <div class="grid">
+        <div class="card reveal"><p class="tag">لوحة تحكم</p><h4>لوحة تحكم عمليات RSN</h4><p>أداة تشغيلية داخلية لشركة نقل ركاب، لتتبع برامج الإحالة والكوبونات ومؤشرات أداء السائقين. بنيت طبقة البيانات والرسوم البيانية باستخدام React، مع ربطها بأنظمة الشركة الخلفية لعرض بيانات تشغيلية لحظية لفريق العمليات.</p></div>
+        <div class="card reveal"><p class="tag">إدارة قضايا</p><h4>تنفيذ — نظام قضايا قانونية</h4><p>نظام لتتبع القضايا وإدارة سير العمل، مبني على Laravel وReact.</p></div>
+        <div class="card reveal"><p class="tag">موارد بشرية</p><h4>نظام إدارة الموارد البشرية</h4><p>مبني على Odoo 17 باستخدام Python وPostgreSQL وDocker Compose.</p></div>
+        <div class="card reveal"><p class="tag">رؤية حاسوبية</p><h4>نظام OCR يعمل دون اتصال بالإنترنت</h4><p>نماذج رؤية محلية (Qwen2.5-VL وQwen3-VL عبر Ollama) لاستخراج النصوص العربية والإنجليزية من وثائق تشبه الهوية، مع أداة سطر أوامر، وواجهة ويب (Gradio)، ومعالجة صور بـ OpenCV (إزالة الوهج، معالجة الشرائط الأمنية الهولوغرافية).</p></div>
+        <div class="card reveal"><p class="tag">أتمتة</p><h4>تحليل أسعار المنافسين</h4><p>بايثون وuiautomator2 يشغّل 9 تطبيقات منافسة يوميًا في أكثر من 16 مدينة، ويزامن الأسعار عبر REST — أسطول cron، إعادة محاولة، ~150 فحص يوميًا.</p></div>
+        <div class="card reveal"><p class="tag">DevOps</p><h4>النشر والتكامل المستمر (CI/CD)</h4><p>نشر تطبيقات Laravel عبر Git/SSH مع أتمتة باستخدام GitHub Actions.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div data-i18n="en">
+      <div class="sec-head"><span class="sec-num">§04</span><h2>Skills</h2></div>
+      <div class="tag-sheet reveal">
+        <span>Laravel</span><span>PHP 8</span><span>Python</span><span>React</span><span>TypeScript</span><span>Inertia.js</span><span>Tailwind CSS</span><span>MySQL</span><span>Flutter / Dart</span><span>REST API design</span><span>Payment gateway integration</span><span>Docker</span>
+      </div>
+    </div>
+    <div data-i18n="ar">
+      <div class="sec-head"><span class="sec-num">§٠٤</span><h2>المهارات</h2></div>
+      <div class="tag-sheet reveal">
+        <span>Laravel</span><span>PHP 8</span><span>Python</span><span>React</span><span>TypeScript</span><span>Inertia.js</span><span>Tailwind CSS</span><span>MySQL</span><span>Flutter/Dart</span><span>تصميم واجهات REST</span><span>ربط بوابات الدفع</span><span>Docker</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div data-i18n="en">
+      <div class="footer-top">
+        <h2 class="display">Let's build something that holds up.</h2>
+      </div>
+      <div class="contact-block" dir="ltr">
+        <div class="contact-line">
+          <a href="tel:+966549523202">+966 54 952 3202</a><span class="sep">|</span>
+          <a href="mailto:hashemalahdal17@gmail.com">hashemalahdal17@gmail.com</a><span class="sep">|</span>
+          <span>Makkah, Saudi Arabia</span>
+        </div>
+        <div class="contact-line">
+          <a href="https://github.com/hshoom17" target="_blank" rel="noopener">github.com/hshoom17</a><span class="sep">|</span>
+          <a href="https://linkedin.com/in/hashem-al-ahdal" target="_blank" rel="noopener">linkedin.com/in/hashem-al-ahdal</a>
+        </div>
+      </div>
+      <div class="foot-note"><span>PORTFOLIO — 2026</span><span>SAUDI ARABIA &amp; REMOTE</span></div>
+    </div>
+    <div data-i18n="ar">
+      <div class="footer-top">
+        <h2 class="display">لنبني شيئًا "يعمل" فعلًا في بيئة إنتاج حقيقية.</h2>
+      </div>
+      <div class="contact-block" dir="ltr">
+        <div class="contact-line">
+          <a href="tel:+966549523202">+966 54 952 3202</a><span class="sep">|</span>
+          <a href="mailto:hashemalahdal17@gmail.com">hashemalahdal17@gmail.com</a><span class="sep">|</span>
+          <span>مكة، السعودية</span>
+        </div>
+        <div class="contact-line">
+          <a href="https://github.com/hshoom17" target="_blank" rel="noopener">github.com/hshoom17</a><span class="sep">|</span>
+          <a href="https://linkedin.com/in/hashem-al-ahdal" target="_blank" rel="noopener">linkedin.com/in/hashem-al-ahdal</a>
+        </div>
+      </div>
+      <div class="foot-note"><span>ملف أعمال — ٢٠٢٦</span><span>السعودية وعن بعد</span></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var html = document.documentElement;
+  var stored = localStorage.getItem('lang');
+  var initial = stored || 'en';
+  setLang(initial, false);
+
+  document.getElementById('langToggle').addEventListener('click', function(){
+    var next = html.getAttribute('data-lang') === 'en' ? 'ar' : 'en';
+    setLang(next, true);
+  });
+
+  function setLang(lang, persist){
+    html.setAttribute('data-lang', lang);
+    html.setAttribute('lang', lang);
+    html.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+    if(persist) localStorage.setItem('lang', lang);
+  }
+
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+})();
+</script>
+
+</body>
+</html>
