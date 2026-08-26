@@ -11,8 +11,9 @@
 <meta property="og:locale" content="ar_SA">
 <meta property="og:locale:alternate" content="en_US">
 <meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#EDEEE2">
 <!-- TODO: add og:url + og:image (absolute URLs) once the site is deployed to a domain -->
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='8' fill='%23EDEEE2'/%3E%3Crect x='5.5' y='5.5' width='53' height='53' rx='5' fill='none' stroke='%231C231F' stroke-width='3'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='Courier,monospace' font-size='24' font-weight='700' fill='%231C231F'%3EHA/%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='8' fill='%23EDEEE2'/%3E%3Crect x='5.5' y='5.5' width='53' height='53' rx='5' fill='none' stroke='%231C231F' stroke-width='3'/%3E%3Ctext x='32' y='40' text-anchor='middle' font-family='Amiri,Times,serif' font-size='34' font-weight='700' fill='%231C231F'%3E%D9%87%D9%80%3C/text%3E%3Cpath d='M18 48 C 28 44, 40 44, 47 46' fill='none' stroke='%2324586A' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Amiri:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -26,8 +27,10 @@
     --accent:#24586A;
     --accent-soft:#DCE6E5;
     --stamp:#A6402F;
+    --shadow-rgb:28,35,31;
     --radius:3px;
     --max:1120px;
+    color-scheme:light;
   }
 
   *{box-sizing:border-box;}
@@ -77,13 +80,16 @@
     backdrop-filter:blur(6px);
     border-bottom:1px solid var(--rule);
   }
-  /* header layout is pinned LTR so the mark and language toggle never swap sides on language change */
-  .nav-row{ display:flex; align-items:center; justify-content:space-between; padding:16px 0; direction:ltr; }
-  .nav-tags .inline[lang="ar"]{ direction:rtl; }
+  /* header layout is pinned RTL (logo right, toggle left) so nothing swaps sides on language change */
+  .nav-row{ display:flex; align-items:center; justify-content:space-between; padding:16px 0; direction:rtl; }
+  .nav-tags .inline[lang="en"]{ direction:ltr; }
   .mark{
-    font-family:'IBM Plex Mono', monospace; font-weight:500; font-size:15px;
-    letter-spacing:0.02em; border:1px solid var(--ink); padding:4px 10px; border-radius:var(--radius);
+    font-family:'Amiri', serif; font-weight:700; font-size:21px; line-height:1;
+    border:1px solid var(--ink); padding:3px 11px 6px; border-radius:var(--radius);
+    display:flex; flex-direction:column; align-items:center; gap:2px;
   }
+  .mark .swash{ display:block; width:24px; height:5px; color:var(--accent); }
+  .nav-controls{ display:flex; align-items:center; gap:10px; }
   .nav-tags{
     display:flex; gap:18px; font-family:'IBM Plex Mono', monospace; font-size:11.5px;
     letter-spacing:0.06em; color:var(--ink-soft); text-transform:uppercase;
@@ -123,7 +129,29 @@
     font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:0.05em; text-transform:uppercase;
     padding:7px 13px; border:1px dashed var(--ink-soft); border-radius:999px; color:var(--ink-soft);
   }
-  .stamp.red{ border-color:var(--stamp); color:var(--stamp); }
+  .stamp.red{ border-color:var(--stamp); color:var(--stamp); transform:rotate(-2deg); }
+
+  /* stamp-down: pills land like rubber stamps once their row reveals */
+  .reveal.in .stamp{ animation:stamp-down .45s cubic-bezier(.2,1.4,.4,1) backwards; }
+  .reveal.in .stamp:nth-child(2){ animation-delay:.13s; }
+  .reveal.in .stamp:nth-child(3){ animation-delay:.26s; }
+  @keyframes stamp-down{ from{ opacity:0; transform:scale(1.7) rotate(-8deg); } }
+
+  /* pen-written name */
+  h1.name{ width:max-content; max-width:100%; position:relative; }
+  .name-ink{ display:inline-block; }
+  /* quill — tip anchored at the ink edge, driven by JS */
+  .qalam{ position:absolute; top:0.66em; left:0; width:0; height:0; opacity:0; color:var(--ink); pointer-events:none; transition:opacity .35s ease; }
+  .qalam .pen{ position:absolute; left:-0.10em; bottom:-0.06em; width:1.05em; height:1.05em; }
+  html[dir="rtl"] .qalam .pen{ transform:scaleX(-1); left:-0.95em; }
+  .qalam svg{ width:100%; height:100%; display:block; transform-origin:10% 90%; }
+  .writing .qalam svg{ animation:pen-jig .16s ease-in-out infinite alternate; }
+  @keyframes pen-jig{ from{ transform:rotate(-1.2deg); } to{ transform:rotate(2.2deg); } }
+  .sec-head h2{ position:relative; width:max-content; max-width:100%; }
+  .h2-ink{ display:inline-block; }
+
+  /* ink ruling scroll line */
+  #inkline{ position:fixed; top:0; inset-inline-start:0; height:2px; width:0; background:var(--accent); z-index:60; }
 
   /* hero portrait */
   .hero-grid{ display:flex; gap:56px; align-items:flex-start; justify-content:space-between; }
@@ -131,7 +159,7 @@
   .hero-photo{ flex:0 0 250px; margin-top:20px; }
   .photo-frame{
     border:1px solid var(--ink); border-radius:var(--radius); background:var(--paper-dim);
-    padding:10px 10px 8px; box-shadow:0 16px 34px -18px rgba(28,35,31,0.4);
+    padding:10px 10px 8px; box-shadow:0 16px 34px -18px rgba(var(--shadow-rgb),0.4);
     transform:rotate(1.4deg);
   }
   html[dir="rtl"] .photo-frame{ transform:rotate(-1.4deg); }
@@ -158,6 +186,10 @@
   .ledger-row{ display:flex; align-items:baseline; gap:10px; padding:14px 0; border-bottom:1px solid var(--rule); }
   .ledger-row .label{ font-size:16px; font-weight:500; white-space:nowrap; }
   .ledger-row .dots{ flex:1; border-bottom:2px dotted var(--rule); height:0; margin-bottom:6px; }
+  /* dotted leaders draw themselves in */
+  .ledger-row.reveal .dots{ transform:scaleX(0); transform-origin:left; transition:transform .8s ease .15s; }
+  html[dir="rtl"] .ledger-row.reveal .dots{ transform-origin:right; }
+  .ledger-row.reveal.in .dots{ transform:scaleX(1); }
   .ledger-row .value{ font-family:'IBM Plex Mono', monospace; font-size:13.5px; color:var(--accent); white-space:nowrap; text-align:right; }
   html[dir="rtl"] .ledger-row .value{ text-align:left; }
   @media (max-width:600px){
@@ -188,7 +220,7 @@
 
   .browser-frame{
     border:1px solid var(--rule); border-radius:8px; overflow:hidden; background:#fff;
-    box-shadow:0 18px 40px -20px rgba(28,35,31,0.35);
+    box-shadow:0 18px 40px -20px rgba(var(--shadow-rgb),0.35);
   }
   .browser-bar{
     display:flex; align-items:center; gap:8px; padding:9px 12px; background:var(--paper-dim); border-bottom:1px solid var(--rule);
@@ -206,13 +238,21 @@
   .phone-block .phone-frame{ max-width:210px; }
   .phone-frame{
     width:100%; max-width:230px; border:8px solid var(--ink); border-radius:30px; overflow:hidden;
-    background:var(--ink); box-shadow:0 18px 40px -18px rgba(28,35,31,0.4);
+    background:var(--ink); box-shadow:0 18px 40px -18px rgba(var(--shadow-rgb),0.4);
     position:relative;
   }
   .phone-frame img{ display:block; width:100%; height:auto; border-radius:22px; }
   .phone-caption{ text-align:center; font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-soft); margin-top:10px; }
 
   .receipt-list{ margin:0 0 30px; }
+  /* receipt rows ink in one by one */
+  .reveal .receipt-row{ opacity:0; transform:translateY(6px); transition:opacity .45s ease, transform .45s ease; }
+  .reveal.in .receipt-row{ opacity:1; transform:none; }
+  .reveal.in .receipt-row:nth-child(2){ transition-delay:.08s; }
+  .reveal.in .receipt-row:nth-child(3){ transition-delay:.16s; }
+  .reveal.in .receipt-row:nth-child(4){ transition-delay:.24s; }
+  .reveal.in .receipt-row:nth-child(5){ transition-delay:.32s; }
+  .reveal.in .receipt-row:nth-child(6){ transition-delay:.40s; }
   .receipt-row{ display:flex; gap:10px; align-items:baseline; padding:10px 0; border-bottom:1px dotted var(--rule); font-size:14.5px; }
   .receipt-row:last-child{ border-bottom:none; }
   .receipt-row .k{ font-weight:500; white-space:nowrap; }
@@ -233,7 +273,7 @@
     border:1px solid var(--rule); border-radius:var(--radius); padding:24px; background:transparent;
     transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
   }
-  .card:hover{ transform:translateY(-3px); background:var(--paper-dim); box-shadow:0 8px 22px -12px rgba(28,35,31,0.35); }
+  .card:hover{ transform:translateY(-3px); background:var(--paper-dim); box-shadow:0 8px 22px -12px rgba(var(--shadow-rgb),0.35); }
   .card .tag{ font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:var(--accent); text-transform:uppercase; letter-spacing:0.06em; }
   .card h4{ font-size:17px; margin:10px 0 8px; font-weight:600; }
   .card p{ font-size:14px; color:var(--ink-soft); margin:0; }
@@ -246,6 +286,8 @@
   /* ---------- SKILLS ---------- */
   .tag-sheet{ display:flex; flex-wrap:wrap; gap:10px; }
   .tag-sheet span{ font-family:'IBM Plex Mono', monospace; font-size:12.5px; padding:8px 14px; border:1px solid var(--ink); border-radius:999px; }
+  .tag-sheet.reveal span{ opacity:0; transform:translateY(5px); transition:opacity .3s ease, transform .3s ease; }
+  .tag-sheet.reveal.in span{ opacity:1; transform:none; }
 
   /* ---------- FOOTER ---------- */
   footer{ padding:56px 0 70px; }
@@ -268,6 +310,11 @@
     html{ scroll-behavior:auto; }
     .reveal{ opacity:1; transform:none; transition:none; }
     .lang-toggle .thumb{ transition:none; }
+    .reveal.in .stamp{ animation:none; }
+    .qalam{ display:none; }
+    .ledger-row.reveal .dots{ transform:none; transition:none; }
+    .reveal .receipt-row{ opacity:1; transform:none; transition:none; }
+    .tag-sheet.reveal span{ opacity:1; transform:none; transition:none; }
   }
 </style>
 </head>
@@ -275,18 +322,21 @@
 
 <header class="nav">
   <div class="wrap nav-row">
-    <div class="mark">HA/</div>
+    <div class="mark" aria-label="Hashem Alahdal — هاشم الاهدل" lang="ar">هـ<svg class="swash" viewBox="0 0 40 6" aria-hidden="true"><path d="M1 5 C 13 1, 30 1, 39 3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div>
     <nav class="nav-tags" aria-label="Sections">
       <span data-i18n="en" class="inline" lang="en"><a href="#about">About</a><a href="#nuzul">Nuzul</a><a href="#meals">Healthy Meals</a><a href="#work">Work</a><a href="#skills">Skills</a><a href="#contact">Contact</a></span>
       <span data-i18n="ar" class="inline" lang="ar"><a href="#about">نبذة</a><a href="#nuzul">نُزُل</a><a href="#meals">وجبات صحية</a><a href="#work">الأعمال</a><a href="#skills">المهارات</a><a href="#contact">تواصل</a></span>
     </nav>
-    <button class="lang-toggle" id="langToggle" aria-label="Switch language / تبديل اللغة">
-      <span class="thumb"></span>
-      <span class="opt en">EN</span>
-      <span class="opt ar">AR</span>
-    </button>
+    <div class="nav-controls">
+      <button class="lang-toggle" id="langToggle" aria-label="Switch language / تبديل اللغة">
+        <span class="thumb"></span>
+        <span class="opt en">EN</span>
+        <span class="opt ar">AR</span>
+      </button>
+    </div>
   </div>
 </header>
+<div id="inkline" aria-hidden="true"></div>
 
 <main class="wrap">
 
@@ -296,7 +346,7 @@
       <div class="hero-grid">
         <div class="hero-text">
           <p class="eyebrow reveal">Full-stack · Laravel · React &amp; TypeScript · Flutter</p>
-          <h1 class="name display reveal">Hashem Alahdal</h1>
+          <h1 class="name display reveal"><span class="name-ink">Hashem Alahdal</span></h1>
           <p class="role reveal">Full-Stack Developer — Web &amp; Mobile Marketplace Specialist</p>
           <p class="lede reveal">I build complete, production-ready platforms end-to-end — from database design to deployed web and mobile apps. I work primarily with Laravel, React/TypeScript and Flutter, with hands-on experience building two-sided marketplaces, business dashboards, and AI-powered tools for clients in Saudi Arabia and abroad.</p>
           <p class="lede reveal">I don't just write code to spec: I design the system, handle the edge cases &mdash; race conditions, payment idempotency, refund logic &mdash; and deliver something that actually holds up in production.</p>
@@ -318,7 +368,7 @@
       <div class="hero-grid">
         <div class="hero-text">
           <p class="eyebrow reveal">مطوّر ويب متكامل (Full-Stack) · Laravel · React · TypeScript · Flutter</p>
-          <h1 class="name display reveal">هاشم الاهدل</h1>
+          <h1 class="name display reveal"><span class="name-ink">هاشم الاهدل</span></h1>
           <p class="role reveal">مطوّر ويب متكامل — متخصص في بناء المنصات وتطبيقات الجوال</p>
           <p class="lede reveal">أنا مطوّر ويب متكامل متخصص في بناء منصات جاهزة للإنتاج من الألف إلى الياء — بدءًا من تصميم قاعدة البيانات وحتى إطلاق تطبيقات الويب والجوال. أعمل بشكل أساسي على Laravel وReact/TypeScript وFlutter، ولدي خبرة عملية في بناء أسواق إلكترونية ثنائية الاتجاه، ولوحات تحكم للأعمال، وأدوات مدعومة بالذكاء الاصطناعي لعملاء في السعودية وخارجها.</p>
           <p class="lede reveal">أنا لا أكتفي بكتابة الكود حسب المتطلبات فقط — بل أصمم النظام بالكامل، وأتعامل مع الحالات الدقيقة (تعارض الطلبات المتزامنة، ضمان عدم تكرار عمليات الدفع، منطق الاسترداد)، وأسلّم منتجًا يعمل فعليًا في بيئة إنتاج حقيقية.</p>
@@ -341,7 +391,7 @@
   <!-- ABOUT -->
   <section id="about">
     <div data-i18n="en" lang="en">
-      <div class="sec-head"><span class="sec-num">§01</span><h2>About</h2></div>
+      <div class="sec-head"><span class="sec-num">01</span><h2>About</h2></div>
       <p class="lede reveal">I'm Hashem — a full-stack developer based in Makkah. The last few years have been spent shipping production systems for the Saudi market: operations tooling for a ride-hailing company, and complete marketplaces and subscription platforms built solo for clients.</p>
       <div class="ledger-row reveal"><span class="label">SamaTaxi — RSN ops</span><span class="dots"></span><span class="value">dashboards · price intelligence</span></div>
       <div class="ledger-row reveal"><span class="label">Freelance clients</span><span class="dots"></span><span class="value">Saudi Arabia &amp; abroad</span></div>
@@ -349,7 +399,7 @@
       <div class="ledger-row reveal"><span class="label">Odoo 17 HR modules</span><span class="dots"></span><span class="value">Python · PostgreSQL</span></div>
     </div>
     <div data-i18n="ar" lang="ar" dir="rtl">
-      <div class="sec-head"><span class="sec-num">§٠١</span><h2>نبذة</h2></div>
+      <div class="sec-head"><span class="sec-num">٠١</span><h2>نبذة</h2></div>
       <p class="lede reveal">أنا هاشم — مطوّر ويب متكامل من مكة. أمضيت السنوات الأخيرة في إطلاق أنظمة إنتاج للسوق السعودي: أدوات تشغيلية لشركة نقل ركاب، ومنصات وأسواق إلكترونية كاملة بنيتها بمفردي للعملاء.</p>
       <div class="ledger-row reveal"><span class="label">سما تاكسي — عمليات RSN</span><span class="dots"></span><span class="value">لوحات تحكم · تحليل أسعار</span></div>
       <div class="ledger-row reveal"><span class="label">عمل حر</span><span class="dots"></span><span class="value">السعودية وخارجها</span></div>
@@ -361,7 +411,7 @@
   <!-- APPROACH LEDGER — hidden for now; remove the `hidden` attribute (and restore nav link + renumbering) to bring it back -->
   <section id="approach" hidden>
     <div data-i18n="en" lang="en">
-      <div class="sec-head"><span class="sec-num">§02</span><h2>The approach</h2></div>
+      <div class="sec-head"><span class="sec-num">02</span><h2>The approach</h2></div>
       <div class="ledger-row reveal"><span class="label">Race conditions</span><span class="dots"></span><span class="value">→ date-safe holds</span></div>
       <div class="ledger-row reveal"><span class="label">Payment idempotency</span><span class="dots"></span><span class="value">→ webhook-confirmed, no double charges</span></div>
       <div class="ledger-row reveal"><span class="label">Refund logic</span><span class="dots"></span><span class="value">→ automatic, rule-based</span></div>
@@ -369,7 +419,7 @@
       <div class="ledger-row reveal"><span class="label">Language</span><span class="dots"></span><span class="value">→ Arabic RTL + English, one codebase</span></div>
     </div>
     <div data-i18n="ar" lang="ar" dir="rtl">
-      <div class="sec-head"><span class="sec-num">§٠٢</span><h2>الأسلوب</h2></div>
+      <div class="sec-head"><span class="sec-num">٠٢</span><h2>الأسلوب</h2></div>
       <div class="ledger-row reveal"><span class="label">تعارض الطلبات المتزامنة</span><span class="dots"></span><span class="value">← حجز آمن للتواريخ</span></div>
       <div class="ledger-row reveal"><span class="label">ضمان عدم تكرار عمليات الدفع</span><span class="dots"></span><span class="value">← تأكيد عبر Webhook</span></div>
       <div class="ledger-row reveal"><span class="label">منطق الاسترداد</span><span class="dots"></span><span class="value">← تلقائي ومبني على قواعد</span></div>
@@ -381,7 +431,7 @@
   <!-- FEATURED PROJECT -->
   <section id="nuzul">
     <div data-i18n="en" lang="en">
-      <div class="sec-head"><span class="sec-num">§02</span><h2>Featured project</h2></div>
+      <div class="sec-head"><span class="sec-num">02</span><h2>Featured project</h2></div>
       <div class="feature-card reveal">
         <div class="feature-top">
           <div>
@@ -430,15 +480,15 @@
           <div class="receipt-row"><span class="k">Language</span><span class="d"></span><span class="v">Arabic RTL default + English, custom design system</span></div>
         </div>
         <div class="stat-row">
-          <div class="stat"><span class="n">175+</span><span class="l">Pest tests</span></div>
-          <div class="stat"><span class="n">2</span><span class="l">apps, one API</span></div>
+          <div class="stat"><span class="n" data-count="175" data-suffix="+">175+</span><span class="l">Pest tests</span></div>
+          <div class="stat"><span class="n" data-count="2">2</span><span class="l">apps, one API</span></div>
           <div class="stat"><span class="n">int</span><span class="l">money, not float</span></div>
         </div>
       </div>
     </div>
 
     <div data-i18n="ar" lang="ar" dir="rtl">
-      <div class="sec-head"><span class="sec-num">§٠٢</span><h2>المشروع الرئيسي</h2></div>
+      <div class="sec-head"><span class="sec-num">٠٢</span><h2>المشروع الرئيسي</h2></div>
       <div class="feature-card reveal">
         <div class="feature-top">
           <div>
@@ -487,8 +537,8 @@
           <div class="receipt-row"><span class="k">اللغة</span><span class="d"></span><span class="v">عربي RTL أساسي وإنجليزي، هوية بصرية مخصصة</span></div>
         </div>
         <div class="stat-row">
-          <div class="stat"><span class="n">+١٧٥</span><span class="l">اختبار Pest</span></div>
-          <div class="stat"><span class="n">٢</span><span class="l">تطبيقين، API واحد</span></div>
+          <div class="stat"><span class="n" data-count="175" data-suffix="+" data-numerals="arab">+١٧٥</span><span class="l">اختبار Pest</span></div>
+          <div class="stat"><span class="n" data-count="2" data-numerals="arab">٢</span><span class="l">تطبيقين، API واحد</span></div>
           <div class="stat"><span class="n">int</span><span class="l">مبالغ، لا كسور</span></div>
         </div>
       </div>
@@ -498,7 +548,7 @@
   <!-- SECOND FEATURED PROJECT -->
   <section id="meals">
     <div data-i18n="en" lang="en">
-      <div class="sec-head"><span class="sec-num">§03</span><h2>Second feature</h2></div>
+      <div class="sec-head"><span class="sec-num">03</span><h2>Second feature</h2></div>
       <div class="feature-card reveal">
         <div class="feature-top">
           <div>
@@ -548,15 +598,15 @@
           <div class="receipt-row"><span class="k">Notifications</span><span class="d"></span><span class="v">Push reminders for meal selection and renewal</span></div>
         </div>
         <div class="stat-row">
-          <div class="stat"><span class="n">62</span><span class="l">PHPUnit tests</span></div>
-          <div class="stat"><span class="n">75</span><span class="l">menu items</span></div>
-          <div class="stat"><span class="n">24</span><span class="l">plan combinations</span></div>
+          <div class="stat"><span class="n" data-count="62">62</span><span class="l">PHPUnit tests</span></div>
+          <div class="stat"><span class="n" data-count="75">75</span><span class="l">menu items</span></div>
+          <div class="stat"><span class="n" data-count="24">24</span><span class="l">plan combinations</span></div>
         </div>
       </div>
     </div>
 
     <div data-i18n="ar" lang="ar" dir="rtl">
-      <div class="sec-head"><span class="sec-num">§٠٣</span><h2>المشروع الثاني</h2></div>
+      <div class="sec-head"><span class="sec-num">٠٣</span><h2>المشروع الثاني</h2></div>
       <div class="feature-card reveal">
         <div class="feature-top">
           <div>
@@ -606,9 +656,9 @@
           <div class="receipt-row"><span class="k">الإشعارات</span><span class="d"></span><span class="v">تذكير فوري باختيار الوجبات وبتجديد الاشتراك</span></div>
         </div>
         <div class="stat-row">
-          <div class="stat"><span class="n">٦٢</span><span class="l">اختبار PHPUnit</span></div>
-          <div class="stat"><span class="n">٧٥</span><span class="l">صنفًا في المنيو</span></div>
-          <div class="stat"><span class="n">٢٤</span><span class="l">تركيبة خطة</span></div>
+          <div class="stat"><span class="n" data-count="62" data-numerals="arab">٦٢</span><span class="l">اختبار PHPUnit</span></div>
+          <div class="stat"><span class="n" data-count="75" data-numerals="arab">٧٥</span><span class="l">صنفًا في المنيو</span></div>
+          <div class="stat"><span class="n" data-count="24" data-numerals="arab">٢٤</span><span class="l">تركيبة خطة</span></div>
         </div>
       </div>
     </div>
@@ -617,7 +667,7 @@
   <!-- OTHER WORK -->
   <section id="work">
     <div data-i18n="en" lang="en">
-      <div class="sec-head"><span class="sec-num">§04</span><h2>Other work</h2></div>
+      <div class="sec-head"><span class="sec-num">04</span><h2>Other work</h2></div>
       <div class="grid">
         <div class="card reveal"><p class="tag">Dashboard</p><h4>RSN Operations Dashboard</h4><p>Internal ops tool for a ride-hailing company — referral/coupon tracking and driver performance. Built the React data layer and visualizations, integrated with backend systems for real-time insight.</p><div class="card-tags"><span>React</span><span>TypeScript</span><span>Laravel</span><span>MySQL</span></div></div>
         <div class="card reveal"><p class="tag">Case management</p><h4>Tanfeeth — Legal Case System</h4><p>Case tracking for legal operations across Primary, Appeal and Supreme court levels — hearings, deadlines and document workflow in one queue. React + Vite frontend on a Laravel/Sanctum API, PHPUnit-tested.</p><div class="card-tags"><span>Laravel</span><span>Sanctum</span><span>React</span><span>Vite</span><span>MySQL</span></div></div>
@@ -628,7 +678,7 @@
       </div>
     </div>
     <div data-i18n="ar" lang="ar" dir="rtl">
-      <div class="sec-head"><span class="sec-num">§٠٤</span><h2>مشاريع أخرى</h2></div>
+      <div class="sec-head"><span class="sec-num">٠٤</span><h2>مشاريع أخرى</h2></div>
       <div class="grid">
         <div class="card reveal"><p class="tag">لوحة تحكم</p><h4>لوحة تحكم عمليات RSN</h4><p>أداة تشغيلية داخلية لشركة نقل ركاب، لتتبع برامج الإحالة والكوبونات ومؤشرات أداء السائقين. بنيت طبقة البيانات والرسوم البيانية باستخدام React، مع ربطها بأنظمة الشركة الخلفية لعرض بيانات تشغيلية لحظية لفريق العمليات.</p><div class="card-tags"><span>React</span><span>TypeScript</span><span>Laravel</span><span>MySQL</span></div></div>
         <div class="card reveal"><p class="tag">إدارة قضايا</p><h4>تنفيذ — نظام قضايا قانونية</h4><p>نظام لتتبع القضايا القانونية عبر درجات التقاضي — الابتدائية والاستئناف والعليا — مع الجلسات والمواعيد وتدفق المستندات في مكان واحد. واجهة React مع Vite على واجهة برمجية بـ Laravel وSanctum، مع اختبارات PHPUnit.</p><div class="card-tags"><span>Laravel</span><span>Sanctum</span><span>React</span><span>Vite</span><span>MySQL</span></div></div>
@@ -643,13 +693,13 @@
   <!-- SKILLS -->
   <section id="skills">
     <div data-i18n="en" lang="en">
-      <div class="sec-head"><span class="sec-num">§05</span><h2>Skills</h2></div>
+      <div class="sec-head"><span class="sec-num">05</span><h2>Skills</h2></div>
       <div class="tag-sheet reveal">
         <span>Laravel</span><span>PHP 8</span><span>Python</span><span>React</span><span>TypeScript</span><span>Inertia.js</span><span>Tailwind CSS</span><span>MySQL</span><span>Flutter / Dart</span><span>REST API design</span><span>Payment gateway integration</span><span>Docker</span>
       </div>
     </div>
     <div data-i18n="ar" lang="ar" dir="rtl">
-      <div class="sec-head"><span class="sec-num">§٠٥</span><h2>المهارات</h2></div>
+      <div class="sec-head"><span class="sec-num">٠٥</span><h2>المهارات</h2></div>
       <div class="tag-sheet reveal">
         <span>Laravel</span><span>PHP 8</span><span>Python</span><span>React</span><span>TypeScript</span><span>Inertia.js</span><span>Tailwind CSS</span><span>MySQL</span><span>Flutter/Dart</span><span>تصميم واجهات REST</span><span>ربط بوابات الدفع</span><span>Docker</span>
       </div>
@@ -706,6 +756,11 @@
     ar: { title: 'هاشم الاهدل — مطوّر ويب متكامل',
           desc: 'مطوّر ويب متكامل متخصص في Laravel وReact/TypeScript وFlutter — منصات ويب وجوال جاهزة للإنتاج.' }
   };
+  var reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  function fmt(n, arab){
+    return arab ? new Intl.NumberFormat('ar-SA-u-nu-arab', { useGrouping:false }).format(n) : String(n);
+  }
+
   var stored = localStorage.getItem('lang');
   var initial = stored || 'ar';
   setLang(initial, false);
@@ -713,6 +768,7 @@
   document.getElementById('langToggle').addEventListener('click', function(){
     var next = html.getAttribute('data-lang') === 'en' ? 'ar' : 'en';
     setLang(next, true);
+    writeName();
   });
 
   function setLang(lang, persist){
@@ -727,12 +783,155 @@
     if(persist) localStorage.setItem('lang', lang);
   }
 
+  /* ink writer — reveals text letter by letter by stepping the ink edge
+     through each measured glyph, so Arabic letters stay perfectly joined */
+  var QUILL = '<span class="pen"><svg viewBox="0 0 48 48" fill="none">'
+    + '<path d="M13.5 31 C 15 19, 25 8, 43 3.5 C 41 13, 37.5 20, 31.5 26 C 26 31.5, 20 32.5, 13.8 31.6 Z" fill="currentColor"/>'
+    + '<path d="M5 43.5 C 13 35, 20 28, 30 17" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>'
+    + '<path d="M21 26 C 27 21, 31 16, 35 10.5 M18 29 C 24.5 23.5, 29.5 18.5, 34 13" stroke="var(--paper)" stroke-width="0.9" stroke-linecap="round" opacity="0.65"/>'
+    + '</svg></span>';
+
+  function inkWrite(el, quill, charDur, done){
+    var node = el.firstChild;
+    if(reduced.matches || !node || node.nodeType !== 3){ el.style.clipPath = ''; if(done) done(); return; }
+    var text = node.data;
+    var rtl = getComputedStyle(el).direction === 'rtl';
+    var box = el.getBoundingClientRect();
+    if(!box.width){ el.style.clipPath = ''; if(done) done(); return; }
+    var range = document.createRange();
+    var timeline = [], t = 0, prevD = 0;
+    for(var i = 0; i < text.length; i++){
+      if(text[i] === ' '){ t += 170; continue; }
+      range.setStart(node, i); range.setEnd(node, i + 1);
+      var r = range.getBoundingClientRect();
+      var d = rtl ? (box.right - r.left) : (r.right - box.left);
+      if(d < prevD) d = prevD;
+      timeline.push({ t0: t, t1: t + charDur, d0: prevD, d1: d });
+      t += charDur; prevD = d;
+    }
+    var total = t, W = box.width;
+    function setEdge(d){
+      el.style.clipPath = rtl
+        ? 'inset(-25% 0 -25% ' + Math.max(0, W - d) + 'px)'
+        : 'inset(-25% ' + Math.max(0, W - d) + 'px -25% 0)';
+      if(quill) quill.style.left = (rtl ? (W - d) : d) + 'px';
+    }
+    setEdge(0);
+    if(quill) quill.style.opacity = '1';
+    var start = null;
+    function frame(ts){
+      if(start === null) start = ts;
+      var now = ts - start, d = 0;
+      for(var k = 0; k < timeline.length; k++){
+        var s = timeline[k];
+        if(now < s.t0){ d = s.d0; break; }
+        if(now <= s.t1){ var p = (now - s.t0) / (s.t1 - s.t0); d = s.d0 + (s.d1 - s.d0) * (1 - Math.pow(1 - p, 2)); break; }
+        d = s.d1;
+      }
+      setEdge(d);
+      if(now < total + 60){ requestAnimationFrame(frame); }
+      else { el.style.clipPath = ''; if(quill) quill.style.opacity = '0'; if(done) done(); }
+    }
+    requestAnimationFrame(frame);
+  }
+
+  function writeName(){
+    var h1 = document.querySelector('[data-i18n="' + html.getAttribute('data-lang') + '"] h1.name');
+    if(!h1) return;
+    h1.classList.add('in');
+    var inkEl = h1.querySelector('.name-ink');
+    if(reduced.matches || !inkEl) return;
+    var q = h1.querySelector('.qalam');
+    if(!q){
+      q = document.createElement('span');
+      q.className = 'qalam'; q.setAttribute('aria-hidden', 'true'); q.innerHTML = QUILL;
+      h1.appendChild(q);
+    }
+    var rtl = html.getAttribute('dir') === 'rtl';
+    inkEl.style.clipPath = rtl ? 'inset(-25% 0 -25% 100%)' : 'inset(-25% 100% -25% 0)';
+    h1.classList.add('writing');
+    setTimeout(function(){
+      inkWrite(inkEl, q, 100, function(){ h1.classList.remove('writing'); });
+    }, 250);
+  }
+  writeName();
+
+  /* section titles write themselves — with a small quill — as they scroll into view.
+     The clip lives on an inner .h2-ink wrapper so the quill itself is not clipped. */
+  if(!reduced.matches){
+    var h2s = document.querySelectorAll('.sec-head h2');
+    h2s.forEach(function(h){
+      var rtlH = h.closest('[data-i18n]').getAttribute('data-i18n') === 'ar';
+      var w = document.createElement('span');
+      w.className = 'h2-ink';
+      while(h.firstChild) w.appendChild(h.firstChild);
+      h.appendChild(w);
+      w.style.clipPath = rtlH ? 'inset(-15% 0 -15% 100%)' : 'inset(-15% 100% -15% 0)';
+    });
+    /* observe the parent .sec-head — a fully clipped element reports intersectionRatio 0 in Chrome */
+    var hio = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(!e.isIntersecting) return;
+        hio.unobserve(e.target);
+        var h = e.target.querySelector('h2');
+        if(!h) return;
+        var w = h.querySelector('.h2-ink');
+        var q = h.querySelector('.qalam');
+        if(!q){
+          q = document.createElement('span');
+          q.className = 'qalam'; q.setAttribute('aria-hidden', 'true'); q.innerHTML = QUILL;
+          h.appendChild(q);
+        }
+        h.classList.add('writing');
+        inkWrite(w, q, 70, function(){ h.classList.remove('writing'); });
+      });
+    }, { threshold: 0.6 });
+    h2s.forEach(function(h){ hio.observe(h.parentNode); });
+  }
+
+  /* stat counters */
+  var cio = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(!e.isIntersecting) return;
+      cio.unobserve(e.target);
+      var el = e.target, target = +el.dataset.count, suffix = el.dataset.suffix || '', arab = el.dataset.numerals === 'arab';
+      if(reduced.matches){ el.textContent = fmt(target, arab) + suffix; return; }
+      var t0 = null, dur = 900;
+      function step(ts){
+        if(!t0) t0 = ts;
+        var p = Math.min(1, (ts - t0) / dur);
+        p = 1 - Math.pow(1 - p, 3);
+        el.textContent = fmt(Math.round(target * p), arab) + suffix;
+        if(p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.stat .n[data-count]').forEach(function(el){ cio.observe(el); });
+
+  /* ink ruling scroll line */
+  var ink = document.getElementById('inkline'), inkTick = false;
+  function drawInk(){
+    var d = document.documentElement;
+    var max = d.scrollHeight - d.clientHeight;
+    ink.style.width = (max > 0 ? (d.scrollTop / max) * 100 : 0) + '%';
+    inkTick = false;
+  }
+  addEventListener('scroll', function(){
+    if(!inkTick){ inkTick = true; requestAnimationFrame(drawInk); }
+  }, { passive: true });
+  drawInk();
+
   var y = new Date().getFullYear();
   document.querySelectorAll('.js-year').forEach(function(el){
-    el.textContent = el.dataset.numerals === 'arab'
-      ? new Intl.NumberFormat('ar-SA-u-nu-arab', { useGrouping:false }).format(y)
-      : y;
+    el.textContent = fmt(y, el.dataset.numerals === 'arab');
   });
+
+  if(!reduced.matches){
+    document.querySelectorAll('.tag-sheet span').forEach(function(s, i){
+      s.style.transitionDelay = (i % 12) * 45 + 'ms';
+    });
+  }
 
   var io = new IntersectionObserver(function(entries){
     entries.forEach(function(e){
