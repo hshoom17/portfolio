@@ -1,10 +1,18 @@
 <!doctype html>
-<html lang="en" dir="ltr" data-lang="en">
+<html lang="ar" dir="rtl" data-lang="ar">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hashem Alahdal — Full-Stack Developer</title>
-<meta name="description" content="Full-stack developer specializing in Laravel, React/TypeScript and Flutter — production-grade web & mobile marketplaces.">
+<title>هاشم الاهدل — مطوّر ويب متكامل</title>
+<meta name="description" content="مطوّر ويب متكامل متخصص في Laravel وReact/TypeScript وFlutter — منصات ويب وجوال جاهزة للإنتاج.">
+<meta property="og:title" content="هاشم الاهدل — مطوّر ويب متكامل">
+<meta property="og:description" content="مطوّر ويب متكامل متخصص في Laravel وReact/TypeScript وFlutter — منصات ويب وجوال جاهزة للإنتاج.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ar_SA">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary">
+<!-- TODO: add og:url + og:image (absolute URLs) once the site is deployed to a domain -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='8' fill='%23EDEEE2'/%3E%3Crect x='5.5' y='5.5' width='53' height='53' rx='5' fill='none' stroke='%231C231F' stroke-width='3'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='Courier,monospace' font-size='24' font-weight='700' fill='%231C231F'%3EHA/%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Amiri:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -23,6 +31,8 @@
   }
 
   *{box-sizing:border-box;}
+  html{ scroll-behavior:smooth; }
+  section, footer{ scroll-margin-top:76px; }
   body{
     margin:0;
     background:var(--paper);
@@ -67,7 +77,9 @@
     backdrop-filter:blur(6px);
     border-bottom:1px solid var(--rule);
   }
-  .nav-row{ display:flex; align-items:center; justify-content:space-between; padding:16px 0; }
+  /* header layout is pinned LTR so the mark and language toggle never swap sides on language change */
+  .nav-row{ display:flex; align-items:center; justify-content:space-between; padding:16px 0; direction:ltr; }
+  .nav-tags .inline[lang="ar"]{ direction:rtl; }
   .mark{
     font-family:'IBM Plex Mono', monospace; font-weight:500; font-size:15px;
     letter-spacing:0.02em; border:1px solid var(--ink); padding:4px 10px; border-radius:var(--radius);
@@ -76,6 +88,9 @@
     display:flex; gap:18px; font-family:'IBM Plex Mono', monospace; font-size:11.5px;
     letter-spacing:0.06em; color:var(--ink-soft); text-transform:uppercase;
   }
+  .nav-tags .inline{ gap:18px; }
+  .nav-tags a{ color:var(--ink-soft); text-decoration:none; transition:color .2s ease; }
+  .nav-tags a:hover{ color:var(--ink); }
   @media (max-width: 720px){ .nav-tags{display:none;} }
 
   /* ---------- LANG TOGGLE ---------- */
@@ -100,6 +115,7 @@
     text-transform:uppercase; color:var(--accent); margin:0 0 18px;
   }
   h1.name{ font-size:clamp(42px, 7vw, 76px); line-height:1.02; margin:0 0 14px; font-weight:500; }
+  html[dir="rtl"] h1.name{ line-height:1.4; margin-bottom:30px; }
   .role{ font-size:clamp(17px, 2.2vw, 21px); color:var(--ink-soft); max-width:640px; margin:0 0 28px; font-weight:500; }
   .lede{ max-width:620px; font-size:16.5px; color:var(--ink); margin:0 0 34px; }
   .stamps{ display:flex; flex-wrap:wrap; gap:12px; }
@@ -108,6 +124,28 @@
     padding:7px 13px; border:1px dashed var(--ink-soft); border-radius:999px; color:var(--ink-soft);
   }
   .stamp.red{ border-color:var(--stamp); color:var(--stamp); }
+
+  /* hero portrait */
+  .hero-grid{ display:flex; gap:56px; align-items:flex-start; justify-content:space-between; }
+  .hero-text{ flex:1; min-width:0; }
+  .hero-photo{ flex:0 0 250px; margin-top:20px; }
+  .photo-frame{
+    border:1px solid var(--ink); border-radius:var(--radius); background:var(--paper-dim);
+    padding:10px 10px 8px; box-shadow:0 16px 34px -18px rgba(28,35,31,0.4);
+    transform:rotate(1.4deg);
+  }
+  html[dir="rtl"] .photo-frame{ transform:rotate(-1.4deg); }
+  .photo-frame img{ display:block; width:100%; height:auto; border-radius:2px; filter:saturate(0.94); }
+  .photo-caption{
+    text-align:center; font-family:'IBM Plex Mono', monospace; font-size:11px;
+    letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-soft); margin-top:12px;
+  }
+  @media (max-width:860px){ .hero-photo{ display:none; } }
+
+  /* connected Arabic script must not be letter-spaced */
+  html[dir="rtl"] .photo-caption, html[dir="rtl"] .phone-caption,
+  html[dir="rtl"] .stamp, html[dir="rtl"] .eyebrow, html[dir="rtl"] .stat .l,
+  .nav-tags .inline[lang="ar"]{ letter-spacing:0; }
 
   /* ---------- SECTION SCAFFOLDING ---------- */
   section{ padding:64px 0; border-top:1px solid var(--rule); }
@@ -122,6 +160,10 @@
   .ledger-row .dots{ flex:1; border-bottom:2px dotted var(--rule); height:0; margin-bottom:6px; }
   .ledger-row .value{ font-family:'IBM Plex Mono', monospace; font-size:13.5px; color:var(--accent); white-space:nowrap; text-align:right; }
   html[dir="rtl"] .ledger-row .value{ text-align:left; }
+  @media (max-width:600px){
+    .ledger-row .label{ white-space:normal; }
+    .ledger-row .value{ white-space:normal; }
+  }
 
   /* ---------- FEATURED PROJECT ---------- */
   .feature-card{ background:var(--paper-dim); border:1px solid var(--rule); border-radius:var(--radius); padding:40px; }
@@ -132,6 +174,12 @@
   .feature-sub{ font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--ink-soft); text-transform:uppercase; letter-spacing:0.05em; }
 
   .feature-desc{ max-width:700px; margin:18px 0 30px; color:var(--ink); }
+  .demo-link{
+    font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--accent);
+    text-decoration:none; border:1px solid var(--accent); border-radius:999px; padding:8px 15px;
+    white-space:nowrap; align-self:flex-start; transition:background .2s ease, color .2s ease;
+  }
+  .demo-link:hover{ background:var(--accent); color:var(--paper); }
 
   /* browser + phone mockups */
   .showcase-main{ margin-bottom:20px; }
@@ -189,6 +237,11 @@
   .card .tag{ font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:var(--accent); text-transform:uppercase; letter-spacing:0.06em; }
   .card h4{ font-size:17px; margin:10px 0 8px; font-weight:600; }
   .card p{ font-size:14px; color:var(--ink-soft); margin:0; }
+  .card-tags{ display:flex; flex-wrap:wrap; gap:6px; margin-top:14px; }
+  .card-tags span{
+    font-family:'IBM Plex Mono', monospace; font-size:10px; letter-spacing:0.04em;
+    border:1px solid var(--rule); border-radius:999px; padding:3px 8px; color:var(--ink-soft);
+  }
 
   /* ---------- SKILLS ---------- */
   .tag-sheet{ display:flex; flex-wrap:wrap; gap:10px; }
@@ -212,6 +265,7 @@
   .reveal{ opacity:0; transform:translateY(14px); transition:opacity .6s ease, transform .6s ease; }
   .reveal.in{ opacity:1; transform:translateY(0); }
   @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
     .reveal{ opacity:1; transform:none; transition:none; }
     .lang-toggle .thumb{ transition:none; }
   }
@@ -222,10 +276,10 @@
 <header class="nav">
   <div class="wrap nav-row">
     <div class="mark">HA/</div>
-    <div class="nav-tags">
-      <span data-i18n="en" class="inline">Laravel · React · Flutter</span>
-      <span data-i18n="ar" class="inline">Laravel · React · Flutter</span>
-    </div>
+    <nav class="nav-tags" aria-label="Sections">
+      <span data-i18n="en" class="inline" lang="en"><a href="#about">About</a><a href="#nuzul">Nuzul</a><a href="#meals">Healthy Meals</a><a href="#work">Work</a><a href="#skills">Skills</a><a href="#contact">Contact</a></span>
+      <span data-i18n="ar" class="inline" lang="ar"><a href="#about">نبذة</a><a href="#nuzul">نُزُل</a><a href="#meals">وجبات صحية</a><a href="#work">الأعمال</a><a href="#skills">المهارات</a><a href="#contact">تواصل</a></span>
+    </nav>
     <button class="lang-toggle" id="langToggle" aria-label="Switch language / تبديل اللغة">
       <span class="thumb"></span>
       <span class="opt en">EN</span>
@@ -238,43 +292,84 @@
 
   <!-- HERO -->
   <section class="hero" style="border-top:none;">
-    <div data-i18n="en">
-      <p class="eyebrow reveal">Full-stack · Laravel · React & TypeScript · Flutter</p>
-      <h1 class="name display reveal">Hashem Alahdal</h1>
-      <p class="role reveal">Full-Stack Developer — Web &amp; Mobile Marketplace Specialist</p>
-      <p class="lede reveal">I build complete, production-ready platforms end-to-end — from database design to deployed web and mobile apps. I don't just write code to spec: I design the system, handle the edge cases &mdash; race conditions, payment idempotency, refund logic &mdash; and deliver something that actually holds up in production.</p>
-      <div class="stamps reveal">
-        <span class="stamp">Open for work</span>
-        <span class="stamp">Clients in Saudi Arabia &amp; beyond</span>
-        <span class="stamp red">Ships to production</span>
+    <div data-i18n="en" lang="en">
+      <div class="hero-grid">
+        <div class="hero-text">
+          <p class="eyebrow reveal">Full-stack · Laravel · React &amp; TypeScript · Flutter</p>
+          <h1 class="name display reveal">Hashem Alahdal</h1>
+          <p class="role reveal">Full-Stack Developer — Web &amp; Mobile Marketplace Specialist</p>
+          <p class="lede reveal">I build complete, production-ready platforms end-to-end — from database design to deployed web and mobile apps. I work primarily with Laravel, React/TypeScript and Flutter, with hands-on experience building two-sided marketplaces, business dashboards, and AI-powered tools for clients in Saudi Arabia and abroad.</p>
+          <p class="lede reveal">I don't just write code to spec: I design the system, handle the edge cases &mdash; race conditions, payment idempotency, refund logic &mdash; and deliver something that actually holds up in production.</p>
+          <div class="stamps reveal">
+            <span class="stamp">Open for work</span>
+            <span class="stamp">Clients in Saudi Arabia &amp; beyond</span>
+            <span class="stamp red">Ships to production</span>
+          </div>
+        </div>
+        <aside class="hero-photo reveal">
+          <div class="photo-frame">
+            <img src="images/portrait.jpg" width="742" height="1100" alt="Hashem Alahdal — portrait" decoding="async" onerror="this.closest('.hero-photo').style.display='none'">
+          </div>
+          <p class="photo-caption">Makkah, Saudi Arabia</p>
+        </aside>
       </div>
     </div>
-    <div data-i18n="ar">
-      <p class="eyebrow reveal">مطوّر ويب متكامل (Full-Stack) · Laravel · React وTypeScript · Flutter</p>
-      <h1 class="name display reveal">هاشم الاهدل</h1>
-      <p class="role reveal">مطوّر ويب متكامل — متخصص في بناء المنصات والتطبيقات</p>
-      <p class="lede reveal">أنا مطوّر ويب متكامل متخصص في بناء منصات جاهزة للإنتاج من الألف إلى الياء — بدءًا من تصميم قاعدة البيانات وحتى إطلاق تطبيقات الويب والجوال. أعمل بشكل أساسي على Laravel وReact/TypeScript وFlutter، ولدي خبرة عملية في بناء أسواق إلكترونية ثنائية الاتجاه، ولوحات تحكم للأعمال، وأدوات مدعومة بالذكاء الاصطناعي لعملاء في السعودية وخارجها.</p>
-      <p class="lede reveal">أنا لا أكتفي بكتابة الكود حسب المتطلبات فقط — بل أصمم النظام بالكامل، وأتعامل مع الحالات الدقيقة (تعارض الطلبات المتزامنة، ضمان عدم تكرار عمليات الدفع، منطق الاسترداد)، وأسلّم منتجًا يعمل فعليًا في بيئة إنتاج حقيقية.</p>
-      <div class="stamps reveal">
-        <span class="stamp">متاح للعمل</span>
-        <span class="stamp">عملاء في السعودية وخارجها</span>
-        <span class="stamp red">جاهز للإنتاج</span>
+    <div data-i18n="ar" lang="ar" dir="rtl">
+      <div class="hero-grid">
+        <div class="hero-text">
+          <p class="eyebrow reveal">مطوّر ويب متكامل (Full-Stack) · Laravel · React · TypeScript · Flutter</p>
+          <h1 class="name display reveal">هاشم الاهدل</h1>
+          <p class="role reveal">مطوّر ويب متكامل — متخصص في بناء المنصات وتطبيقات الجوال</p>
+          <p class="lede reveal">أنا مطوّر ويب متكامل متخصص في بناء منصات جاهزة للإنتاج من الألف إلى الياء — بدءًا من تصميم قاعدة البيانات وحتى إطلاق تطبيقات الويب والجوال. أعمل بشكل أساسي على Laravel وReact/TypeScript وFlutter، ولدي خبرة عملية في بناء أسواق إلكترونية ثنائية الاتجاه، ولوحات تحكم للأعمال، وأدوات مدعومة بالذكاء الاصطناعي لعملاء في السعودية وخارجها.</p>
+          <p class="lede reveal">أنا لا أكتفي بكتابة الكود حسب المتطلبات فقط — بل أصمم النظام بالكامل، وأتعامل مع الحالات الدقيقة (تعارض الطلبات المتزامنة، ضمان عدم تكرار عمليات الدفع، منطق الاسترداد)، وأسلّم منتجًا يعمل فعليًا في بيئة إنتاج حقيقية.</p>
+          <div class="stamps reveal">
+            <span class="stamp">متاح للعمل</span>
+            <span class="stamp">عملاء في السعودية وخارجها</span>
+            <span class="stamp red">جاهز للإنتاج</span>
+          </div>
+        </div>
+        <aside class="hero-photo reveal">
+          <div class="photo-frame">
+            <img src="images/portrait.jpg" width="742" height="1100" alt="هاشم الاهدل — صورة شخصية" decoding="async" onerror="this.closest('.hero-photo').style.display='none'">
+          </div>
+          <p class="photo-caption">مكة، السعودية</p>
+        </aside>
       </div>
     </div>
   </section>
 
-  <!-- APPROACH LEDGER -->
-  <section id="approach">
-    <div data-i18n="en">
-      <div class="sec-head"><span class="sec-num">§01</span><h2>The approach</h2></div>
+  <!-- ABOUT -->
+  <section id="about">
+    <div data-i18n="en" lang="en">
+      <div class="sec-head"><span class="sec-num">§01</span><h2>About</h2></div>
+      <p class="lede reveal">I'm Hashem — a full-stack developer based in Makkah. The last few years have been spent shipping production systems for the Saudi market: operations tooling for a ride-hailing company, and complete marketplaces and subscription platforms built solo for clients.</p>
+      <div class="ledger-row reveal"><span class="label">SamaTaxi — RSN ops</span><span class="dots"></span><span class="value">dashboards · price intelligence</span></div>
+      <div class="ledger-row reveal"><span class="label">Freelance clients</span><span class="dots"></span><span class="value">Saudi Arabia &amp; abroad</span></div>
+      <div class="ledger-row reveal"><span class="label">Solo products</span><span class="dots"></span><span class="value">Nuzul · Healthy Meals</span></div>
+      <div class="ledger-row reveal"><span class="label">Odoo 17 HR modules</span><span class="dots"></span><span class="value">Python · PostgreSQL</span></div>
+    </div>
+    <div data-i18n="ar" lang="ar" dir="rtl">
+      <div class="sec-head"><span class="sec-num">§٠١</span><h2>نبذة</h2></div>
+      <p class="lede reveal">أنا هاشم — مطوّر ويب متكامل من مكة. أمضيت السنوات الأخيرة في إطلاق أنظمة إنتاج للسوق السعودي: أدوات تشغيلية لشركة نقل ركاب، ومنصات وأسواق إلكترونية كاملة بنيتها بمفردي للعملاء.</p>
+      <div class="ledger-row reveal"><span class="label">سما تاكسي — عمليات RSN</span><span class="dots"></span><span class="value">لوحات تحكم · تحليل أسعار</span></div>
+      <div class="ledger-row reveal"><span class="label">عمل حر</span><span class="dots"></span><span class="value">السعودية وخارجها</span></div>
+      <div class="ledger-row reveal"><span class="label">منتجات فردية</span><span class="dots"></span><span class="value">نُزُل · وجبات صحية</span></div>
+      <div class="ledger-row reveal"><span class="label">وحدات Odoo 17 للموارد البشرية</span><span class="dots"></span><span class="value">Python · PostgreSQL</span></div>
+    </div>
+  </section>
+
+  <!-- APPROACH LEDGER — hidden for now; remove the `hidden` attribute (and restore nav link + renumbering) to bring it back -->
+  <section id="approach" hidden>
+    <div data-i18n="en" lang="en">
+      <div class="sec-head"><span class="sec-num">§02</span><h2>The approach</h2></div>
       <div class="ledger-row reveal"><span class="label">Race conditions</span><span class="dots"></span><span class="value">→ date-safe holds</span></div>
       <div class="ledger-row reveal"><span class="label">Payment idempotency</span><span class="dots"></span><span class="value">→ webhook-confirmed, no double charges</span></div>
       <div class="ledger-row reveal"><span class="label">Refund logic</span><span class="dots"></span><span class="value">→ automatic, rule-based</span></div>
       <div class="ledger-row reveal"><span class="label">Rounding errors</span><span class="dots"></span><span class="value">→ money stored as integers</span></div>
       <div class="ledger-row reveal"><span class="label">Language</span><span class="dots"></span><span class="value">→ Arabic RTL + English, one codebase</span></div>
     </div>
-    <div data-i18n="ar">
-      <div class="sec-head"><span class="sec-num">§٠١</span><h2>الأسلوب</h2></div>
+    <div data-i18n="ar" lang="ar" dir="rtl">
+      <div class="sec-head"><span class="sec-num">§٠٢</span><h2>الأسلوب</h2></div>
       <div class="ledger-row reveal"><span class="label">تعارض الطلبات المتزامنة</span><span class="dots"></span><span class="value">← حجز آمن للتواريخ</span></div>
       <div class="ledger-row reveal"><span class="label">ضمان عدم تكرار عمليات الدفع</span><span class="dots"></span><span class="value">← تأكيد عبر Webhook</span></div>
       <div class="ledger-row reveal"><span class="label">منطق الاسترداد</span><span class="dots"></span><span class="value">← تلقائي ومبني على قواعد</span></div>
@@ -285,7 +380,7 @@
 
   <!-- FEATURED PROJECT -->
   <section id="nuzul">
-    <div data-i18n="en">
+    <div data-i18n="en" lang="en">
       <div class="sec-head"><span class="sec-num">§02</span><h2>Featured project</h2></div>
       <div class="feature-card reveal">
         <div class="feature-top">
@@ -302,26 +397,26 @@
               <div class="browser-dots"><span></span><span></span><span></span></div>
               <div class="browser-url">nuzul.sa</div>
             </div>
-            <img src="images/web-01-home.jpg" alt="Nuzul web home page — Arabic RTL, Mecca skyline hero, property search">
+            <img src="images/web-01-home.jpg" width="1600" height="1400" loading="lazy" decoding="async" alt="Nuzul web home page — Arabic RTL, Mecca skyline hero, property search">
           </div>
         </div>
         <div class="showcase-row">
           <div class="browser-frame">
             <div class="browser-bar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-url">nuzul.sa/search</div></div>
-            <img src="images/web-02-search.jpg" alt="Nuzul search results page with filters">
+            <img src="images/web-02-search.jpg" width="1600" height="1400" loading="lazy" decoding="async" alt="Nuzul search results page with filters">
           </div>
           <div class="browser-frame">
             <div class="browser-bar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-url">nuzul.sa/property</div></div>
-            <img src="images/web-03-property.jpg" alt="Nuzul property detail page with booking widget">
+            <img src="images/web-03-property.jpg" width="1600" height="1400" loading="lazy" decoding="async" alt="Nuzul property detail page with booking widget">
           </div>
         </div>
         <div class="showcase-phones">
           <div class="phone-block">
-            <div class="phone-frame"><img src="images/mobile-01-guest-home.jpg" alt="Nuzul mobile app — guest home screen"></div>
+            <div class="phone-frame"><img src="images/mobile-01-guest-home.jpg" width="368" height="800" loading="lazy" decoding="async" alt="Nuzul mobile app — guest home screen"></div>
             <p class="phone-caption">Guest — browse &amp; book</p>
           </div>
           <div class="phone-block">
-            <div class="phone-frame"><img src="images/mobile-02-host-properties.jpg" alt="Nuzul mobile app — host property list"></div>
+            <div class="phone-frame"><img src="images/mobile-02-host-properties.jpg" width="368" height="800" loading="lazy" decoding="async" alt="Nuzul mobile app — host property list"></div>
             <p class="phone-caption">Host — manage properties</p>
           </div>
         </div>
@@ -342,7 +437,7 @@
       </div>
     </div>
 
-    <div data-i18n="ar">
+    <div data-i18n="ar" lang="ar" dir="rtl">
       <div class="sec-head"><span class="sec-num">§٠٢</span><h2>المشروع الرئيسي</h2></div>
       <div class="feature-card reveal">
         <div class="feature-top">
@@ -359,26 +454,26 @@
               <div class="browser-dots"><span></span><span></span><span></span></div>
               <div class="browser-url">nuzul.sa</div>
             </div>
-            <img src="images/web-01-home.jpg" alt="الصفحة الرئيسية لموقع نُزُل — عربي RTL، أفق مكة، بحث عن عقارات">
+            <img src="images/web-01-home.jpg" width="1600" height="1400" loading="lazy" decoding="async" alt="الصفحة الرئيسية لموقع نُزُل — عربي RTL، أفق مكة، بحث عن عقارات">
           </div>
         </div>
         <div class="showcase-row">
           <div class="browser-frame">
             <div class="browser-bar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-url">nuzul.sa/search</div></div>
-            <img src="images/web-02-search.jpg" alt="نتائج البحث في نُزُل مع الفلاتر">
+            <img src="images/web-02-search.jpg" width="1600" height="1400" loading="lazy" decoding="async" alt="نتائج البحث في نُزُل مع الفلاتر">
           </div>
           <div class="browser-frame">
             <div class="browser-bar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-url">nuzul.sa/property</div></div>
-            <img src="images/web-03-property.jpg" alt="صفحة تفاصيل العقار مع أداة الحجز">
+            <img src="images/web-03-property.jpg" width="1600" height="1400" loading="lazy" decoding="async" alt="صفحة تفاصيل العقار مع أداة الحجز">
           </div>
         </div>
         <div class="showcase-phones">
           <div class="phone-block">
-            <div class="phone-frame"><img src="images/mobile-01-guest-home.jpg" alt="تطبيق نُزُل — شاشة الضيف الرئيسية"></div>
+            <div class="phone-frame"><img src="images/mobile-01-guest-home.jpg" width="368" height="800" loading="lazy" decoding="async" alt="تطبيق نُزُل — شاشة الضيف الرئيسية"></div>
             <p class="phone-caption">ضيف — تصفّح واحجز</p>
           </div>
           <div class="phone-block">
-            <div class="phone-frame"><img src="images/mobile-02-host-properties.jpg" alt="تطبيق نُزُل — قائمة عقارات المضيف"></div>
+            <div class="phone-frame"><img src="images/mobile-02-host-properties.jpg" width="368" height="800" loading="lazy" decoding="async" alt="تطبيق نُزُل — قائمة عقارات المضيف"></div>
             <p class="phone-caption">مضيف — إدارة العقارات</p>
           </div>
         </div>
@@ -400,42 +495,161 @@
     </div>
   </section>
 
-  <!-- OTHER WORK -->
-  <section id="work">
-    <div data-i18n="en">
-      <div class="sec-head"><span class="sec-num">§03</span><h2>Other work</h2></div>
-      <div class="grid">
-        <div class="card reveal"><p class="tag">Dashboard</p><h4>RSN Operations Dashboard</h4><p>Internal ops tool for a ride-hailing company — referral/coupon tracking and driver performance. Built the React data layer and visualizations, integrated with backend systems for real-time insight.</p></div>
-        <div class="card reveal"><p class="tag">Case management</p><h4>Tanfeeth — Legal Case System</h4><p>Case tracking and workflow tooling for legal operations, built on Laravel and React.</p></div>
-        <div class="card reveal"><p class="tag">HR / Odoo</p><h4>HR Management System</h4><p>Built on Odoo 17 with Python, PostgreSQL and Docker Compose.</p></div>
-        <div class="card reveal"><p class="tag">Computer vision</p><h4>Offline OCR Pipeline</h4><p>Local vision-model pipeline (Ollama-served Qwen2.5/3-VL) extracting Arabic/English text from ID-style documents — CLI, Gradio UI, OpenCV cleanup for glare and security strips.</p></div>
-        <div class="card reveal"><p class="tag">Automation</p><h4>Competitor Price Intelligence</h4><p>Python + uiautomator2 drives 9 competitor ride-hailing apps daily across 16+ cities, syncing fares via REST to a dashboard — cron fleet, retry logic, ~150 daily checks.</p></div>
-        <div class="card reveal"><p class="tag">DevOps</p><h4>CI/CD &amp; Deployment</h4><p>Laravel apps deployed via Git/SSH with GitHub Actions automation.</p></div>
+  <!-- SECOND FEATURED PROJECT -->
+  <section id="meals">
+    <div data-i18n="en" lang="en">
+      <div class="sec-head"><span class="sec-num">§03</span><h2>Second feature</h2></div>
+      <div class="feature-card reveal">
+        <div class="feature-top">
+          <div>
+            <p class="feature-sub">Web + Mobile · Solo-built · Arabic-first</p>
+            <h3>Healthy Meals — Subscription Platform</h3>
+          </div>
+          <a class="demo-link" href="https://claude.ai/code/artifact/73914493-ef63-48bf-8595-cc13f5360be1" target="_blank" rel="noopener">Try the live demo ↗</a>
+        </div>
+        <p class="feature-desc">A complete meal-subscription system for a healthy-food restaurant. Customers pick a plan — 1–4 meals a day, 100–200&nbsp;g portions, 26 or 30 days plus a daily snack — then choose the next day's meals in the app before the nightly cutoff; the kitchen cooks from an aggregated prep report and drivers deliver from a printable list. Built white-label ready — the same codebase has already been rebranded for a second restaurant.</p>
+
+        <div class="showcase-main">
+          <div class="browser-frame">
+            <div class="browser-bar">
+              <div class="browser-dots"><span></span><span></span><span></span></div>
+              <div class="browser-url">meals-platform.app/admin</div>
+            </div>
+            <img src="images/hf-web-01-dashboard.jpg" alt="Meal-subscription admin dashboard — active subscriptions, pending activations, Arabic RTL" width="1600" height="900" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <div class="showcase-row">
+          <div class="browser-frame">
+            <div class="browser-bar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-url">meals-platform.app/admin/kitchen-report</div></div>
+            <img src="images/hf-web-02-kitchen.jpg" alt="Kitchen prep report — dishes aggregated by portion size for the day's cooking" width="1600" height="1400" loading="lazy" decoding="async">
+          </div>
+          <div class="browser-frame">
+            <div class="browser-bar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-url">meals-platform.app/admin/orders</div></div>
+            <img src="images/hf-web-03-orders.jpg" alt="Takeaway orders queue with statuses and totals" width="1600" height="1400" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <div class="showcase-phones">
+          <div class="phone-block">
+            <div class="phone-frame"><img src="images/hf-mobile-01-home.jpg" alt="Meal-subscription mobile app — home screen with plan progress and tomorrow's meals call-to-action" width="716" height="1522" loading="lazy" decoding="async"></div>
+            <p class="phone-caption">Customer — plan at a glance</p>
+          </div>
+          <div class="phone-block">
+            <div class="phone-frame"><img src="images/hf-mobile-02-picker.jpg" alt="Meal-subscription mobile app — daily meal picker with calorie and macro totals" width="716" height="1522" loading="lazy" decoding="async"></div>
+            <p class="phone-caption">Customer — pick tomorrow's meals</p>
+          </div>
+        </div>
+
+        <div class="receipt-list" style="margin-top:30px;">
+          <div class="receipt-row"><span class="k">Admin app</span><span class="d"></span><span class="v">Laravel, Inertia.js, React 19 + TS, Tailwind v4</span></div>
+          <div class="receipt-row"><span class="k">Mobile app</span><span class="d"></span><span class="v">Expo / React Native, TypeScript, Arabic RTL</span></div>
+          <div class="receipt-row"><span class="k">Subscriptions</span><span class="d"></span><span class="v">pending → active → expired lifecycle, renewals</span></div>
+          <div class="receipt-row"><span class="k">Auto-fill engine</span><span class="d"></span><span class="v">Nightly cutoff, repeat-last → chef default, idempotent</span></div>
+          <div class="receipt-row"><span class="k">Kitchen ops</span><span class="d"></span><span class="v">Prep report + printable delivery list with Maps links</span></div>
+          <div class="receipt-row"><span class="k">Notifications</span><span class="d"></span><span class="v">Push reminders for meal selection and renewal</span></div>
+        </div>
+        <div class="stat-row">
+          <div class="stat"><span class="n">62</span><span class="l">PHPUnit tests</span></div>
+          <div class="stat"><span class="n">75</span><span class="l">menu items</span></div>
+          <div class="stat"><span class="n">24</span><span class="l">plan combinations</span></div>
+        </div>
       </div>
     </div>
-    <div data-i18n="ar">
-      <div class="sec-head"><span class="sec-num">§٠٣</span><h2>مشاريع أخرى</h2></div>
+
+    <div data-i18n="ar" lang="ar" dir="rtl">
+      <div class="sec-head"><span class="sec-num">§٠٣</span><h2>المشروع الثاني</h2></div>
+      <div class="feature-card reveal">
+        <div class="feature-top">
+          <div>
+            <p class="feature-sub">ويب + جوال · بناء فردي كامل · عربي أولًا</p>
+            <h3>وجبات صحية — منصة اشتراكات وجبات</h3>
+          </div>
+          <a class="demo-link" href="https://claude.ai/code/artifact/73914493-ef63-48bf-8595-cc13f5360be1" target="_blank" rel="noopener">جرّب النموذج التفاعلي ↗</a>
+        </div>
+        <p class="feature-desc">نظام متكامل لاشتراكات الوجبات لمطعم أكل صحي. يختار العميل خطته — من وجبة إلى 4 وجبات يوميًا، بأحجام 100–200 جم، لمدة 26 أو 30 يومًا مع سناك يومي — ثم يحدد وجبات الغد من التطبيق قبل موعد الإغلاق الليلي؛ ويطبخ المطبخ من تقرير تحضير مجمّع، ويوصّل السائقون من قائمة قابلة للطباعة. مبني ليكون قابلًا لإعادة العلامة (White-label) — نفس الكود أُعيدت تهيئته فعليًا لمطعم ثانٍ بهوية جديدة.</p>
+
+        <div class="showcase-main">
+          <div class="browser-frame">
+            <div class="browser-bar">
+              <div class="browser-dots"><span></span><span></span><span></span></div>
+              <div class="browser-url">meals-platform.app/admin</div>
+            </div>
+            <img src="images/hf-web-01-dashboard.jpg" alt="لوحة تحكم منصة الوجبات — الاشتراكات النشطة وطلبات التفعيل، عربي RTL" width="1600" height="900" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <div class="showcase-row">
+          <div class="browser-frame">
+            <div class="browser-bar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-url">meals-platform.app/admin/kitchen-report</div></div>
+            <img src="images/hf-web-02-kitchen.jpg" alt="تقرير المطبخ — تجميع الأطباق حسب حجم الحصة ليوم الطبخ" width="1600" height="1400" loading="lazy" decoding="async">
+          </div>
+          <div class="browser-frame">
+            <div class="browser-bar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-url">meals-platform.app/admin/orders</div></div>
+            <img src="images/hf-web-03-orders.jpg" alt="قائمة طلبات الاستلام مع الحالات والمجاميع" width="1600" height="1400" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <div class="showcase-phones">
+          <div class="phone-block">
+            <div class="phone-frame"><img src="images/hf-mobile-01-home.jpg" alt="تطبيق منصة الوجبات — الشاشة الرئيسية مع تقدم الاشتراك واختيار وجبات الغد" width="716" height="1522" loading="lazy" decoding="async"></div>
+            <p class="phone-caption">العميل — نظرة على الاشتراك</p>
+          </div>
+          <div class="phone-block">
+            <div class="phone-frame"><img src="images/hf-mobile-02-picker.jpg" alt="تطبيق منصة الوجبات — اختيار وجبات الغد مع إجمالي السعرات والعناصر" width="716" height="1522" loading="lazy" decoding="async"></div>
+            <p class="phone-caption">العميل — اختيار وجبات الغد</p>
+          </div>
+        </div>
+
+        <div class="receipt-list" style="margin-top:30px;">
+          <div class="receipt-row"><span class="k">تطبيق الإدارة</span><span class="d"></span><span class="v">Laravel وInertia.js وReact 19 مع TypeScript وTailwind v4</span></div>
+          <div class="receipt-row"><span class="k">تطبيق الجوال</span><span class="d"></span><span class="v">Expo / React Native مع TypeScript، عربي RTL</span></div>
+          <div class="receipt-row"><span class="k">الاشتراكات</span><span class="d"></span><span class="v">قيد التفعيل ← نشط ← منتهي، مع التجديدات</span></div>
+          <div class="receipt-row"><span class="k">التعبئة التلقائية</span><span class="d"></span><span class="v">إغلاق ليلي، تكرار آخر اختيار ← اختيار الشيف، بلا تكرار</span></div>
+          <div class="receipt-row"><span class="k">تشغيل المطبخ</span><span class="d"></span><span class="v">تقرير تحضير مجمّع وقائمة توصيل بروابط خرائط Google</span></div>
+          <div class="receipt-row"><span class="k">الإشعارات</span><span class="d"></span><span class="v">تذكير فوري باختيار الوجبات وبتجديد الاشتراك</span></div>
+        </div>
+        <div class="stat-row">
+          <div class="stat"><span class="n">٦٢</span><span class="l">اختبار PHPUnit</span></div>
+          <div class="stat"><span class="n">٧٥</span><span class="l">صنفًا في المنيو</span></div>
+          <div class="stat"><span class="n">٢٤</span><span class="l">تركيبة خطة</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OTHER WORK -->
+  <section id="work">
+    <div data-i18n="en" lang="en">
+      <div class="sec-head"><span class="sec-num">§04</span><h2>Other work</h2></div>
       <div class="grid">
-        <div class="card reveal"><p class="tag">لوحة تحكم</p><h4>لوحة تحكم عمليات RSN</h4><p>أداة تشغيلية داخلية لشركة نقل ركاب، لتتبع برامج الإحالة والكوبونات ومؤشرات أداء السائقين. بنيت طبقة البيانات والرسوم البيانية باستخدام React، مع ربطها بأنظمة الشركة الخلفية لعرض بيانات تشغيلية لحظية لفريق العمليات.</p></div>
-        <div class="card reveal"><p class="tag">إدارة قضايا</p><h4>تنفيذ — نظام قضايا قانونية</h4><p>نظام لتتبع القضايا وإدارة سير العمل، مبني على Laravel وReact.</p></div>
-        <div class="card reveal"><p class="tag">موارد بشرية</p><h4>نظام إدارة الموارد البشرية</h4><p>مبني على Odoo 17 باستخدام Python وPostgreSQL وDocker Compose.</p></div>
-        <div class="card reveal"><p class="tag">رؤية حاسوبية</p><h4>نظام OCR يعمل دون اتصال بالإنترنت</h4><p>نماذج رؤية محلية (Qwen2.5-VL وQwen3-VL عبر Ollama) لاستخراج النصوص العربية والإنجليزية من وثائق تشبه الهوية، مع أداة سطر أوامر، وواجهة ويب (Gradio)، ومعالجة صور بـ OpenCV (إزالة الوهج، معالجة الشرائط الأمنية الهولوغرافية).</p></div>
-        <div class="card reveal"><p class="tag">أتمتة</p><h4>تحليل أسعار المنافسين</h4><p>بايثون وuiautomator2 يشغّل 9 تطبيقات منافسة يوميًا في أكثر من 16 مدينة، ويزامن الأسعار عبر REST — أسطول cron، إعادة محاولة، ~150 فحص يوميًا.</p></div>
-        <div class="card reveal"><p class="tag">DevOps</p><h4>النشر والتكامل المستمر (CI/CD)</h4><p>نشر تطبيقات Laravel عبر Git/SSH مع أتمتة باستخدام GitHub Actions.</p></div>
+        <div class="card reveal"><p class="tag">Dashboard</p><h4>RSN Operations Dashboard</h4><p>Internal ops tool for a ride-hailing company — referral/coupon tracking and driver performance. Built the React data layer and visualizations, integrated with backend systems for real-time insight.</p><div class="card-tags"><span>React</span><span>TypeScript</span><span>Laravel</span><span>MySQL</span></div></div>
+        <div class="card reveal"><p class="tag">Case management</p><h4>Tanfeeth — Legal Case System</h4><p>Case tracking for legal operations across Primary, Appeal and Supreme court levels — hearings, deadlines and document workflow in one queue. React + Vite frontend on a Laravel/Sanctum API, PHPUnit-tested.</p><div class="card-tags"><span>Laravel</span><span>Sanctum</span><span>React</span><span>Vite</span><span>MySQL</span></div></div>
+        <div class="card reveal"><p class="tag">HR / Odoo</p><h4>HR Management System</h4><p>Custom Odoo 17 HR modules — employee records, leave and attendance workflows — deployed with Docker Compose for dev/prod parity.</p><div class="card-tags"><span>Odoo 17</span><span>Python</span><span>PostgreSQL</span><span>Docker</span></div></div>
+        <div class="card reveal"><p class="tag">Computer vision</p><h4>Offline OCR Pipeline</h4><p>Local vision-model pipeline (Ollama-served Qwen2.5/3-VL) extracting Arabic/English text from ID-style documents — CLI, Gradio UI, OpenCV cleanup for glare and security strips.</p><div class="card-tags"><span>Python</span><span>Ollama</span><span>Qwen-VL</span><span>OpenCV</span><span>Gradio</span></div></div>
+        <div class="card reveal"><p class="tag">Automation</p><h4>Competitor Price Intelligence</h4><p>Python + uiautomator2 drives 9 competitor ride-hailing apps daily across 16+ cities, syncing fares via REST to a dashboard — cron fleet, retry logic, ~150 daily checks.</p><div class="card-tags"><span>Python</span><span>uiautomator2</span><span>ADB</span><span>REST</span></div></div>
+        <div class="card reveal"><p class="tag">DevOps</p><h4>CI/CD &amp; Deployment</h4><p>GitHub Actions pipelines that test and build Laravel apps, then deploy over Git/SSH with zero-downtime releases, environment secrets and scheduled MySQL backups.</p><div class="card-tags"><span>GitHub Actions</span><span>Git/SSH</span><span>MySQL</span></div></div>
+      </div>
+    </div>
+    <div data-i18n="ar" lang="ar" dir="rtl">
+      <div class="sec-head"><span class="sec-num">§٠٤</span><h2>مشاريع أخرى</h2></div>
+      <div class="grid">
+        <div class="card reveal"><p class="tag">لوحة تحكم</p><h4>لوحة تحكم عمليات RSN</h4><p>أداة تشغيلية داخلية لشركة نقل ركاب، لتتبع برامج الإحالة والكوبونات ومؤشرات أداء السائقين. بنيت طبقة البيانات والرسوم البيانية باستخدام React، مع ربطها بأنظمة الشركة الخلفية لعرض بيانات تشغيلية لحظية لفريق العمليات.</p><div class="card-tags"><span>React</span><span>TypeScript</span><span>Laravel</span><span>MySQL</span></div></div>
+        <div class="card reveal"><p class="tag">إدارة قضايا</p><h4>تنفيذ — نظام قضايا قانونية</h4><p>نظام لتتبع القضايا القانونية عبر درجات التقاضي — الابتدائية والاستئناف والعليا — مع الجلسات والمواعيد وتدفق المستندات في مكان واحد. واجهة React مع Vite على واجهة برمجية بـ Laravel وSanctum، مع اختبارات PHPUnit.</p><div class="card-tags"><span>Laravel</span><span>Sanctum</span><span>React</span><span>Vite</span><span>MySQL</span></div></div>
+        <div class="card reveal"><p class="tag">موارد بشرية</p><h4>نظام إدارة الموارد البشرية</h4><p>وحدات مخصصة على Odoo 17 للموارد البشرية — سجلات الموظفين وسير عمل الإجازات والحضور — منشورة عبر Docker Compose بتطابق بين بيئتي التطوير والإنتاج.</p><div class="card-tags"><span>Odoo 17</span><span>Python</span><span>PostgreSQL</span><span>Docker</span></div></div>
+        <div class="card reveal"><p class="tag">رؤية حاسوبية</p><h4>نظام OCR يعمل دون اتصال بالإنترنت</h4><p>نماذج رؤية محلية (Qwen2.5-VL وQwen3-VL عبر Ollama) لاستخراج النصوص العربية والإنجليزية من وثائق تشبه الهوية، مع أداة سطر أوامر، وواجهة ويب (Gradio)، ومعالجة صور بـ OpenCV (إزالة الوهج، معالجة الشرائط الأمنية الهولوغرافية).</p><div class="card-tags"><span>Python</span><span>Ollama</span><span>Qwen-VL</span><span>OpenCV</span><span>Gradio</span></div></div>
+        <div class="card reveal"><p class="tag">أتمتة</p><h4>تحليل أسعار المنافسين</h4><p>بايثون وuiautomator2 يشغّل 9 تطبيقات منافسة يوميًا في أكثر من 16 مدينة، ويزامن الأسعار عبر REST — أسطول cron، إعادة محاولة، ~150 فحص يوميًا.</p><div class="card-tags"><span>Python</span><span>uiautomator2</span><span>ADB</span><span>REST</span></div></div>
+        <div class="card reveal"><p class="tag">DevOps</p><h4>النشر والتكامل المستمر (CI/CD)</h4><p>خطوط GitHub Actions تختبر تطبيقات Laravel وتبنيها، ثم تنشرها عبر Git/SSH دون توقف الخدمة، مع إدارة أسرار البيئة ونسخ احتياطي مجدول لقواعد MySQL.</p><div class="card-tags"><span>GitHub Actions</span><span>Git/SSH</span><span>MySQL</span></div></div>
       </div>
     </div>
   </section>
 
   <!-- SKILLS -->
   <section id="skills">
-    <div data-i18n="en">
-      <div class="sec-head"><span class="sec-num">§04</span><h2>Skills</h2></div>
+    <div data-i18n="en" lang="en">
+      <div class="sec-head"><span class="sec-num">§05</span><h2>Skills</h2></div>
       <div class="tag-sheet reveal">
         <span>Laravel</span><span>PHP 8</span><span>Python</span><span>React</span><span>TypeScript</span><span>Inertia.js</span><span>Tailwind CSS</span><span>MySQL</span><span>Flutter / Dart</span><span>REST API design</span><span>Payment gateway integration</span><span>Docker</span>
       </div>
     </div>
-    <div data-i18n="ar">
-      <div class="sec-head"><span class="sec-num">§٠٤</span><h2>المهارات</h2></div>
+    <div data-i18n="ar" lang="ar" dir="rtl">
+      <div class="sec-head"><span class="sec-num">§٠٥</span><h2>المهارات</h2></div>
       <div class="tag-sheet reveal">
         <span>Laravel</span><span>PHP 8</span><span>Python</span><span>React</span><span>TypeScript</span><span>Inertia.js</span><span>Tailwind CSS</span><span>MySQL</span><span>Flutter/Dart</span><span>تصميم واجهات REST</span><span>ربط بوابات الدفع</span><span>Docker</span>
       </div>
@@ -444,9 +658,9 @@
 
 </main>
 
-<footer>
+<footer id="contact">
   <div class="wrap">
-    <div data-i18n="en">
+    <div data-i18n="en" lang="en">
       <div class="footer-top">
         <h2 class="display">Let's build something that holds up.</h2>
       </div>
@@ -461,9 +675,9 @@
           <a href="https://linkedin.com/in/hashem-al-ahdal" target="_blank" rel="noopener">linkedin.com/in/hashem-al-ahdal</a>
         </div>
       </div>
-      <div class="foot-note"><span>PORTFOLIO — 2026</span><span>SAUDI ARABIA &amp; REMOTE</span></div>
+      <div class="foot-note"><span>PORTFOLIO — <span class="js-year">2026</span></span><span>SAUDI ARABIA &amp; REMOTE</span></div>
     </div>
-    <div data-i18n="ar">
+    <div data-i18n="ar" lang="ar" dir="rtl">
       <div class="footer-top">
         <h2 class="display">لنبني شيئًا "يعمل" فعلًا في بيئة إنتاج حقيقية.</h2>
       </div>
@@ -478,7 +692,7 @@
           <a href="https://linkedin.com/in/hashem-al-ahdal" target="_blank" rel="noopener">linkedin.com/in/hashem-al-ahdal</a>
         </div>
       </div>
-      <div class="foot-note"><span>ملف أعمال — ٢٠٢٦</span><span>السعودية وعن بعد</span></div>
+      <div class="foot-note"><span>ملف أعمال — <span class="js-year" data-numerals="arab">٢٠٢٦</span></span><span>السعودية وعن بعد</span></div>
     </div>
   </div>
 </footer>
@@ -486,8 +700,14 @@
 <script>
 (function(){
   var html = document.documentElement;
+  var META = {
+    en: { title: 'Hashem Alahdal — Full-Stack Developer',
+          desc: 'Full-stack developer specializing in Laravel, React/TypeScript and Flutter — production-grade web & mobile marketplaces.' },
+    ar: { title: 'هاشم الاهدل — مطوّر ويب متكامل',
+          desc: 'مطوّر ويب متكامل متخصص في Laravel وReact/TypeScript وFlutter — منصات ويب وجوال جاهزة للإنتاج.' }
+  };
   var stored = localStorage.getItem('lang');
-  var initial = stored || 'en';
+  var initial = stored || 'ar';
   setLang(initial, false);
 
   document.getElementById('langToggle').addEventListener('click', function(){
@@ -499,8 +719,20 @@
     html.setAttribute('data-lang', lang);
     html.setAttribute('lang', lang);
     html.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+    document.title = META[lang].title;
+    document.querySelector('meta[name="description"]').setAttribute('content', META[lang].desc);
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      el.setAttribute('aria-hidden', el.getAttribute('data-i18n') !== lang ? 'true' : 'false');
+    });
     if(persist) localStorage.setItem('lang', lang);
   }
+
+  var y = new Date().getFullYear();
+  document.querySelectorAll('.js-year').forEach(function(el){
+    el.textContent = el.dataset.numerals === 'arab'
+      ? new Intl.NumberFormat('ar-SA-u-nu-arab', { useGrouping:false }).format(y)
+      : y;
+  });
 
   var io = new IntersectionObserver(function(entries){
     entries.forEach(function(e){
