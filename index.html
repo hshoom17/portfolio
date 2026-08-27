@@ -147,7 +147,7 @@
   .qalam svg{ width:100%; height:100%; display:block; transform-origin:10% 90%; }
   .writing .qalam svg{ animation:pen-jig .16s ease-in-out infinite alternate; }
   @keyframes pen-jig{ from{ transform:rotate(-1.2deg); } to{ transform:rotate(2.2deg); } }
-  .sec-head h2{ position:relative; width:max-content; max-width:100%; }
+  .sec-head h2, footer h2{ position:relative; width:max-content; max-width:100%; }
   .h2-ink{ display:inline-block; }
 
   /* ink ruling scroll line */
@@ -807,36 +807,57 @@
     var box = el.getBoundingClientRect();
     if(!box.width){ el.style.clipPath = ''; if(done) done(); return; }
     var range = document.createRange();
-    var timeline = [], t = 0, prevD = 0;
+    var timeline = [], lines = [], t = 0, prevD = 0, li = -1;
     for(var i = 0; i < text.length; i++){
       if(text[i] === ' '){ t += 170; continue; }
       range.setStart(node, i); range.setEnd(node, i + 1);
       var r = range.getBoundingClientRect();
+      if(!r.width && !r.height) continue;
+      var top = r.top - box.top, bot = r.bottom - box.top;
+      if(li < 0 || top >= lines[li].bot - 2){
+        li++; lines.push({ top: top, bot: bot }); prevD = 0;
+      } else {
+        lines[li].top = Math.min(lines[li].top, top);
+        lines[li].bot = Math.max(lines[li].bot, bot);
+      }
       var d = rtl ? (box.right - r.left) : (r.right - box.left);
       if(d < prevD) d = prevD;
-      timeline.push({ t0: t, t1: t + charDur, d0: prevD, d1: d });
+      timeline.push({ t0: t, t1: t + charDur, d0: prevD, d1: d, li: li });
       t += charDur; prevD = d;
     }
-    var total = t, W = box.width;
-    function setEdge(d){
-      el.style.clipPath = rtl
-        ? 'inset(-25% 0 -25% ' + Math.max(0, W - d) + 'px)'
-        : 'inset(-25% ' + Math.max(0, W - d) + 'px -25% 0)';
-      if(quill) quill.style.left = (rtl ? (W - d) : d) + 'px';
+    var total = t, W = box.width, H = box.height, pad = Math.max(8, H * 0.2);
+    function setEdge(d, ln){
+      if(lines.length < 2){
+        el.style.clipPath = rtl
+          ? 'inset(-25% 0 -25% ' + Math.max(0, W - d) + 'px)'
+          : 'inset(-25% ' + Math.max(0, W - d) + 'px -25% 0)';
+      } else {
+        /* finished lines fully visible, current line revealed up to the ink edge, rest hidden */
+        var topB = ln === 0 ? -pad : (lines[ln - 1].bot + lines[ln].top) / 2;
+        var botB = ln === lines.length - 1 ? H + pad : (lines[ln].bot + lines[ln + 1].top) / 2;
+        var x = rtl ? Math.max(0, W - d) : Math.min(W, d);
+        el.style.clipPath = rtl
+          ? 'polygon(' + W + 'px ' + (-pad) + 'px, 0 ' + (-pad) + 'px, 0 ' + topB + 'px, ' + x + 'px ' + topB + 'px, ' + x + 'px ' + botB + 'px, ' + W + 'px ' + botB + 'px)'
+          : 'polygon(0 ' + (-pad) + 'px, ' + W + 'px ' + (-pad) + 'px, ' + W + 'px ' + topB + 'px, ' + x + 'px ' + topB + 'px, ' + x + 'px ' + botB + 'px, 0 ' + botB + 'px)';
+      }
+      if(quill){
+        quill.style.left = (rtl ? Math.max(0, W - d) : Math.min(W, d)) + 'px';
+        if(lines.length > 1) quill.style.top = (lines[ln].top + (lines[ln].bot - lines[ln].top) * 0.72) + 'px';
+      }
     }
-    setEdge(0);
+    setEdge(0, 0);
     if(quill) quill.style.opacity = '1';
     var start = null;
     function frame(ts){
       if(start === null) start = ts;
-      var now = ts - start, d = 0;
+      var now = ts - start, d = 0, ln = 0;
       for(var k = 0; k < timeline.length; k++){
         var s = timeline[k];
-        if(now < s.t0){ d = s.d0; break; }
-        if(now <= s.t1){ var p = (now - s.t0) / (s.t1 - s.t0); d = s.d0 + (s.d1 - s.d0) * (1 - Math.pow(1 - p, 2)); break; }
-        d = s.d1;
+        if(now < s.t0){ d = s.d0; ln = s.li; break; }
+        if(now <= s.t1){ var p = (now - s.t0) / (s.t1 - s.t0); d = s.d0 + (s.d1 - s.d0) * (1 - Math.pow(1 - p, 2)); ln = s.li; break; }
+        d = s.d1; ln = s.li;
       }
-      setEdge(d);
+      setEdge(d, ln);
       if(now < total + 60){ requestAnimationFrame(frame); }
       else { el.style.clipPath = ''; if(quill) quill.style.opacity = '0'; if(done) done(); }
     }
@@ -875,7 +896,7 @@
   /* section titles write themselves — with a small quill — as they scroll into view.
      The clip lives on an inner .h2-ink wrapper so the quill itself is not clipped. */
   if(!reduced.matches){
-    var h2s = document.querySelectorAll('.sec-head h2');
+    var h2s = document.querySelectorAll('.sec-head h2, footer h2');
     h2s.forEach(function(h){
       var rtlH = h.closest('[data-i18n]').getAttribute('data-i18n') === 'ar';
       var w = document.createElement('span');
@@ -893,7 +914,8 @@
         h.appendChild(q);
       }
       h.classList.add('writing');
-      inkWrite(w, q, 70, function(){ h.classList.remove('writing'); });
+      var len = (w.textContent || '').length || 1;
+      inkWrite(w, q, Math.max(30, Math.min(70, Math.round(1500 / len))), function(){ h.classList.remove('writing'); });
     };
     /* observe the parent .sec-head — a fully clipped element reports intersectionRatio 0 in Chrome.
        Titles triggered while the hero name is still being written are queued until it finishes,
