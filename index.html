@@ -207,11 +207,19 @@
 
   .feature-desc{ max-width:700px; margin:18px 0 30px; color:var(--ink); }
   .demo-link{
-    font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--accent);
-    text-decoration:none; border:1px solid var(--accent); border-radius:999px; padding:8px 15px;
-    white-space:nowrap; align-self:flex-start; transition:background .2s ease, color .2s ease;
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'IBM Plex Mono', monospace; font-size:12.5px; letter-spacing:0.04em; text-transform:uppercase;
+    color:var(--paper); background:var(--accent); border-radius:999px; padding:11px 20px;
+    text-decoration:none; white-space:nowrap; align-self:flex-start;
+    box-shadow:0 10px 20px -12px rgba(var(--shadow-rgb),0.55);
+    transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
   }
-  .demo-link:hover{ background:var(--accent); color:var(--paper); }
+  .demo-link:hover{
+    transform:translateY(-2px);
+    box-shadow:0 14px 26px -12px rgba(var(--shadow-rgb),0.6);
+    background:color-mix(in srgb, var(--accent) 85%, var(--ink));
+  }
+  html[dir="rtl"] .demo-link{ font-family:'IBM Plex Sans Arabic', sans-serif; font-size:14px; font-weight:600; letter-spacing:0; text-transform:none; }
 
   /* browser + phone mockups */
   .showcase-main{ margin-bottom:20px; }
@@ -613,7 +621,7 @@
             <p class="feature-sub">ويب + جوال · بناء فردي كامل · عربي أولًا</p>
             <h3>وجبات صحية — منصة اشتراكات وجبات</h3>
           </div>
-          <a class="demo-link" href="https://claude.ai/code/artifact/73914493-ef63-48bf-8595-cc13f5360be1" target="_blank" rel="noopener">جرّب النموذج التفاعلي ↗</a>
+          <a class="demo-link" href="https://claude.ai/code/artifact/73914493-ef63-48bf-8595-cc13f5360be1" target="_blank" rel="noopener">جرّب النموذج التفاعلي ↖</a>
         </div>
         <p class="feature-desc">نظام متكامل لاشتراكات الوجبات لمطعم أكل صحي. يختار العميل خطته — من وجبة إلى 4 وجبات يوميًا، بأحجام 100–200 جم، لمدة 26 أو 30 يومًا مع سناك يومي — ثم يحدد وجبات الغد من التطبيق قبل موعد الإغلاق الليلي؛ ويطبخ المطبخ من تقرير تحضير مجمّع، ويوصّل السائقون من قائمة قابلة للطباعة. مبني ليكون قابلًا لإعادة العلامة (White-label) — نفس الكود أُعيدت تهيئته فعليًا لمطعم ثانٍ بهوية جديدة.</p>
 
