@@ -850,10 +850,18 @@
     var rtl = html.getAttribute('dir') === 'rtl';
     inkEl.style.clipPath = rtl ? 'inset(-25% 0 -25% 100%)' : 'inset(-25% 100% -25% 0)';
     h1.classList.add('writing');
+    nameBusy = true;
     setTimeout(function(){
-      inkWrite(inkEl, q, 100, function(){ h1.classList.remove('writing'); });
+      inkWrite(inkEl, q, 100, function(){
+        h1.classList.remove('writing');
+        nameBusy = false;
+        titleQueue.splice(0).forEach(function(h, i){
+          setTimeout(function(){ writeTitle(h); }, 150 + i * 300);
+        });
+      });
     }, 250);
   }
+  var titleQueue = [], nameBusy = false;
   writeName();
 
   /* section titles write themselves — with a small quill — as they scroll into view.
@@ -868,22 +876,27 @@
       h.appendChild(w);
       w.style.clipPath = rtlH ? 'inset(-15% 0 -15% 100%)' : 'inset(-15% 100% -15% 0)';
     });
-    /* observe the parent .sec-head — a fully clipped element reports intersectionRatio 0 in Chrome */
+    var writeTitle = function(h){
+      var w = h.querySelector('.h2-ink');
+      var q = h.querySelector('.qalam');
+      if(!q){
+        q = document.createElement('span');
+        q.className = 'qalam'; q.setAttribute('aria-hidden', 'true'); q.innerHTML = QUILL;
+        h.appendChild(q);
+      }
+      h.classList.add('writing');
+      inkWrite(w, q, 70, function(){ h.classList.remove('writing'); });
+    };
+    /* observe the parent .sec-head — a fully clipped element reports intersectionRatio 0 in Chrome.
+       Titles triggered while the hero name is still being written are queued until it finishes,
+       so only one quill writes at a time on load. */
     var hio = new IntersectionObserver(function(entries){
       entries.forEach(function(e){
         if(!e.isIntersecting) return;
         hio.unobserve(e.target);
         var h = e.target.querySelector('h2');
         if(!h) return;
-        var w = h.querySelector('.h2-ink');
-        var q = h.querySelector('.qalam');
-        if(!q){
-          q = document.createElement('span');
-          q.className = 'qalam'; q.setAttribute('aria-hidden', 'true'); q.innerHTML = QUILL;
-          h.appendChild(q);
-        }
-        h.classList.add('writing');
-        inkWrite(w, q, 70, function(){ h.classList.remove('writing'); });
+        if(nameBusy){ titleQueue.push(h); } else { writeTitle(h); }
       });
     }, { threshold: 0.6 });
     h2s.forEach(function(h){ hio.observe(h.parentNode); });
