@@ -884,13 +884,24 @@
       inkWrite(inkEl, q, 100, function(){
         h1.classList.remove('writing');
         nameBusy = false;
-        titleQueue.splice(0).forEach(function(h, i){
-          setTimeout(function(){ writeTitle(h); }, 150 + i * 300);
-        });
+        flushTitles();
       });
     }, 250);
   }
-  var titleQueue = [], nameBusy = false;
+  /* titles wait for the name AND for the visitor's first scroll (6s safety release),
+     so nothing writes alongside the name on tall screens */
+  var titleQueue = [], nameBusy = false, titlesHeld = true;
+  function flushTitles(){
+    if(nameBusy || titlesHeld) return;
+    titleQueue.splice(0).forEach(function(h, i){
+      setTimeout(function(){ writeTitle(h); }, 150 + i * 300);
+    });
+  }
+  function releaseTitles(){ titlesHeld = false; flushTitles(); }
+  addEventListener('scroll', function onFirstScroll(){
+    if(scrollY > 40){ removeEventListener('scroll', onFirstScroll); releaseTitles(); }
+  }, { passive: true });
+  setTimeout(releaseTitles, 6000);
   writeName();
 
   /* section titles write themselves — with a small quill — as they scroll into view.
@@ -926,9 +937,9 @@
         hio.unobserve(e.target);
         var h = e.target.querySelector('h2');
         if(!h) return;
-        if(nameBusy){ titleQueue.push(h); } else { writeTitle(h); }
+        if(nameBusy || titlesHeld){ titleQueue.push(h); } else { writeTitle(h); }
       });
-    }, { threshold: 0.6 });
+    }, { threshold: 0.6, rootMargin: '0px 0px -18% 0px' });
     h2s.forEach(function(h){ hio.observe(h.parentNode); });
   }
 
