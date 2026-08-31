@@ -332,8 +332,8 @@
   <div class="wrap nav-row">
     <div class="mark" aria-label="Hashem Alahdal — هاشم الاهدل" lang="ar">هـ<svg class="swash" viewBox="0 0 40 6" aria-hidden="true"><path d="M1 5 C 13 1, 30 1, 39 3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div>
     <nav class="nav-tags" aria-label="Sections">
-      <span data-i18n="en" class="inline" lang="en"><a href="#about">About</a><a href="#nuzul">Nuzul</a><a href="#meals">Healthy Meals</a><a href="#work">Work</a><a href="#skills">Skills</a><a href="#contact">Contact</a></span>
-      <span data-i18n="ar" class="inline" lang="ar"><a href="#about">نبذة</a><a href="#nuzul">نُزُل</a><a href="#meals">وجبات صحية</a><a href="#work">الأعمال</a><a href="#skills">المهارات</a><a href="#contact">تواصل</a></span>
+      <span data-i18n="en" class="inline" lang="en"><a href="#about">About</a><a href="#meals">Healthy Meals</a><a href="#work">Work</a><a href="#skills">Skills</a><a href="#contact">Contact</a></span>
+      <span data-i18n="ar" class="inline" lang="ar"><a href="#about">نبذة</a><a href="#meals">وجبات صحية</a><a href="#work">الأعمال</a><a href="#skills">المهارات</a><a href="#contact">تواصل</a></span>
     </nav>
     <div class="nav-controls">
       <button class="lang-toggle" id="langToggle" aria-label="Switch language / تبديل اللغة">
@@ -436,8 +436,8 @@
     </div>
   </section>
 
-  <!-- FEATURED PROJECT -->
-  <section id="nuzul">
+  <!-- FEATURED PROJECT — hidden for now; remove the `hidden` attribute (and restore nav link + renumbering) to bring it back -->
+  <section id="nuzul" hidden>
     <div data-i18n="en" lang="en">
       <div class="sec-head"><span class="sec-num">02</span><h2>Featured project</h2></div>
       <div class="feature-card reveal">
@@ -556,7 +556,7 @@
   <!-- SECOND FEATURED PROJECT -->
   <section id="meals">
     <div data-i18n="en" lang="en">
-      <div class="sec-head"><span class="sec-num">03</span><h2>Second feature</h2></div>
+      <div class="sec-head"><span class="sec-num">02</span><h2>Second feature</h2></div>
       <div class="feature-card reveal">
         <div class="feature-top">
           <div>
@@ -614,7 +614,7 @@
     </div>
 
     <div data-i18n="ar" lang="ar" dir="rtl">
-      <div class="sec-head"><span class="sec-num">٠٣</span><h2>المشروع الثاني</h2></div>
+      <div class="sec-head"><span class="sec-num">٠٢</span><h2>المشروع الثاني</h2></div>
       <div class="feature-card reveal">
         <div class="feature-top">
           <div>
@@ -675,7 +675,7 @@
   <!-- OTHER WORK -->
   <section id="work">
     <div data-i18n="en" lang="en">
-      <div class="sec-head"><span class="sec-num">04</span><h2>Other work</h2></div>
+      <div class="sec-head"><span class="sec-num">03</span><h2>Other work</h2></div>
       <div class="grid">
         <div class="card reveal"><p class="tag">Dashboard</p><h4>RSN Operations Dashboard</h4><p>Internal ops tool for a ride-hailing company — referral/coupon tracking and driver performance. Built the React data layer and visualizations, integrated with backend systems for real-time insight.</p><div class="card-tags"><span>React</span><span>TypeScript</span><span>Laravel</span><span>MySQL</span></div></div>
         <div class="card reveal"><p class="tag">Case management</p><h4>Tanfeeth — Legal Case System</h4><p>Case tracking for legal operations across Primary, Appeal and Supreme court levels — hearings, deadlines and document workflow in one queue. React + Vite frontend on a Laravel/Sanctum API, PHPUnit-tested.</p><div class="card-tags"><span>Laravel</span><span>Sanctum</span><span>React</span><span>Vite</span><span>MySQL</span></div></div>
@@ -686,7 +686,7 @@
       </div>
     </div>
     <div data-i18n="ar" lang="ar" dir="rtl">
-      <div class="sec-head"><span class="sec-num">٠٤</span><h2>مشاريع أخرى</h2></div>
+      <div class="sec-head"><span class="sec-num">٠٣</span><h2>مشاريع أخرى</h2></div>
       <div class="grid">
         <div class="card reveal"><p class="tag">لوحة تحكم</p><h4>لوحة تحكم عمليات RSN</h4><p>أداة تشغيلية داخلية لشركة نقل ركاب، لتتبع برامج الإحالة والكوبونات ومؤشرات أداء السائقين. بنيت طبقة البيانات والرسوم البيانية باستخدام React، مع ربطها بأنظمة الشركة الخلفية لعرض بيانات تشغيلية لحظية لفريق العمليات.</p><div class="card-tags"><span>React</span><span>TypeScript</span><span>Laravel</span><span>MySQL</span></div></div>
         <div class="card reveal"><p class="tag">إدارة قضايا</p><h4>تنفيذ — نظام قضايا قانونية</h4><p>نظام لتتبع القضايا القانونية عبر درجات التقاضي — الابتدائية والاستئناف والعليا — مع الجلسات والمواعيد وتدفق المستندات في مكان واحد. واجهة React مع Vite على واجهة برمجية بـ Laravel وSanctum، مع اختبارات PHPUnit.</p><div class="card-tags"><span>Laravel</span><span>Sanctum</span><span>React</span><span>Vite</span><span>MySQL</span></div></div>
@@ -701,13 +701,13 @@
   <!-- SKILLS -->
   <section id="skills">
     <div data-i18n="en" lang="en">
-      <div class="sec-head"><span class="sec-num">05</span><h2>Skills</h2></div>
+      <div class="sec-head"><span class="sec-num">04</span><h2>Skills</h2></div>
       <div class="tag-sheet reveal">
         <span>Laravel</span><span>PHP 8</span><span>Python</span><span>React</span><span>TypeScript</span><span>Inertia.js</span><span>Tailwind CSS</span><span>MySQL</span><span>Flutter / Dart</span><span>REST API design</span><span>Payment gateway integration</span><span>Docker</span>
       </div>
     </div>
     <div data-i18n="ar" lang="ar" dir="rtl">
-      <div class="sec-head"><span class="sec-num">٠٥</span><h2>المهارات</h2></div>
+      <div class="sec-head"><span class="sec-num">٠٤</span><h2>المهارات</h2></div>
       <div class="tag-sheet reveal">
         <span>Laravel</span><span>PHP 8</span><span>Python</span><span>React</span><span>TypeScript</span><span>Inertia.js</span><span>Tailwind CSS</span><span>MySQL</span><span>Flutter/Dart</span><span>تصميم واجهات REST</span><span>ربط بوابات الدفع</span><span>Docker</span>
       </div>
