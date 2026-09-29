@@ -244,6 +244,9 @@
   .showcase-phones{ display:flex; gap:24px; justify-content:center; margin-bottom:32px; }
   .phone-block{ display:flex; flex-direction:column; align-items:center; }
   .phone-block .phone-frame{ max-width:210px; }
+  /* four phones: one row on desktop, two-by-two on small screens */
+  .showcase-phones.four{ display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
+  @media (max-width:700px){ .showcase-phones.four{ grid-template-columns:1fr 1fr; gap:16px; } }
   .phone-frame{
     width:100%; max-width:230px; border:8px solid var(--ink); border-radius:30px; overflow:hidden;
     background:var(--ink); box-shadow:0 18px 40px -18px rgba(var(--shadow-rgb),0.4);
@@ -332,8 +335,8 @@
   <div class="wrap nav-row">
     <div class="mark" aria-label="Hashem Alahdal — هاشم الاهدل" lang="ar">هـ<svg class="swash" viewBox="0 0 40 6" aria-hidden="true"><path d="M1 5 C 13 1, 30 1, 39 3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div>
     <nav class="nav-tags" aria-label="Sections">
-      <span data-i18n="en" class="inline" lang="en"><a href="#about">About</a><a href="#meals">Healthy Meals</a><a href="#work">Work</a><a href="#skills">Skills</a><a href="#contact">Contact</a></span>
-      <span data-i18n="ar" class="inline" lang="ar"><a href="#about">نبذة</a><a href="#meals">وجبات صحية</a><a href="#work">الأعمال</a><a href="#skills">المهارات</a><a href="#contact">تواصل</a></span>
+      <span data-i18n="en" class="inline" lang="en"><a href="#about">About</a><a href="#nuzul-os">Nuzul OS</a><a href="#meals">Healthy Meals</a><a href="#work">Work</a><a href="#skills">Skills</a><a href="#contact">Contact</a></span>
+      <span data-i18n="ar" class="inline" lang="ar"><a href="#about">نبذة</a><a href="#nuzul-os">نُزُل OS</a><a href="#meals">وجبات صحية</a><a href="#work">الأعمال</a><a href="#skills">المهارات</a><a href="#contact">تواصل</a></span>
     </nav>
     <div class="nav-controls">
       <button class="lang-toggle" id="langToggle" aria-label="Switch language / تبديل اللغة">
@@ -403,7 +406,7 @@
       <p class="lede reveal">I'm Hashem — a full-stack developer based in Makkah. The last few years have been spent shipping production systems for the Saudi market: operations tooling for a ride-hailing company, and complete marketplaces and subscription platforms built solo for clients.</p>
       <div class="ledger-row reveal"><span class="label">SamaTaxi — RSN ops</span><span class="dots"></span><span class="value">dashboards · price intelligence</span></div>
       <div class="ledger-row reveal"><span class="label">Freelance clients</span><span class="dots"></span><span class="value">Saudi Arabia &amp; abroad</span></div>
-      <div class="ledger-row reveal"><span class="label">Solo products</span><span class="dots"></span><span class="value">Nuzul · Healthy Meals</span></div>
+      <div class="ledger-row reveal"><span class="label">Solo products</span><span class="dots"></span><span class="value">Nuzul OS · Healthy Meals</span></div>
       <div class="ledger-row reveal"><span class="label">Odoo 17 HR modules</span><span class="dots"></span><span class="value">Python · PostgreSQL</span></div>
     </div>
     <div data-i18n="ar" lang="ar" dir="rtl">
@@ -411,8 +414,143 @@
       <p class="lede reveal">أنا هاشم — مطوّر ويب متكامل من مكة. أمضيت السنوات الأخيرة في إطلاق أنظمة إنتاج للسوق السعودي: أدوات تشغيلية لشركة نقل ركاب، ومنصات وأسواق إلكترونية كاملة بنيتها بمفردي للعملاء.</p>
       <div class="ledger-row reveal"><span class="label">سما تاكسي — عمليات RSN</span><span class="dots"></span><span class="value">لوحات تحكم · تحليل أسعار</span></div>
       <div class="ledger-row reveal"><span class="label">عمل حر</span><span class="dots"></span><span class="value">السعودية وخارجها</span></div>
-      <div class="ledger-row reveal"><span class="label">منتجات فردية</span><span class="dots"></span><span class="value">نُزُل · وجبات صحية</span></div>
+      <div class="ledger-row reveal"><span class="label">منتجات فردية</span><span class="dots"></span><span class="value">نُزُل OS · وجبات صحية</span></div>
       <div class="ledger-row reveal"><span class="label">وحدات Odoo 17 للموارد البشرية</span><span class="dots"></span><span class="value">Python · PostgreSQL</span></div>
+    </div>
+  </section>
+
+  <!-- FEATURED PROJECT — Nuzul OS -->
+  <section id="nuzul-os">
+    <div data-i18n="en" lang="en">
+      <div class="sec-head"><span class="sec-num">02</span><h2>Featured project</h2></div>
+      <div class="feature-card reveal">
+        <div class="feature-top">
+          <div>
+            <p class="feature-sub">Multi-tenant SaaS · Web + Mobile · Solo-built · Arabic-first</p>
+            <h3>Nuzul OS — Operations Platform for Umrah Companies</h3>
+          </div>
+          <a class="demo-link" href="https://claude.ai/artifact/Ss1i1d5gF2zF1Aw7uFTRCQ" target="_blank" rel="noopener">Try the live demo ↗</a>
+        </div>
+        <p class="feature-desc">A subscription platform that runs an Umrah company end to end. Staff manage packages, departures and seats, bookings and payments, leads, trips, room assignments, tasks and documents from one Arabic-first dashboard. Pilgrims get a single companion app that follows them through the whole journey — a day-by-day programme, their miqat, their room and group, announcements and support. Nuzul is a technology provider only: pilgrims pay the company's own merchant account, and Nuzul never holds customer funds.</p>
+
+        <div class="showcase-main">
+          <div class="browser-frame">
+            <div class="browser-bar">
+              <div class="browser-dots"><span></span><span></span><span></span></div>
+              <div class="browser-url">nuzul-os.app/os/today</div>
+            </div>
+            <img src="images/os-web-02-today.jpg" alt="Nuzul OS Today board — departures, returns, overdue tasks and payments for the day, Arabic RTL" width="1440" height="1118" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <div class="showcase-row">
+          <div class="browser-frame">
+            <div class="browser-bar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-url">nuzul-os.app/os/trips</div></div>
+            <img src="images/os-web-03-trip.jpg" alt="Trip page — pilgrim roster, rooms, itinerary and tasks for one departure" width="1440" height="1500" loading="lazy" decoding="async">
+          </div>
+          <div class="browser-frame">
+            <div class="browser-bar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-url">nuzul-os.app/os/leads</div></div>
+            <img src="images/os-web-04-leads.jpg" alt="Leads board — five-stage pipeline with assignment and conversion to customers" width="1440" height="1338" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <div class="showcase-phones four">
+          <div class="phone-block">
+            <div class="phone-frame"><img src="images/os-mobile-01-home.jpg" alt="Pilgrim app — home screen with the trip countdown and companion cards" width="716" height="1551" loading="lazy" decoding="async"></div>
+            <p class="phone-caption">Pilgrim — home</p>
+          </div>
+          <div class="phone-block">
+            <div class="phone-frame"><img src="images/os-mobile-02-trip.jpg" alt="Pilgrim app — my trip with booking, room and miqat" width="716" height="1551" loading="lazy" decoding="async"></div>
+            <p class="phone-caption">Pilgrim — my trip</p>
+          </div>
+          <div class="phone-block">
+            <div class="phone-frame"><img src="images/os-mobile-03-days.jpg" alt="Pilgrim app — day-by-day programme with collapsible days" width="716" height="1551" loading="lazy" decoding="async"></div>
+            <p class="phone-caption">Pilgrim — day by day</p>
+          </div>
+          <div class="phone-block">
+            <div class="phone-frame"><img src="images/os-mobile-04-staff.jpg" alt="Staff app — the company's trips in the field" width="716" height="1551" loading="lazy" decoding="async"></div>
+            <p class="phone-caption">Staff — trips in the field</p>
+          </div>
+        </div>
+
+        <div class="receipt-list" style="margin-top:30px;">
+          <div class="receipt-row"><span class="k">Company dashboard</span><span class="d"></span><span class="v">Laravel 13, Inertia.js, React 19 + TS, Tailwind v4</span></div>
+          <div class="receipt-row"><span class="k">Mobile apps</span><span class="d"></span><span class="v">Flutter / Dart — pilgrim + staff on a shared core package</span></div>
+          <div class="receipt-row"><span class="k">Multi-tenancy</span><span class="d"></span><span class="v">Fail-closed row-level isolation, tenant-isolation test gate</span></div>
+          <div class="receipt-row"><span class="k">Bookings</span><span class="d"></span><span class="v">Race-proof seat locking, price snapshot, idempotent actions</span></div>
+          <div class="receipt-row"><span class="k">Money</span><span class="d"></span><span class="v">Integer halalas; pilgrims pay the company directly</span></div>
+          <div class="receipt-row"><span class="k">Real time &amp; API</span><span class="d"></span><span class="v">Reverb live notifications, Sanctum mobile API</span></div>
+        </div>
+        <div class="stat-row">
+          <div class="stat"><span class="n" data-count="865">865</span><span class="l">Pest tests</span></div>
+          <div class="stat"><span class="n" data-count="58">58</span><span class="l">Flutter tests</span></div>
+          <div class="stat"><span class="n" data-count="3">3</span><span class="l">apps, one backend</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div data-i18n="ar" lang="ar" dir="rtl">
+      <div class="sec-head"><span class="sec-num">٠٢</span><h2>المشروع الرئيسي</h2></div>
+      <div class="feature-card reveal">
+        <div class="feature-top">
+          <div>
+            <p class="feature-sub">SaaS متعدد الشركات · ويب + جوال · بناء فردي كامل · عربي أولًا</p>
+            <h3>نُزُل OS — منصة تشغيل شركات العمرة</h3>
+          </div>
+          <a class="demo-link" href="https://claude.ai/artifact/Ss1i1d5gF2zF1Aw7uFTRCQ" target="_blank" rel="noopener">جرّب النموذج التفاعلي ↖</a>
+        </div>
+        <p class="feature-desc">منصة باشتراك شهري تدير شركة العمرة من البداية إلى النهاية. يدير الموظفون الباقات والمواعيد والمقاعد، والحجوزات والمدفوعات، والعملاء المحتملين، والرحلات والتسكين، والمهام والمستندات — من لوحة تحكم واحدة عربية أولًا. ويحصل المعتمر على تطبيق واحد عام يرافقه طوال رحلته: برنامج يومًا بيوم، وميقاته، وغرفته ومجموعته، والإعلانات والدعم. نُزُل مزوّد تقني فقط: يدفع المعتمر لحساب الشركة مباشرة، ولا تمسك المنصة أموال العملاء أبدًا.</p>
+
+        <div class="showcase-main">
+          <div class="browser-frame">
+            <div class="browser-bar">
+              <div class="browser-dots"><span></span><span></span><span></span></div>
+              <div class="browser-url">nuzul-os.app/os/today</div>
+            </div>
+            <img src="images/os-web-02-today.jpg" alt="لوحة «اليوم» في نُزُل OS — المغادرون والعائدون والمهام المتأخرة والمدفوعات، عربي RTL" width="1440" height="1118" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <div class="showcase-row">
+          <div class="browser-frame">
+            <div class="browser-bar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-url">nuzul-os.app/os/trips</div></div>
+            <img src="images/os-web-03-trip.jpg" alt="صفحة الرحلة — قائمة المعتمرين والغرف والبرنامج والمهام لموعد واحد" width="1440" height="1500" loading="lazy" decoding="async">
+          </div>
+          <div class="browser-frame">
+            <div class="browser-bar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-url">nuzul-os.app/os/leads</div></div>
+            <img src="images/os-web-04-leads.jpg" alt="لوحة العملاء المحتملين — خمس مراحل مع الإسناد والتحويل إلى عملاء" width="1440" height="1338" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <div class="showcase-phones four">
+          <div class="phone-block">
+            <div class="phone-frame"><img src="images/os-mobile-01-home.jpg" alt="تطبيق المعتمر — الرئيسية مع العدّ التنازلي وبطاقات «معك طوال الرحلة»" width="716" height="1551" loading="lazy" decoding="async"></div>
+            <p class="phone-caption">المعتمر — الرئيسية</p>
+          </div>
+          <div class="phone-block">
+            <div class="phone-frame"><img src="images/os-mobile-02-trip.jpg" alt="تطبيق المعتمر — رحلتي مع الحجز والغرفة والميقات" width="716" height="1551" loading="lazy" decoding="async"></div>
+            <p class="phone-caption">المعتمر — رحلتي</p>
+          </div>
+          <div class="phone-block">
+            <div class="phone-frame"><img src="images/os-mobile-03-days.jpg" alt="تطبيق المعتمر — البرنامج يومًا بيوم بأيام قابلة للطي" width="716" height="1551" loading="lazy" decoding="async"></div>
+            <p class="phone-caption">المعتمر — يومًا بيوم</p>
+          </div>
+          <div class="phone-block">
+            <div class="phone-frame"><img src="images/os-mobile-04-staff.jpg" alt="تطبيق الموظف — رحلات الشركة في الميدان" width="716" height="1551" loading="lazy" decoding="async"></div>
+            <p class="phone-caption">الموظف — الرحلات في الميدان</p>
+          </div>
+        </div>
+
+        <div class="receipt-list" style="margin-top:30px;">
+          <div class="receipt-row"><span class="k">لوحة الشركات</span><span class="d"></span><span class="v">Laravel 13 وInertia.js وReact 19 مع TypeScript وTailwind v4</span></div>
+          <div class="receipt-row"><span class="k">تطبيقات الجوال</span><span class="d"></span><span class="v">Flutter وDart — المعتمر والموظف على حزمة مشتركة</span></div>
+          <div class="receipt-row"><span class="k">تعدد الشركات</span><span class="d"></span><span class="v">عزل تام على مستوى الصف، واختبار عزل شرط لأي دمج</span></div>
+          <div class="receipt-row"><span class="k">الحجوزات</span><span class="d"></span><span class="v">قفل المقاعد ضد التزامن، لقطة للسعر، عمليات بلا تكرار</span></div>
+          <div class="receipt-row"><span class="k">المال</span><span class="d"></span><span class="v">بالهللات فقط، والدفع مباشرة لحساب الشركة</span></div>
+          <div class="receipt-row"><span class="k">الوقت الحي والـ API</span><span class="d"></span><span class="v">إشعارات لحظية عبر Reverb، وواجهة جوال عبر Sanctum</span></div>
+        </div>
+        <div class="stat-row">
+          <div class="stat"><span class="n" data-count="865" data-numerals="arab">٨٦٥</span><span class="l">اختبار Pest</span></div>
+          <div class="stat"><span class="n" data-count="58" data-numerals="arab">٥٨</span><span class="l">اختبار Flutter</span></div>
+          <div class="stat"><span class="n" data-count="3" data-numerals="arab">٣</span><span class="l">تطبيقات بخادم واحد</span></div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -556,7 +694,7 @@
   <!-- SECOND FEATURED PROJECT -->
   <section id="meals">
     <div data-i18n="en" lang="en">
-      <div class="sec-head"><span class="sec-num">02</span><h2>Second feature</h2></div>
+      <div class="sec-head"><span class="sec-num">03</span><h2>Second feature</h2></div>
       <div class="feature-card reveal">
         <div class="feature-top">
           <div>
@@ -614,7 +752,7 @@
     </div>
 
     <div data-i18n="ar" lang="ar" dir="rtl">
-      <div class="sec-head"><span class="sec-num">٠٢</span><h2>المشروع الرئيسي</h2></div>
+      <div class="sec-head"><span class="sec-num">٠٣</span><h2>مشروع مميز آخر</h2></div>
       <div class="feature-card reveal">
         <div class="feature-top">
           <div>
@@ -675,7 +813,7 @@
   <!-- OTHER WORK -->
   <section id="work">
     <div data-i18n="en" lang="en">
-      <div class="sec-head"><span class="sec-num">03</span><h2>Other work</h2></div>
+      <div class="sec-head"><span class="sec-num">04</span><h2>Other work</h2></div>
       <div class="grid">
         <div class="card reveal"><p class="tag">Dashboard</p><h4>RSN Operations Dashboard</h4><p>Internal ops tool for a ride-hailing company — referral/coupon tracking and driver performance. Built the React data layer and visualizations, integrated with backend systems for real-time insight.</p><div class="card-tags"><span>React</span><span>TypeScript</span><span>Laravel</span><span>MySQL</span></div></div>
         <div class="card reveal"><p class="tag">Case management</p><h4>Tanfeeth — Legal Case System</h4><p>Case tracking for legal operations across Primary, Appeal and Supreme court levels — hearings, deadlines and document workflow in one queue. React + Vite frontend on a Laravel/Sanctum API, PHPUnit-tested.</p><div class="card-tags"><span>Laravel</span><span>Sanctum</span><span>React</span><span>Vite</span><span>MySQL</span></div></div>
@@ -686,7 +824,7 @@
       </div>
     </div>
     <div data-i18n="ar" lang="ar" dir="rtl">
-      <div class="sec-head"><span class="sec-num">٠٣</span><h2>مشاريع أخرى</h2></div>
+      <div class="sec-head"><span class="sec-num">٠٤</span><h2>مشاريع أخرى</h2></div>
       <div class="grid">
         <div class="card reveal"><p class="tag">لوحة تحكم</p><h4>لوحة تحكم عمليات RSN</h4><p>أداة تشغيلية داخلية لشركة نقل ركاب، لتتبع برامج الإحالة والكوبونات ومؤشرات أداء السائقين. بنيت طبقة البيانات والرسوم البيانية باستخدام React، مع ربطها بأنظمة الشركة الخلفية لعرض بيانات تشغيلية لحظية لفريق العمليات.</p><div class="card-tags"><span>React</span><span>TypeScript</span><span>Laravel</span><span>MySQL</span></div></div>
         <div class="card reveal"><p class="tag">إدارة قضايا</p><h4>تنفيذ — نظام قضايا قانونية</h4><p>نظام لتتبع القضايا القانونية عبر درجات التقاضي — الابتدائية والاستئناف والعليا — مع الجلسات والمواعيد وتدفق المستندات في مكان واحد. واجهة React مع Vite على واجهة برمجية بـ Laravel وSanctum، مع اختبارات PHPUnit.</p><div class="card-tags"><span>Laravel</span><span>Sanctum</span><span>React</span><span>Vite</span><span>MySQL</span></div></div>
@@ -701,15 +839,15 @@
   <!-- SKILLS -->
   <section id="skills">
     <div data-i18n="en" lang="en">
-      <div class="sec-head"><span class="sec-num">04</span><h2>Skills</h2></div>
+      <div class="sec-head"><span class="sec-num">05</span><h2>Skills</h2></div>
       <div class="tag-sheet reveal">
-        <span>Laravel</span><span>PHP 8</span><span>Python</span><span>React</span><span>TypeScript</span><span>Inertia.js</span><span>Tailwind CSS</span><span>MySQL</span><span>Flutter / Dart</span><span>REST API design</span><span>Payment gateway integration</span><span>Docker</span>
+        <span>Laravel</span><span>PHP 8</span><span>Python</span><span>React</span><span>TypeScript</span><span>Inertia.js</span><span>Tailwind CSS</span><span>MySQL</span><span>Flutter / Dart</span><span>Multi-tenant SaaS</span><span>REST API design</span><span>Payment gateway integration</span><span>Docker</span>
       </div>
     </div>
     <div data-i18n="ar" lang="ar" dir="rtl">
-      <div class="sec-head"><span class="sec-num">٠٤</span><h2>المهارات</h2></div>
+      <div class="sec-head"><span class="sec-num">٠٥</span><h2>المهارات</h2></div>
       <div class="tag-sheet reveal">
-        <span>Laravel</span><span>PHP 8</span><span>Python</span><span>React</span><span>TypeScript</span><span>Inertia.js</span><span>Tailwind CSS</span><span>MySQL</span><span>Flutter/Dart</span><span>تصميم واجهات REST</span><span>ربط بوابات الدفع</span><span>Docker</span>
+        <span>Laravel</span><span>PHP 8</span><span>Python</span><span>React</span><span>TypeScript</span><span>Inertia.js</span><span>Tailwind CSS</span><span>MySQL</span><span>Flutter/Dart</span><span>SaaS متعدد الشركات</span><span>تصميم واجهات REST</span><span>ربط بوابات الدفع</span><span>Docker</span>
       </div>
     </div>
   </section>
