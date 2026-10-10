@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-lang="ar" data-title-en="Zad Control — Restaurant Operations Platform · Hashem Alahdal" data-title-ar="زاد كنترول — منصة تشغيل المطاعم · هاشم الاهدل" data-desc-en="Restaurant operations SaaS — checklists, scheduled tasks, an employee phone flow, violations and reports. Live, with a public demo." data-desc-ar="منصة تشغيل المطاعم — قوائم تحقق، ومهام مجدولة، وشاشة للموظف على الجوال، ومخالفات وتقارير. منشورة ومعها نسخة للعرض.">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>زاد كنترول — منصة تشغيل المطاعم · هاشم الاهدل</title>
+<meta name="description" content="منصة تشغيل المطاعم — قوائم تحقق، ومهام مجدولة، وشاشة للموظف على الجوال، ومخالفات وتقارير. منشورة ومعها نسخة للعرض.">
+<meta property="og:title" content="زاد كنترول — منصة تشغيل المطاعم · هاشم الاهدل">
+<meta property="og:description" content="منصة تشغيل المطاعم — قوائم تحقق، ومهام مجدولة، وشاشة للموظف على الجوال، ومخالفات وتقارير. منشورة ومعها نسخة للعرض.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ar_SA">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#EDEEE2">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='8' fill='%23EDEEE2'/%3E%3Crect x='5.5' y='5.5' width='53' height='53' rx='5' fill='none' stroke='%231C231F' stroke-width='3'/%3E%3Ctext x='32' y='40' text-anchor='middle' font-family='Amiri,Times,serif' font-size='34' font-weight='700' fill='%231C231F'%3E%D9%87%D9%80%3C/text%3E%3Cpath d='M18 48 C 28 44, 40 44, 47 46' fill='none' stroke='%2324586A' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Amiri:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-row">
+    <a class="mark" href="../index.html" aria-label="Hashem Alahdal — هاشم الاهدل" lang="ar">هـ<svg class="swash" viewBox="0 0 40 6" aria-hidden="true"><path d="M1 5 C 13 1, 30 1, 39 3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a>
+    <nav class="nav-tags" aria-label="Sections">
+      <span data-i18n="en" class="inline" lang="en"><a href="../index.html#about">About</a><a href="../index.html#projects">Projects</a><a href="../index.html#work">Work</a><a href="#contact">Contact</a></span>
+      <span data-i18n="ar" class="inline" lang="ar"><a href="../index.html#about">نبذة</a><a href="../index.html#projects">المشاريع</a><a href="../index.html#work">الأعمال</a><a href="#contact">تواصل</a></span>
+    </nav>
+    <div class="nav-controls">
+      <button class="lang-toggle" id="langToggle" aria-label="Switch language / تبديل اللغة">
+        <span class="thumb"></span>
+        <span class="opt en">EN</span>
+        <span class="opt ar">AR</span>
+      </button>
+    </div>
+  </div>
+</header>
+<div id="inkline" aria-hidden="true"></div>
+
+<main class="wrap">
+  <section class="project" id="zad">
+    <div data-i18n="en" lang="en">
+      <a class="back-link" href="../index.html#flagship">← All projects</a>
+      <div class="sec-head"><span class="sec-num">Main project</span><h2>Zad Control</h2></div>
+      <div class="feature-card reveal">
+        <div class="feature-top">
+          <div>
+            <p class="feature-sub">Multi-tenant SaaS · Web + Mobile web · Live · Arabic-first</p>
+            <h3>Zad Control — Restaurant Operations Platform</h3>
+          </div>
+          <a class="demo-link" href="https://zad.laravel.cloud/demo" target="_blank" rel="noopener">Visit the live site ↗</a>
+        </div>
+        <p class="feature-desc">A platform that runs a restaurant's day: owners set up their branches and team, build checklists from ready-made restaurant templates — opening, closing, food safety, municipality readiness — and schedule them as tasks once, daily or weekly. Employees work through their tasks on their phones: photos, readings and yes/no checks, inside the branch's location, with out-of-range answers flagged automatically. Managers follow everything from one dashboard, turn flagged answers into violations or tickets, log customer ratings, and export reports. It is live on Laravel Cloud, with a view-only demo that anyone can open in one click.</p>
+
+        <div class="arch"><p class="note-cap">Architecture sketch</p><div class="arch-scroll"><svg viewBox="0 0 640 160" role="img" aria-label="Architecture sketch: Dashboard, Employee app, Laravel, Task engine, Private photos"><path class="ln" style="--d:0" pathLength="1" d="M17.9 13.4 L162.6 14.8 Q172.4 13.3 172.2 23.4 L171.8 59.8 Q172.2 68.4 163.5 69.0 L17.6 67.4 Q8.0 66.9 8.8 59.1 L7.5 23.4 Q7.5 13.1 16.1 14.1"/><text class="t1" x="90" y="37">Dashboard</text><text class="t2" x="90" y="55">React · Inertia</text><path class="ln" style="--d:1" pathLength="1" d="M17.8 92.0 L162.2 92.4 Q173.0 91.9 172.3 100.5 L172.6 137.7 Q171.3 145.5 162.9 145.4 L16.2 145.4 Q7.1 145.8 7.3 137.1 L8.3 100.7 Q9.0 92.8 16.6 91.6"/><text class="t1" x="90" y="115">Employee app</text><text class="t2" x="90" y="133">mobile web · GPS</text><path class="ln" style="--d:2" pathLength="1" d="M246.6 53.1 L392.2 53.3 Q402.8 53.5 402.2 61.8 L402.8 97.4 Q401.7 106.6 392.1 106.1 L246.5 106.0 Q238.6 106.8 237.3 98.4 L238.7 62.8 Q237.4 52.0 247.2 53.5"/><text class="t1" x="320" y="76">Laravel</text><text class="t2" x="320" y="94">multi-tenant</text><path class="ln" style="--d:3" pathLength="1" d="M477.0 13.9 L622.8 15.1 Q631.7 13.7 632.0 24.0 L631.5 59.9 Q631.3 67.1 623.8 68.5 L476.6 68.9 Q468.3 67.3 467.1 58.4 L468.2 22.7 Q467.8 14.2 477.8 13.5"/><text class="t1" x="550" y="37">Task engine</text><text class="t2" x="550" y="55">once a day, no cron</text><path class="ln" style="--d:4" pathLength="1" d="M476.7 91.4 L623.4 91.9 Q631.1 93.0 631.4 101.2 L632.0 136.5 Q631.7 146.9 623.5 145.2 L476.1 146.1 Q467.8 146.0 467.0 137.6 L467.7 101.2 Q467.8 92.3 476.5 91.4"/><text class="t1" x="550" y="115">Private photos</text><text class="t2" x="550" y="133">R2 · signed URLs</text><path class="ln edge" style="--d:5" pathLength="1" d="M176 41 C204 41, 204 80, 232 80"/><path class="ln edge" style="--d:6" pathLength="1" d="M223 75 L232 80 L223 85"/><path class="ln edge" style="--d:6" pathLength="1" d="M176 119 C204 119, 204 80, 232 80"/><path class="ln edge" style="--d:7" pathLength="1" d="M223 75 L232 80 L223 85"/><path class="ln edge" style="--d:7" pathLength="1" d="M464 41 C436 41, 436 80, 408 80"/><path class="ln edge" style="--d:8" pathLength="1" d="M417 75 L408 80 L417 85"/><text class="lbl" x="461" y="32" style="text-anchor:end">tasks</text><path class="ln edge" style="--d:8" pathLength="1" d="M406 80 C434 80, 434 119, 462 119"/><path class="ln edge" style="--d:9" pathLength="1" d="M453 114 L462 119 L453 124"/></svg></div><p class="arch-hint" aria-hidden="true">Swipe sideways to see the whole sketch →</p></div>
+
+        <div class="showcase-main">
+          <div class="browser-frame">
+            <div class="browser-bar">
+              <div class="browser-dots"><span></span><span></span><span></span></div>
+              <div class="browser-url">zad.laravel.cloud/dashboard</div>
+            </div>
+            <img src="../images/zad-web-01-dashboard.jpg" alt="Zad Control dashboard — the week's completion rate, done and missed tasks per day, Arabic RTL" width="1600" height="900" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <div class="showcase-row">
+          <div class="browser-frame">
+            <div class="browser-bar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-url">zad.laravel.cloud/tasks</div></div>
+            <img src="../images/zad-web-02-tasks.jpg" alt="Tasks page — every scheduled task across branches with its status and progress" width="1600" height="1400" loading="lazy" decoding="async">
+          </div>
+          <div class="browser-frame">
+            <div class="browser-bar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-url">zad.laravel.cloud/checklists</div></div>
+            <img src="../images/zad-web-03-checklist.jpg" alt="Checklist editor — item types, required items, expected answers and branch location check" width="1600" height="1400" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <div class="showcase-phones">
+          <div class="phone-block">
+            <div class="phone-frame"><img src="../images/zad-mobile-01-tasks.jpg" alt="Employee phone — today's tasks with their time windows and progress" width="716" height="1522" loading="lazy" decoding="async"></div>
+            <p class="phone-caption">Employee — today's tasks</p>
+          </div>
+          <div class="phone-block">
+            <div class="phone-frame"><img src="../images/zad-mobile-02-task.jpg" alt="Employee phone — a completed closing checklist, every item answered" width="716" height="1522" loading="lazy" decoding="async"></div>
+            <p class="phone-caption">Employee — a finished checklist</p>
+          </div>
+        </div>
+
+        <div class="receipt-list" style="margin-top:30px;">
+          <div class="receipt-row"><span class="k">Stack</span><span class="d"></span><span class="v">Laravel 13, Inertia 3, React 19 + TS, Tailwind v4</span></div>
+          <div class="receipt-row"><span class="k">Tenancy</span><span class="d"></span><span class="v">Restaurants → branches, scoped queries, owner / manager / employee</span></div>
+          <div class="receipt-row"><span class="k">Checklists</span><span class="d"></span><span class="v">7 item types, expected answers, points, ready-made templates</span></div>
+          <div class="receipt-row"><span class="k">Scheduling</span><span class="d"></span><span class="v">Once / daily / weekly, generated on demand — no cron</span></div>
+          <div class="receipt-row"><span class="k">Employee flow</span><span class="d"></span><span class="v">Phone-first, photos, branch geofence, auto-flagged answers</span></div>
+          <div class="receipt-row"><span class="k">Operations</span><span class="d"></span><span class="v">Violations, internal tickets, ratings, reports with CSV export</span></div>
+          <div class="receipt-row"><span class="k">Hosting</span><span class="d"></span><span class="v">Laravel Cloud, serverless Postgres, private R2 photos, scale-to-zero</span></div>
+          <div class="receipt-row"><span class="k">Public demo</span><span class="d"></span><span class="v">View-only, rebuilt daily in the background</span></div>
+        </div>
+        <div class="stat-row">
+          <div class="stat"><span class="n" data-count="106">106</span><span class="l">PHPUnit tests</span></div>
+          <div class="stat"><span class="n" data-count="7">7</span><span class="l">ready templates</span></div>
+          <div class="stat"><span class="n" data-count="9">9</span><span class="l">modules</span></div>
+        </div>
+        <div class="test-run" dir="ltr" lang="en" role="img" aria-label="Automated test results: 106 passed"><div class="tr-run"><p class="tr-cmd">$ php artisan test</p><p class="tr-dots" aria-hidden="true"><i style="--i:0">.</i><i style="--i:1">.</i><i style="--i:2">.</i><i style="--i:3">.</i><i style="--i:4">.</i><i style="--i:5">.</i><i style="--i:6">.</i><i style="--i:7">.</i><i style="--i:8">.</i><i style="--i:9">.</i><i style="--i:10">.</i><i style="--i:11">.</i><i style="--i:12">.</i><i style="--i:13">.</i><i style="--i:14">.</i><i style="--i:15">.</i><i style="--i:16">.</i><i style="--i:17">.</i><i style="--i:18">.</i><i style="--i:19">.</i><i style="--i:20">.</i><i style="--i:21">.</i><i style="--i:22">.</i><i style="--i:23">.</i><i style="--i:24">.</i><i style="--i:25">.</i><i style="--i:26">.</i><i style="--i:27">.</i><i style="--i:28">.</i><i style="--i:29">.</i><i style="--i:30">.</i><i style="--i:31">.</i><i style="--i:32">.</i><i style="--i:33">.</i><i style="--i:34">.</i><i style="--i:35">.</i><i style="--i:36">.</i><i style="--i:37">.</i><i style="--i:38">.</i><i style="--i:39">.</i><i style="--i:40">.</i><i style="--i:41">.</i><i style="--i:42">.</i><i style="--i:43">.</i><i style="--i:44">.</i><i style="--i:45">.</i><i style="--i:46">.</i><i style="--i:47">.</i><i style="--i:48">.</i><i style="--i:49">.</i><i style="--i:50">.</i><i style="--i:51">.</i><i style="--i:52">.</i><i style="--i:53">.</i><i style="--i:54">.</i><i style="--i:55">.</i><i style="--i:56">.</i><i style="--i:57">.</i><i style="--i:58">.</i><i style="--i:59">.</i><i style="--i:60">.</i><i style="--i:61">.</i><i style="--i:62">.</i><i style="--i:63">.</i></p><p class="tr-res"><b>✓ 106</b> passed</p></div></div>
+
+        <figure class="snippet"><figcaption>No scheduler: the first page view of the day tops up the coming week's tasks exactly once, so the app can sleep when nobody uses it. · <code>app/Actions/Tasks/GenerateTasks.php</code></figcaption><pre><code><span class="c">// Stands in for the daily scheduler so the app can sleep.</span>
+public function onceToday(int $restaurantId): void
+{
+    $key = "tasks-generated:{$restaurantId}:".today()-&gt;toDateString();
+
+    <span class="c">// Atomic: only the first request of the day gets through.</span>
+    if (<mark>Cache::add($key, true, now()-&gt;endOfDay())</mark>) {
+        $this-&gt;upcoming($restaurantId);
+    }
+}
+
+<span class="c">// Idempotent: running it twice never duplicates a task.</span>
+$task = Task::withoutGlobalScope('restaurant')-&gt;<mark>firstOrCreate</mark>(
+    ['task_assignment_id' =&gt; $assignment-&gt;id, 'user_id' =&gt; $userId, 'starts_at' =&gt; $startsAt],
+    ['ends_at' =&gt; $endsAt, 'status' =&gt; TaskStatus::Upcoming, <span class="c">/* … */</span>],
+);</code></pre></figure>
+      </div>
+      <nav class="project-nav" aria-label="More projects"><a class="next" href="nuzul.html"><span class="pn-k">Next →</span><span class="pn-t">Nuzul</span></a></nav>
+    </div>
+
+    <div data-i18n="ar" lang="ar" dir="rtl">
+      <a class="back-link" href="../index.html#flagship">→ كل المشاريع</a>
+      <div class="sec-head"><span class="sec-num">المشروع الرئيسي</span><h2>زاد كنترول</h2></div>
+      <div class="feature-card reveal">
+        <div class="feature-top">
+          <div>
+            <p class="feature-sub">SaaS متعدد المطاعم · ويب + جوال · منشور · عربي أولًا</p>
+            <h3>زاد كنترول — منصة تشغيل المطاعم</h3>
+          </div>
+          <a class="demo-link" href="https://zad.laravel.cloud/demo" target="_blank" rel="noopener">اذهب إلى الموقع ↖</a>
+        </div>
+        <p class="feature-desc">منصة تدير يوم المطعم: يجهّز المالك فروعه وفريقه، ويبني قوائم التحقق من قوالب جاهزة للمطاعم — افتتاح الفرع وإغلاقه وسلامة الغذاء والجاهزية لزيارة البلدية — ثم يجدولها مهامًا لمرة واحدة أو يوميًا أو أسبوعيًا. ينجز الموظفون مهامهم من جوالاتهم: صور، وقراءات، وأسئلة نعم/لا، من داخل موقع الفرع، مع إبلاغ تلقائي عن أي إجابة خارج المتوقع. ويتابع المدير كل ذلك من لوحة واحدة، فيحوّل الإبلاغات إلى مخالفات أو تذاكر، ويسجّل تقييمات العملاء، ويصدّر التقارير. المنصة منشورة على Laravel Cloud، ومعها نسخة للعرض يدخلها أي زائر بضغطة.</p>
+
+        <div class="arch"><p class="note-cap">مخطط البنية</p><div class="arch-scroll"><svg viewBox="0 0 640 160" role="img" aria-label="مخطط البنية: لوحة الإدارة، جوال الموظف، Laravel، محرك المهام، الصور الخاصة" direction="rtl"><path class="ln" style="--d:0" pathLength="1" d="M476.1 13.7 L622.2 13.0 Q633.1 13.3 633.1 22.7 L632.5 59.9 Q632.4 68.8 623.1 68.5 L476.5 67.2 Q469.0 68.5 467.4 58.6 L467.1 23.0 Q468.7 14.1 476.4 13.7"/><text class="t1" x="550" y="37">لوحة الإدارة</text><text class="t2" x="550" y="55">React · Inertia</text><path class="ln" style="--d:1" pathLength="1" d="M476.0 91.6 L622.6 91.9 Q632.9 91.3 632.6 101.1 L631.8 137.4 Q633.0 145.0 622.4 145.0 L477.9 145.4 Q468.2 146.4 468.7 136.3 L468.1 101.4 Q468.7 91.4 477.0 91.9"/><text class="t1" x="550" y="115">جوال الموظف</text><text class="t2" x="550" y="133">ويب للجوال · GPS</text><path class="ln" style="--d:2" pathLength="1" d="M247.0 53.4 L393.0 53.3 Q401.4 53.9 402.5 61.9 L402.2 99.1 Q401.8 106.6 393.5 108.1 L246.5 107.8 Q237.2 106.3 237.7 98.1 L237.5 62.4 Q238.1 53.6 247.7 52.7"/><text class="t1" x="320" y="76">Laravel</text><text class="t2" x="320" y="94">متعدد المطاعم</text><path class="ln" style="--d:3" pathLength="1" d="M17.4 13.2 L162.0 15.0 Q172.4 13.4 171.6 22.2 L172.0 59.5 Q171.1 68.2 162.3 68.0 L17.4 67.0 Q7.0 68.1 7.1 60.1 L8.1 22.5 Q8.0 14.1 17.7 13.8"/><text class="t1" x="90" y="37">محرك المهام</text><text class="t2" x="90" y="55">مرة يوميًا بلا مجدول</text><path class="ln" style="--d:4" pathLength="1" d="M17.0 93.0 L162.9 92.0 Q172.0 91.0 172.4 100.3 L171.8 137.7 Q172.6 145.8 164.1 147.0 L17.4 146.9 Q7.4 145.2 7.0 136.8 L8.2 101.9 Q8.6 91.9 16.6 92.4"/><text class="t1" x="90" y="115">الصور الخاصة</text><text class="t2" x="90" y="133">R2 · روابط موقّعة</text><path class="ln edge" style="--d:5" pathLength="1" d="M464 41 C436 41, 436 80, 408 80"/><path class="ln edge" style="--d:6" pathLength="1" d="M417 75 L408 80 L417 85"/><path class="ln edge" style="--d:6" pathLength="1" d="M464 119 C436 119, 436 80, 408 80"/><path class="ln edge" style="--d:7" pathLength="1" d="M417 75 L408 80 L417 85"/><path class="ln edge" style="--d:7" pathLength="1" d="M176 41 C204 41, 204 80, 232 80"/><path class="ln edge" style="--d:8" pathLength="1" d="M223 75 L232 80 L223 85"/><text class="lbl" x="179" y="32" style="text-anchor:end">المهام</text><path class="ln edge" style="--d:8" pathLength="1" d="M234 80 C206 80, 206 119, 178 119"/><path class="ln edge" style="--d:9" pathLength="1" d="M187 114 L178 119 L187 124"/></svg></div><p class="arch-hint" aria-hidden="true">← اسحب أفقياً لرؤية المخطط كاملاً</p></div>
+
+        <div class="showcase-main">
+          <div class="browser-frame">
+            <div class="browser-bar">
+              <div class="browser-dots"><span></span><span></span><span></span></div>
+              <div class="browser-url">zad.laravel.cloud/dashboard</div>
+            </div>
+            <img src="../images/zad-web-01-dashboard.jpg" alt="لوحة تحكم زاد كنترول — نسبة الإنجاز في الأسبوع والمهام المنجزة والفائتة يومًا بيوم" width="1600" height="900" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <div class="showcase-row">
+          <div class="browser-frame">
+            <div class="browser-bar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-url">zad.laravel.cloud/tasks</div></div>
+            <img src="../images/zad-web-02-tasks.jpg" alt="صفحة المهام — كل المهام المجدولة في الفروع بحالتها ونسبة تقدمها" width="1600" height="1400" loading="lazy" decoding="async">
+          </div>
+          <div class="browser-frame">
+            <div class="browser-bar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-url">zad.laravel.cloud/checklists</div></div>
+            <img src="../images/zad-web-03-checklist.jpg" alt="محرر قوائم التحقق — أنواع البنود والبنود الإلزامية والإجابة المتوقعة والتحقق من موقع الفرع" width="1600" height="1400" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <div class="showcase-phones">
+          <div class="phone-block">
+            <div class="phone-frame"><img src="../images/zad-mobile-01-tasks.jpg" alt="جوال الموظف — مهام اليوم بمواعيدها ونسبة تقدمها" width="716" height="1522" loading="lazy" decoding="async"></div>
+            <p class="phone-caption">الموظف — مهام اليوم</p>
+          </div>
+          <div class="phone-block">
+            <div class="phone-frame"><img src="../images/zad-mobile-02-task.jpg" alt="جوال الموظف — قائمة إغلاق الفرع منجزة بكل بنودها" width="716" height="1522" loading="lazy" decoding="async"></div>
+            <p class="phone-caption">الموظف — قائمة منجزة</p>
+          </div>
+        </div>
+
+        <div class="receipt-list" style="margin-top:30px;">
+          <div class="receipt-row"><span class="k">التقنيات</span><span class="d"></span><span class="v">Laravel 13 وInertia 3 وReact 19 مع TypeScript وTailwind v4</span></div>
+          <div class="receipt-row"><span class="k">تعدد المطاعم</span><span class="d"></span><span class="v">مطاعم ← فروع، عزل البيانات لكل مطعم، مالك / مدير / موظف</span></div>
+          <div class="receipt-row"><span class="k">قوائم التحقق</span><span class="d"></span><span class="v">7 أنواع بنود، إجابات متوقعة، نقاط، وقوالب جاهزة</span></div>
+          <div class="receipt-row"><span class="k">الجدولة</span><span class="d"></span><span class="v">مرة / يوميًا / أسبوعيًا، تُولَّد عند الحاجة بلا مجدول</span></div>
+          <div class="receipt-row"><span class="k">شاشة الموظف</span><span class="d"></span><span class="v">للجوال أولًا، صور، نطاق الفرع، إبلاغ تلقائي</span></div>
+          <div class="receipt-row"><span class="k">التشغيل</span><span class="d"></span><span class="v">مخالفات، تذاكر داخلية، تقييمات، تقارير مع تصدير CSV</span></div>
+          <div class="receipt-row"><span class="k">الاستضافة</span><span class="d"></span><span class="v">Laravel Cloud، وPostgres بلا خادم، وصور خاصة على R2، وينام بلا زوار</span></div>
+          <div class="receipt-row"><span class="k">نسخة العرض</span><span class="d"></span><span class="v">للتصفح فقط، تُجدَّد يوميًا في الخلفية</span></div>
+        </div>
+        <div class="stat-row">
+          <div class="stat"><span class="n" data-count="106" data-numerals="arab">١٠٦</span><span class="l">اختبار PHPUnit</span></div>
+          <div class="stat"><span class="n" data-count="7" data-numerals="arab">٧</span><span class="l">قوالب جاهزة</span></div>
+          <div class="stat"><span class="n" data-count="9" data-numerals="arab">٩</span><span class="l">أقسام</span></div>
+        </div>
+        <div class="test-run" dir="ltr" lang="en" role="img" aria-label="نتيجة الاختبارات الآلية: 106 passed"><div class="tr-run"><p class="tr-cmd">$ php artisan test</p><p class="tr-dots" aria-hidden="true"><i style="--i:0">.</i><i style="--i:1">.</i><i style="--i:2">.</i><i style="--i:3">.</i><i style="--i:4">.</i><i style="--i:5">.</i><i style="--i:6">.</i><i style="--i:7">.</i><i style="--i:8">.</i><i style="--i:9">.</i><i style="--i:10">.</i><i style="--i:11">.</i><i style="--i:12">.</i><i style="--i:13">.</i><i style="--i:14">.</i><i style="--i:15">.</i><i style="--i:16">.</i><i style="--i:17">.</i><i style="--i:18">.</i><i style="--i:19">.</i><i style="--i:20">.</i><i style="--i:21">.</i><i style="--i:22">.</i><i style="--i:23">.</i><i style="--i:24">.</i><i style="--i:25">.</i><i style="--i:26">.</i><i style="--i:27">.</i><i style="--i:28">.</i><i style="--i:29">.</i><i style="--i:30">.</i><i style="--i:31">.</i><i style="--i:32">.</i><i style="--i:33">.</i><i style="--i:34">.</i><i style="--i:35">.</i><i style="--i:36">.</i><i style="--i:37">.</i><i style="--i:38">.</i><i style="--i:39">.</i><i style="--i:40">.</i><i style="--i:41">.</i><i style="--i:42">.</i><i style="--i:43">.</i><i style="--i:44">.</i><i style="--i:45">.</i><i style="--i:46">.</i><i style="--i:47">.</i><i style="--i:48">.</i><i style="--i:49">.</i><i style="--i:50">.</i><i style="--i:51">.</i><i style="--i:52">.</i><i style="--i:53">.</i><i style="--i:54">.</i><i style="--i:55">.</i><i style="--i:56">.</i><i style="--i:57">.</i><i style="--i:58">.</i><i style="--i:59">.</i><i style="--i:60">.</i><i style="--i:61">.</i><i style="--i:62">.</i><i style="--i:63">.</i></p><p class="tr-res"><b>✓ 106</b> passed</p></div></div>
+
+        <figure class="snippet"><figcaption>بلا مجدول: أول صفحة تُفتح في اليوم تجهّز مهام الأسبوع القادم مرة واحدة فقط، فينام التطبيق حين لا يستخدمه أحد. · <code>app/Actions/Tasks/GenerateTasks.php</code></figcaption><pre><code><span class="c">// Stands in for the daily scheduler so the app can sleep.</span>
+public function onceToday(int $restaurantId): void
+{
+    $key = "tasks-generated:{$restaurantId}:".today()-&gt;toDateString();
+
+    <span class="c">// Atomic: only the first request of the day gets through.</span>
+    if (<mark>Cache::add($key, true, now()-&gt;endOfDay())</mark>) {
+        $this-&gt;upcoming($restaurantId);
+    }
+}
+
+<span class="c">// Idempotent: running it twice never duplicates a task.</span>
+$task = Task::withoutGlobalScope('restaurant')-&gt;<mark>firstOrCreate</mark>(
+    ['task_assignment_id' =&gt; $assignment-&gt;id, 'user_id' =&gt; $userId, 'starts_at' =&gt; $startsAt],
+    ['ends_at' =&gt; $endsAt, 'status' =&gt; TaskStatus::Upcoming, <span class="c">/* … */</span>],
+);</code></pre></figure>
+      </div>
+      <nav class="project-nav" aria-label="مشاريع أخرى"><a class="next" href="nuzul.html"><span class="pn-k">المشروع التالي ←</span><span class="pn-t">نُزُل</span></a></nav>
+    </div>
+  </section>
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <div data-i18n="en" lang="en">
+      <div class="footer-top">
+        <h2 class="display">Have an idea? I turn it into a working product.</h2>
+      </div>
+      <div class="contact-block" dir="ltr">
+        <div class="contact-line">
+          <a href="tel:+966543440396">+966 54 344 0396</a><span class="sep">|</span>
+          <a href="mailto:hashemalahdal17@gmail.com">hashemalahdal17@gmail.com</a><span class="sep">|</span>
+          <span>Makkah, Saudi Arabia</span>
+        </div>
+        <div class="contact-line">
+          <a href="https://github.com/hshoom17" target="_blank" rel="noopener">github.com/hshoom17</a><span class="sep">|</span>
+          <a href="https://linkedin.com/in/hashem-al-ahdal" target="_blank" rel="noopener">linkedin.com/in/hashem-al-ahdal</a>
+        </div>
+      </div>
+      <div class="foot-note"><span>PORTFOLIO — <span class="js-year">2026</span></span><span>SAUDI ARABIA &amp; REMOTE</span></div>
+    </div>
+    <div data-i18n="ar" lang="ar" dir="rtl">
+      <div class="footer-top">
+        <h2 class="display">عندك فكرة؟ أنا أحوّلها لمنتج يعمل.</h2>
+      </div>
+      <div class="contact-block" dir="ltr">
+        <div class="contact-line">
+          <a href="tel:+966543440396">+966 54 344 0396</a><span class="sep">|</span>
+          <a href="mailto:hashemalahdal17@gmail.com">hashemalahdal17@gmail.com</a><span class="sep">|</span>
+          <span>مكة، السعودية</span>
+        </div>
+        <div class="contact-line">
+          <a href="https://github.com/hshoom17" target="_blank" rel="noopener">github.com/hshoom17</a><span class="sep">|</span>
+          <a href="https://linkedin.com/in/hashem-al-ahdal" target="_blank" rel="noopener">linkedin.com/in/hashem-al-ahdal</a>
+        </div>
+      </div>
+      <div class="foot-note"><span>ملف أعمال — <span class="js-year" data-numerals="arab">٢٠٢٦</span></span><span>السعودية وعن بعد</span></div>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/site.js"></script>
+</body>
+</html>

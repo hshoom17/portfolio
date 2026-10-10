@@ -25,8 +25,8 @@
   <div class="wrap nav-row">
     <div class="mark" aria-label="Hashem Alahdal — هاشم الاهدل" lang="ar">هـ<svg class="swash" viewBox="0 0 40 6" aria-hidden="true"><path d="M1 5 C 13 1, 30 1, 39 3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div>
     <nav class="nav-tags" aria-label="Sections">
-      <span data-i18n="en" class="inline" lang="en"><a href="#about">About</a><a href="#projects">Projects</a><a href="#work">Work</a><a href="#skills">Skills</a><a href="#contact">Contact</a></span>
-      <span data-i18n="ar" class="inline" lang="ar"><a href="#about">نبذة</a><a href="#projects">المشاريع</a><a href="#work">الأعمال</a><a href="#skills">المهارات</a><a href="#contact">تواصل</a></span>
+      <span data-i18n="en" class="inline" lang="en"><a href="#about">About</a><a href="#flagship">Projects</a><a href="#work">Work</a><a href="#skills">Skills</a><a href="#contact">Contact</a></span>
+      <span data-i18n="ar" class="inline" lang="ar"><a href="#about">نبذة</a><a href="#flagship">المشاريع</a><a href="#work">الأعمال</a><a href="#skills">المهارات</a><a href="#contact">تواصل</a></span>
     </nav>
     <div class="nav-controls">
       <button class="lang-toggle" id="langToggle" aria-label="Switch language / تبديل اللغة">
@@ -96,7 +96,7 @@
       <p class="lede reveal">I'm Hashem — a full-stack developer based in Makkah. The last few years have been spent shipping production systems for the Saudi market: operations tooling for a ride-hailing company, and complete marketplaces and subscription platforms built solo for clients.</p>
       <div class="ledger-row reveal"><span class="label">SamaTaxi — RSN ops</span><span class="dots"></span><span class="value">dashboards · price intelligence</span></div>
       <div class="ledger-row reveal"><span class="label">Freelance clients</span><span class="dots"></span><span class="value">Saudi Arabia &amp; abroad</span></div>
-      <div class="ledger-row reveal"><span class="label">Solo products</span><span class="dots"></span><span class="value">Nuzul · Nuzul Umrah · Healthy Meals</span></div>
+      <div class="ledger-row reveal"><span class="label">Solo products</span><span class="dots"></span><span class="value">Zad Control · Nuzul · Nuzul Umrah · Healthy Meals</span></div>
       <div class="ledger-row reveal"><span class="label">Odoo 17 HR modules</span><span class="dots"></span><span class="value">Python · PostgreSQL</span></div>
     </div>
     <div data-i18n="ar" lang="ar" dir="rtl">
@@ -104,15 +104,59 @@
       <p class="lede reveal">أنا هاشم — مطوّر ويب متكامل من مكة. أمضيت السنوات الأخيرة في إطلاق أنظمة إنتاج للسوق السعودي: أدوات تشغيلية لشركة نقل ركاب، ومنصات وأسواق إلكترونية كاملة بنيتها بمفردي للعملاء.</p>
       <div class="ledger-row reveal"><span class="label">سما تاكسي — عمليات RSN</span><span class="dots"></span><span class="value">لوحات تحكم · تحليل أسعار</span></div>
       <div class="ledger-row reveal"><span class="label">عمل حر</span><span class="dots"></span><span class="value">السعودية وخارجها</span></div>
-      <div class="ledger-row reveal"><span class="label">منتجات فردية</span><span class="dots"></span><span class="value">نُزُل · نُزُل عمرة · وجبات صحية</span></div>
+      <div class="ledger-row reveal"><span class="label">منتجات فردية</span><span class="dots"></span><span class="value">زاد كنترول · نُزُل · نُزُل عمرة · وجبات صحية</span></div>
       <div class="ledger-row reveal"><span class="label">وحدات Odoo 17 للموارد البشرية</span><span class="dots"></span><span class="value">Python · PostgreSQL</span></div>
+    </div>
+  </section>
+
+  <!-- FLAGSHIP — the main, live project gets a section of its own -->
+  <section id="flagship">
+    <div data-i18n="en" lang="en">
+      <div class="sec-head"><span class="sec-num">02</span><h2>Main project</h2></div>
+        <div class="flagship reveal">
+          <a class="browser-frame" href="projects/zad.html" aria-label="Zad Control details">
+            <div class="browser-bar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-url">zad.laravel.cloud</div></div>
+            <img src="images/zad-web-01-dashboard.jpg" width="1600" height="900" loading="lazy" decoding="async" alt="Zad Control dashboard — completion rate, done and missed tasks">
+          </a>
+          <div class="flagship-body">
+            <span class="stamp red">Live now</span>
+            <p class="feature-sub">Multi-tenant SaaS · Web + Mobile web</p>
+            <h3>Zad Control — Restaurant Operations Platform</h3>
+            <p class="proj-line">Runs a restaurant's whole day: checklists and scheduled tasks, staff completing them on their phones, violations, tickets, ratings and reports — live, with a public demo.</p>
+            <div class="flagship-stats"><span><b>106</b>PHPUnit tests</span><span><b>7</b>ready templates</span><span><b>9</b>modules</span></div>
+            <div class="flagship-actions">
+              <a class="demo-link" href="https://zad.laravel.cloud/demo" target="_blank" rel="noopener">Visit the live site ↗</a>
+              <a class="proj-more" href="projects/zad.html">Details →</a>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div data-i18n="ar" lang="ar" dir="rtl">
+      <div class="sec-head"><span class="sec-num">٠٢</span><h2>المشروع الرئيسي</h2></div>
+        <div class="flagship reveal">
+          <a class="browser-frame" href="projects/zad.html" aria-label="تفاصيل زاد كنترول">
+            <div class="browser-bar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-url">zad.laravel.cloud</div></div>
+            <img src="images/zad-web-01-dashboard.jpg" width="1600" height="900" loading="lazy" decoding="async" alt="لوحة تحكم زاد كنترول — نسبة الإنجاز والمهام المنجزة والفائتة">
+          </a>
+          <div class="flagship-body">
+            <span class="stamp red">منشور الآن</span>
+            <p class="feature-sub">SaaS متعدد المطاعم · ويب + جوال</p>
+            <h3>زاد كنترول — منصة تشغيل المطاعم</h3>
+            <p class="proj-line">تدير يوم المطعم كاملًا: قوائم تحقق ومهام مجدولة، وموظفون ينجزونها من جوالاتهم، ومخالفات وتذاكر وتقييمات وتقارير — منشورة على الإنترنت ومعها نسخة للعرض.</p>
+            <div class="flagship-stats"><span><b>١٠٦</b>اختبار PHPUnit</span><span><b>٧</b>قوالب جاهزة</span><span><b>٩</b>أقسام</span></div>
+            <div class="flagship-actions">
+              <a class="demo-link" href="https://zad.laravel.cloud/demo" target="_blank" rel="noopener">اذهب إلى الموقع ↖</a>
+              <a class="proj-more" href="projects/zad.html">التفاصيل ←</a>
+            </div>
+          </div>
+        </div>
     </div>
   </section>
 
   <!-- PROJECTS — one card each; the full write-up lives in projects/<id>.html -->
   <section id="projects">
     <div data-i18n="en" lang="en">
-      <div class="sec-head"><span class="sec-num">02</span><h2>Featured projects</h2></div>
+      <div class="sec-head"><span class="sec-num">03</span><h2>Selected projects</h2></div>
       <div class="proj-grid">
         <a class="proj-card reveal" href="projects/nuzul.html">
           <div class="browser-frame">
@@ -153,7 +197,7 @@
       </div>
     </div>
     <div data-i18n="ar" lang="ar" dir="rtl">
-      <div class="sec-head"><span class="sec-num">٠٢</span><h2>المشاريع الرئيسية</h2></div>
+      <div class="sec-head"><span class="sec-num">٠٣</span><h2>مشاريع مختارة</h2></div>
       <div class="proj-grid">
         <a class="proj-card reveal" href="projects/nuzul.html">
           <div class="browser-frame">
@@ -218,7 +262,7 @@
   <!-- OTHER WORK -->
   <section id="work">
     <div data-i18n="en" lang="en">
-      <div class="sec-head"><span class="sec-num">03</span><h2>Other work</h2></div>
+      <div class="sec-head"><span class="sec-num">04</span><h2>Other work</h2></div>
       <div class="grid">
         <div class="card reveal"><p class="tag">Dashboard</p><h4>RSN Operations Dashboard</h4><p>Internal ops tool for a ride-hailing company — referral/coupon tracking and driver performance. Built the React data layer and visualizations, integrated with backend systems for real-time insight.</p><div class="card-tags"><span>React</span><span>TypeScript</span><span>Laravel</span><span>MySQL</span></div></div>
         <div class="card reveal"><p class="tag">Case management</p><h4>Tanfeeth — Legal Case System</h4><p>Case tracking for legal operations across Primary, Appeal and Supreme court levels — hearings, deadlines and document workflow in one queue. React + Vite frontend on a Laravel/Sanctum API, PHPUnit-tested.</p><div class="card-tags"><span>Laravel</span><span>Sanctum</span><span>React</span><span>Vite</span><span>MySQL</span></div></div>
@@ -229,7 +273,7 @@
       </div>
     </div>
     <div data-i18n="ar" lang="ar" dir="rtl">
-      <div class="sec-head"><span class="sec-num">٠٣</span><h2>مشاريع أخرى</h2></div>
+      <div class="sec-head"><span class="sec-num">٠٤</span><h2>مشاريع أخرى</h2></div>
       <div class="grid">
         <div class="card reveal"><p class="tag">لوحة تحكم</p><h4>لوحة تحكم عمليات RSN</h4><p>أداة تشغيلية داخلية لشركة نقل ركاب، لتتبع برامج الإحالة والكوبونات ومؤشرات أداء السائقين. بنيت طبقة البيانات والرسوم البيانية باستخدام React، مع ربطها بأنظمة الشركة الخلفية لعرض بيانات تشغيلية لحظية لفريق العمليات.</p><div class="card-tags"><span>React</span><span>TypeScript</span><span>Laravel</span><span>MySQL</span></div></div>
         <div class="card reveal"><p class="tag">إدارة قضايا</p><h4>تنفيذ — نظام قضايا قانونية</h4><p>نظام لتتبع القضايا القانونية عبر درجات التقاضي — الابتدائية والاستئناف والعليا — مع الجلسات والمواعيد وتدفق المستندات في مكان واحد. واجهة React مع Vite على واجهة برمجية بـ Laravel وSanctum، مع اختبارات PHPUnit.</p><div class="card-tags"><span>Laravel</span><span>Sanctum</span><span>React</span><span>Vite</span><span>MySQL</span></div></div>
@@ -244,13 +288,13 @@
   <!-- SKILLS -->
   <section id="skills">
     <div data-i18n="en" lang="en">
-      <div class="sec-head"><span class="sec-num">04</span><h2>Skills</h2></div>
+      <div class="sec-head"><span class="sec-num">05</span><h2>Skills</h2></div>
       <div class="tag-sheet reveal">
         <span>Laravel</span><span>PHP 8</span><span>Python</span><span>React</span><span>TypeScript</span><span>Inertia.js</span><span>Tailwind CSS</span><span>MySQL</span><span>Flutter / Dart</span><span>Multi-tenant SaaS</span><span>REST API design</span><span>Payment gateway integration</span><span>Docker</span>
       </div>
     </div>
     <div data-i18n="ar" lang="ar" dir="rtl">
-      <div class="sec-head"><span class="sec-num">٠٤</span><h2>المهارات</h2></div>
+      <div class="sec-head"><span class="sec-num">٠٥</span><h2>المهارات</h2></div>
       <div class="tag-sheet reveal">
         <span>Laravel</span><span>PHP 8</span><span>Python</span><span>React</span><span>TypeScript</span><span>Inertia.js</span><span>Tailwind CSS</span><span>MySQL</span><span>Flutter/Dart</span><span>SaaS متعدد الشركات</span><span>تصميم واجهات REST</span><span>ربط بوابات الدفع</span><span>Docker</span>
       </div>
