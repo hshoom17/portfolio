@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-lang="ar" data-title-en="Nuzul — Property Booking Marketplace · Hashem Alahdal" data-title-ar="نُزُل — منصة حجز عقارات · هاشم الاهدل" data-desc-en="Two-sided booking marketplace for short-term rentals — a web app and a native iOS app on one API." data-desc-ar="منصة حجز عقارات ثنائية الاتجاه للإيجار قصير المدى — تطبيق ويب وتطبيق iOS على واجهة برمجية واحدة.">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>نُزُل — منصة حجز عقارات · هاشم الاهدل</title>
+<meta name="description" content="منصة حجز عقارات ثنائية الاتجاه للإيجار قصير المدى — تطبيق ويب وتطبيق iOS على واجهة برمجية واحدة.">
+<meta property="og:title" content="نُزُل — منصة حجز عقارات · هاشم الاهدل">
+<meta property="og:description" content="منصة حجز عقارات ثنائية الاتجاه للإيجار قصير المدى — تطبيق ويب وتطبيق iOS على واجهة برمجية واحدة.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ar_SA">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#EDEEE2">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='8' fill='%23EDEEE2'/%3E%3Crect x='5.5' y='5.5' width='53' height='53' rx='5' fill='none' stroke='%231C231F' stroke-width='3'/%3E%3Ctext x='32' y='40' text-anchor='middle' font-family='Amiri,Times,serif' font-size='34' font-weight='700' fill='%231C231F'%3E%D9%87%D9%80%3C/text%3E%3Cpath d='M18 48 C 28 44, 40 44, 47 46' fill='none' stroke='%2324586A' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Amiri:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-row">
+    <a class="mark" href="../index.html" aria-label="Hashem Alahdal — هاشم الاهدل" lang="ar">هـ<svg class="swash" viewBox="0 0 40 6" aria-hidden="true"><path d="M1 5 C 13 1, 30 1, 39 3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a>
+    <nav class="nav-tags" aria-label="Sections">
+      <span data-i18n="en" class="inline" lang="en"><a href="../index.html#about">About</a><a href="../index.html#projects">Projects</a><a href="../index.html#work">Work</a><a href="#contact">Contact</a></span>
+      <span data-i18n="ar" class="inline" lang="ar"><a href="../index.html#about">نبذة</a><a href="../index.html#projects">المشاريع</a><a href="../index.html#work">الأعمال</a><a href="#contact">تواصل</a></span>
+    </nav>
+    <div class="nav-controls">
+      <button class="lang-toggle" id="langToggle" aria-label="Switch language / تبديل اللغة">
+        <span class="thumb"></span>
+        <span class="opt en">EN</span>
+        <span class="opt ar">AR</span>
+      </button>
+    </div>
+  </div>
+</header>
+<div id="inkline" aria-hidden="true"></div>
+
+<main class="wrap">
+  <section class="project" id="nuzul">
+    <div data-i18n="en" lang="en">
+      <a class="back-link" href="../index.html#projects">← All projects</a>
+      <div class="sec-head"><span class="sec-num">01 / 03</span><h2>Nuzul</h2></div>
+      <div class="feature-card reveal">
+        <div class="feature-top">
+          <div>
+            <p class="feature-sub">Web + Mobile · Solo-built</p>
+            <h3>Nuzul — Property Booking Marketplace</h3>
+          </div>
+        </div>
+        <p class="feature-desc">A full two-sided booking marketplace (Airbnb / Gathern-style) for short-term rentals in Saudi Arabia — guest and host web app, a native Flutter iOS app sharing one JSON API, and a full guest/host mode switch.</p>
+
+        <div class="arch"><p class="note-cap">Architecture sketch</p><div class="arch-scroll"><svg viewBox="0 0 640 160" role="img" aria-label="Architecture sketch: Web app, iOS app, JSON API, Database, Payments"><path class="ln" style="--d:0" pathLength="1" d="M17.4 14.5 L163.5 14.9 Q172.0 13.9 171.6 22.3 L172.0 60.0 Q172.8 67.6 163.2 67.4 L18.0 69.0 Q7.0 68.5 7.1 58.7 L7.6 22.9 Q8.0 13.7 16.3 13.2"/><text class="t1" x="90" y="37">Web app</text><text class="t2" x="90" y="55">Laravel · React</text><path class="ln" style="--d:1" pathLength="1" d="M16.6 92.2 L162.2 92.5 Q172.9 92.2 172.8 101.7 L171.4 137.5 Q171.1 145.7 163.6 146.7 L16.4 145.9 Q8.4 146.0 8.0 137.0 L7.1 101.3 Q7.0 91.1 16.8 91.0"/><text class="t1" x="90" y="115">iOS app</text><text class="t2" x="90" y="133">Flutter</text><path class="ln" style="--d:2" pathLength="1" d="M247.0 53.5 L392.2 53.6 Q401.3 52.5 402.1 62.8 L402.9 97.2 Q401.6 107.3 392.1 107.8 L246.7 106.5 Q237.6 108.0 237.5 98.4 L237.1 62.0 Q238.8 52.6 247.8 52.0"/><text class="t1" x="320" y="76">JSON API</text><text class="t2" x="320" y="94">Laravel</text><path class="ln" style="--d:3" pathLength="1" d="M477.4 14.3 L623.0 14.4 Q631.1 13.8 631.4 21.9 L631.5 58.4 Q631.7 68.3 622.9 67.8 L476.6 68.1 Q468.8 67.1 467.4 58.4 L467.3 21.9 Q468.4 13.3 476.4 15.1"/><text class="t1" x="550" y="37">Database</text><text class="t2" x="550" y="55">MySQL</text><path class="ln" style="--d:4" pathLength="1" d="M477.7 92.9 L622.1 92.2 Q632.6 92.8 631.4 100.0 L631.8 138.0 Q632.1 146.3 623.5 145.9 L476.3 145.0 Q468.1 146.3 468.8 137.0 L468.4 100.9 Q468.2 91.5 477.1 92.9"/><text class="t1" x="550" y="115">Payments</text><text class="t2" x="550" y="133">Moyasar</text><path class="ln edge" style="--d:5" pathLength="1" d="M176 41 C204 41, 204 80, 232 80"/><path class="ln edge" style="--d:6" pathLength="1" d="M223 75 L232 80 L223 85"/><path class="ln edge" style="--d:6" pathLength="1" d="M176 119 C204 119, 204 80, 232 80"/><path class="ln edge" style="--d:7" pathLength="1" d="M223 75 L232 80 L223 85"/><path class="ln edge" style="--d:7" pathLength="1" d="M406 80 C434 80, 434 41, 462 41"/><path class="ln edge" style="--d:8" pathLength="1" d="M453 36 L462 41 L453 46"/><path class="ln edge" style="--d:8" pathLength="1" d="M464 119 C436 119, 436 80, 408 80"/><path class="ln edge" style="--d:9" pathLength="1" d="M417 75 L408 80 L417 85"/><text class="lbl" x="461" y="135" style="text-anchor:end">webhook</text></svg></div><p class="arch-hint" aria-hidden="true">Swipe sideways to see the whole sketch →</p></div>
+
+        <div class="showcase-main">
+          <div class="browser-frame">
+            <div class="browser-bar">
+              <div class="browser-dots"><span></span><span></span><span></span></div>
+              <div class="browser-url">nuzul.sa</div>
+            </div>
+            <img src="../images/web-01-home.jpg" width="1600" height="1400" loading="lazy" decoding="async" alt="Nuzul web home page — Arabic RTL, Mecca skyline hero, property search">
+          </div>
+        </div>
+        <div class="showcase-row">
+          <div class="browser-frame">
+            <div class="browser-bar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-url">nuzul.sa/search</div></div>
+            <img src="../images/web-02-search.jpg" width="1600" height="1400" loading="lazy" decoding="async" alt="Nuzul search results page with filters">
+          </div>
+          <div class="browser-frame">
+            <div class="browser-bar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-url">nuzul.sa/property</div></div>
+            <img src="../images/web-03-property.jpg" width="1600" height="1400" loading="lazy" decoding="async" alt="Nuzul property detail page with booking widget">
+          </div>
+        </div>
+        <div class="showcase-phones">
+          <div class="phone-block">
+            <div class="phone-frame"><img src="../images/mobile-01-guest-home.jpg" width="368" height="800" loading="lazy" decoding="async" alt="Nuzul mobile app — guest home screen"></div>
+            <p class="phone-caption">Guest — browse &amp; book</p>
+          </div>
+          <div class="phone-block">
+            <div class="phone-frame"><img src="../images/mobile-02-host-properties.jpg" width="368" height="800" loading="lazy" decoding="async" alt="Nuzul mobile app — host property list"></div>
+            <p class="phone-caption">Host — manage properties</p>
+          </div>
+        </div>
+
+        <div class="receipt-list" style="margin-top:30px;">
+          <div class="receipt-row"><span class="k">Web app</span><span class="d"></span><span class="v">Laravel, Inertia.js, React 19 + TS, Tailwind v4</span></div>
+          <div class="receipt-row"><span class="k">Mobile app</span><span class="d"></span><span class="v">Native Flutter (iOS), shared JSON API</span></div>
+          <div class="receipt-row"><span class="k">Booking engine</span><span class="d"></span><span class="v">Race-safe date holds, auto refunds, post-stay reviews</span></div>
+          <div class="receipt-row"><span class="k">Payments</span><span class="d"></span><span class="v">Moyasar, webhook confirmation, idempotent transactions</span></div>
+          <div class="receipt-row"><span class="k">Messaging</span><span class="d"></span><span class="v">Guest/host chat with a strict, separate support channel</span></div>
+          <div class="receipt-row"><span class="k">Language</span><span class="d"></span><span class="v">Arabic RTL default + English, custom design system</span></div>
+        </div>
+        <div class="stat-row">
+          <div class="stat"><span class="n" data-count="175" data-suffix="+">175+</span><span class="l">Pest tests</span></div>
+          <div class="stat"><span class="n" data-count="2">2</span><span class="l">apps, one API</span></div>
+          <div class="stat"><span class="n">int</span><span class="l">money, not float</span></div>
+        </div>
+        <div class="test-run" dir="ltr" lang="en" role="img" aria-label="Automated test results: 175+ passed"><div class="tr-run"><p class="tr-cmd">$ ./vendor/bin/pest</p><p class="tr-dots" aria-hidden="true"><i style="--i:0">.</i><i style="--i:1">.</i><i style="--i:2">.</i><i style="--i:3">.</i><i style="--i:4">.</i><i style="--i:5">.</i><i style="--i:6">.</i><i style="--i:7">.</i><i style="--i:8">.</i><i style="--i:9">.</i><i style="--i:10">.</i><i style="--i:11">.</i><i style="--i:12">.</i><i style="--i:13">.</i><i style="--i:14">.</i><i style="--i:15">.</i><i style="--i:16">.</i><i style="--i:17">.</i><i style="--i:18">.</i><i style="--i:19">.</i><i style="--i:20">.</i><i style="--i:21">.</i><i style="--i:22">.</i><i style="--i:23">.</i><i style="--i:24">.</i><i style="--i:25">.</i><i style="--i:26">.</i><i style="--i:27">.</i><i style="--i:28">.</i><i style="--i:29">.</i><i style="--i:30">.</i><i style="--i:31">.</i><i style="--i:32">.</i><i style="--i:33">.</i><i style="--i:34">.</i><i style="--i:35">.</i><i style="--i:36">.</i><i style="--i:37">.</i><i style="--i:38">.</i><i style="--i:39">.</i><i style="--i:40">.</i><i style="--i:41">.</i><i style="--i:42">.</i><i style="--i:43">.</i><i style="--i:44">.</i><i style="--i:45">.</i><i style="--i:46">.</i><i style="--i:47">.</i><i style="--i:48">.</i><i style="--i:49">.</i><i style="--i:50">.</i><i style="--i:51">.</i><i style="--i:52">.</i><i style="--i:53">.</i><i style="--i:54">.</i><i style="--i:55">.</i><i style="--i:56">.</i><i style="--i:57">.</i><i style="--i:58">.</i><i style="--i:59">.</i><i style="--i:60">.</i><i style="--i:61">.</i><i style="--i:62">.</i><i style="--i:63">.</i></p><p class="tr-res"><b>✓ 175+</b> passed</p></div></div>
+        <figure class="snippet"><figcaption>The payment callback and the webhook can land at the same moment — the row lock lets exactly one of them confirm the booking. · <code>app/Actions/ConfirmBooking.php</code></figcaption><pre><code>DB::transaction(function () use ($booking, $payment, $valid): void {
+    <span class="c">// Serialize the callback and the webhook: both can arrive at once.</span>
+    $fresh = Booking::query()-&gt;whereKey($booking-&gt;getKey())-&gt;<mark>lockForUpdate()</mark>-&gt;first();
+    if ($fresh === null || $fresh-&gt;status !== BookingStatus::PendingPayment) {
+        return; <span class="c">// another request got here first</span>
+    }
+
+    $this-&gt;record($booking, $payment, $valid ? PaymentStatus::Paid : PaymentStatus::Failed);
+    <span class="c">// …</span>
+});</code></pre></figure>
+      </div>
+      <nav class="project-nav" aria-label="More projects"><a class="next" href="nuzul-os.html"><span class="pn-k">Next →</span><span class="pn-t">Nuzul Umrah</span></a></nav>
+    </div>
+
+    <div data-i18n="ar" lang="ar" dir="rtl">
+      <a class="back-link" href="../index.html#projects">→ كل المشاريع</a>
+      <div class="sec-head"><span class="sec-num">٠١ / ٠٣</span><h2>نُزُل</h2></div>
+      <div class="feature-card reveal">
+        <div class="feature-top">
+          <div>
+            <p class="feature-sub">ويب + جوال · بناء فردي كامل</p>
+            <h3>نُزُل — منصة حجز عقارات</h3>
+          </div>
+        </div>
+        <p class="feature-desc">بنيت بمفردي منصة حجز عقارات ثنائية الاتجاه (على غرار Airbnb أو Gathern) للإيجار قصير المدى في السعودية — تطبيق ويب للضيوف والمضيفين، وتطبيق جوال أصلي بـ Flutter لنظام iOS يشارك واجهة برمجية (API) واحدة مع تطبيق الويب، مع إمكانية التبديل الكامل بين وضع الضيف ووضع المضيف.</p>
+
+        <div class="arch"><p class="note-cap">مخطط البنية</p><div class="arch-scroll"><svg viewBox="0 0 640 160" role="img" aria-label="مخطط البنية: تطبيق الويب، تطبيق iOS، الواجهة البرمجية، قاعدة البيانات، الدفع" direction="rtl"><path class="ln" style="--d:0" pathLength="1" d="M477.7 13.8 L623.1 15.0 Q632.9 14.1 631.4 22.6 L632.1 58.6 Q632.7 67.0 623.8 67.3 L477.3 68.2 Q467.9 68.9 466.9 58.0 L466.9 23.6 Q467.8 13.5 477.7 14.1"/><text class="t1" x="550" y="37">تطبيق الويب</text><text class="t2" x="550" y="55">Laravel · React</text><path class="ln" style="--d:1" pathLength="1" d="M477.0 91.6 L622.7 92.0 Q631.6 92.2 632.0 100.3 L632.8 136.7 Q631.0 146.9 622.6 146.4 L477.1 145.1 Q468.5 145.9 468.1 136.1 L468.9 102.1 Q468.5 92.0 477.0 92.8"/><text class="t1" x="550" y="115">تطبيق iOS</text><text class="t2" x="550" y="133">Flutter</text><path class="ln" style="--d:2" pathLength="1" d="M247.3 53.1 L393.4 53.5 Q401.1 53.4 402.4 62.1 L402.9 97.9 Q402.3 107.0 393.5 107.9 L246.3 108.1 Q237.8 106.5 237.2 98.5 L238.9 62.6 Q237.5 53.9 247.2 53.2"/><text class="t1" x="320" y="76">الواجهة البرمجية</text><text class="t2" x="320" y="94">Laravel · JSON</text><path class="ln" style="--d:3" pathLength="1" d="M17.8 13.7 L163.9 13.0 Q171.5 14.2 171.2 22.1 L171.1 58.6 Q171.4 68.1 162.3 68.1 L16.9 69.0 Q8.5 68.6 8.7 58.5 L7.8 22.9 Q8.3 15.1 16.3 14.3"/><text class="t1" x="90" y="37">قاعدة البيانات</text><text class="t2" x="90" y="55">MySQL</text><path class="ln" style="--d:4" pathLength="1" d="M18.1 92.3 L163.9 92.3 Q172.6 93.0 171.0 100.6 L171.8 136.7 Q170.9 145.3 163.7 145.3 L17.9 146.8 Q8.7 145.9 8.9 137.9 L8.6 100.1 Q8.3 92.8 16.1 91.6"/><text class="t1" x="90" y="115">الدفع</text><text class="t2" x="90" y="133">Moyasar</text><path class="ln edge" style="--d:5" pathLength="1" d="M464 41 C436 41, 436 80, 408 80"/><path class="ln edge" style="--d:6" pathLength="1" d="M417 75 L408 80 L417 85"/><path class="ln edge" style="--d:6" pathLength="1" d="M464 119 C436 119, 436 80, 408 80"/><path class="ln edge" style="--d:7" pathLength="1" d="M417 75 L408 80 L417 85"/><path class="ln edge" style="--d:7" pathLength="1" d="M234 80 C206 80, 206 41, 178 41"/><path class="ln edge" style="--d:8" pathLength="1" d="M187 36 L178 41 L187 46"/><path class="ln edge" style="--d:8" pathLength="1" d="M176 119 C204 119, 204 80, 232 80"/><path class="ln edge" style="--d:9" pathLength="1" d="M223 75 L232 80 L223 85"/><text class="lbl" x="179" y="135" style="text-anchor:end">Webhook</text></svg></div><p class="arch-hint" aria-hidden="true">← اسحب أفقياً لرؤية المخطط كاملاً</p></div>
+
+        <div class="showcase-main">
+          <div class="browser-frame">
+            <div class="browser-bar">
+              <div class="browser-dots"><span></span><span></span><span></span></div>
+              <div class="browser-url">nuzul.sa</div>
+            </div>
+            <img src="../images/web-01-home.jpg" width="1600" height="1400" loading="lazy" decoding="async" alt="الصفحة الرئيسية لموقع نُزُل — عربي RTL، أفق مكة، بحث عن عقارات">
+          </div>
+        </div>
+        <div class="showcase-row">
+          <div class="browser-frame">
+            <div class="browser-bar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-url">nuzul.sa/search</div></div>
+            <img src="../images/web-02-search.jpg" width="1600" height="1400" loading="lazy" decoding="async" alt="نتائج البحث في نُزُل مع الفلاتر">
+          </div>
+          <div class="browser-frame">
+            <div class="browser-bar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-url">nuzul.sa/property</div></div>
+            <img src="../images/web-03-property.jpg" width="1600" height="1400" loading="lazy" decoding="async" alt="صفحة تفاصيل العقار مع أداة الحجز">
+          </div>
+        </div>
+        <div class="showcase-phones">
+          <div class="phone-block">
+            <div class="phone-frame"><img src="../images/mobile-01-guest-home.jpg" width="368" height="800" loading="lazy" decoding="async" alt="تطبيق نُزُل — شاشة الضيف الرئيسية"></div>
+            <p class="phone-caption">ضيف — تصفّح واحجز</p>
+          </div>
+          <div class="phone-block">
+            <div class="phone-frame"><img src="../images/mobile-02-host-properties.jpg" width="368" height="800" loading="lazy" decoding="async" alt="تطبيق نُزُل — قائمة عقارات المضيف"></div>
+            <p class="phone-caption">مضيف — إدارة العقارات</p>
+          </div>
+        </div>
+
+        <div class="receipt-list" style="margin-top:30px;">
+          <div class="receipt-row"><span class="k">تطبيق الويب</span><span class="d"></span><span class="v">Laravel وInertia.js وReact 19 مع TypeScript وTailwind v4</span></div>
+          <div class="receipt-row"><span class="k">تطبيق الجوال</span><span class="d"></span><span class="v">Flutter أصلي لنظام iOS، بنفس الـ API</span></div>
+          <div class="receipt-row"><span class="k">محرك الحجوزات</span><span class="d"></span><span class="v">حجز آمن للتواريخ، استرداد تلقائي، تقييمات بعد الإقامة</span></div>
+          <div class="receipt-row"><span class="k">الدفع</span><span class="d"></span><span class="v">Moyasar، تأكيد عبر Webhook، معالجة آمنة تمنع التكرار</span></div>
+          <div class="receipt-row"><span class="k">المحادثات</span><span class="d"></span><span class="v">محادثات فورية ضيف/مضيف، دعم منفصل، خصوصية صارمة</span></div>
+          <div class="receipt-row"><span class="k">اللغة</span><span class="d"></span><span class="v">عربي RTL أساسي وإنجليزي، هوية بصرية مخصصة</span></div>
+        </div>
+        <div class="stat-row">
+          <div class="stat"><span class="n" data-count="175" data-suffix="+" data-numerals="arab">+١٧٥</span><span class="l">اختبار Pest</span></div>
+          <div class="stat"><span class="n" data-count="2" data-numerals="arab">٢</span><span class="l">تطبيقين، API واحد</span></div>
+          <div class="stat"><span class="n">int</span><span class="l">مبالغ، لا كسور</span></div>
+        </div>
+        <div class="test-run" dir="ltr" lang="en" role="img" aria-label="نتيجة الاختبارات الآلية: 175+ passed"><div class="tr-run"><p class="tr-cmd">$ ./vendor/bin/pest</p><p class="tr-dots" aria-hidden="true"><i style="--i:0">.</i><i style="--i:1">.</i><i style="--i:2">.</i><i style="--i:3">.</i><i style="--i:4">.</i><i style="--i:5">.</i><i style="--i:6">.</i><i style="--i:7">.</i><i style="--i:8">.</i><i style="--i:9">.</i><i style="--i:10">.</i><i style="--i:11">.</i><i style="--i:12">.</i><i style="--i:13">.</i><i style="--i:14">.</i><i style="--i:15">.</i><i style="--i:16">.</i><i style="--i:17">.</i><i style="--i:18">.</i><i style="--i:19">.</i><i style="--i:20">.</i><i style="--i:21">.</i><i style="--i:22">.</i><i style="--i:23">.</i><i style="--i:24">.</i><i style="--i:25">.</i><i style="--i:26">.</i><i style="--i:27">.</i><i style="--i:28">.</i><i style="--i:29">.</i><i style="--i:30">.</i><i style="--i:31">.</i><i style="--i:32">.</i><i style="--i:33">.</i><i style="--i:34">.</i><i style="--i:35">.</i><i style="--i:36">.</i><i style="--i:37">.</i><i style="--i:38">.</i><i style="--i:39">.</i><i style="--i:40">.</i><i style="--i:41">.</i><i style="--i:42">.</i><i style="--i:43">.</i><i style="--i:44">.</i><i style="--i:45">.</i><i style="--i:46">.</i><i style="--i:47">.</i><i style="--i:48">.</i><i style="--i:49">.</i><i style="--i:50">.</i><i style="--i:51">.</i><i style="--i:52">.</i><i style="--i:53">.</i><i style="--i:54">.</i><i style="--i:55">.</i><i style="--i:56">.</i><i style="--i:57">.</i><i style="--i:58">.</i><i style="--i:59">.</i><i style="--i:60">.</i><i style="--i:61">.</i><i style="--i:62">.</i><i style="--i:63">.</i></p><p class="tr-res"><b>✓ 175+</b> passed</p></div></div>
+        <figure class="snippet"><figcaption>رد بوابة الدفع والـ Webhook قد يصلان في اللحظة نفسها — قفل الصف يسمح لواحد فقط منهما بتأكيد الحجز. · <code>app/Actions/ConfirmBooking.php</code></figcaption><pre><code>DB::transaction(function () use ($booking, $payment, $valid): void {
+    <span class="c">// Serialize the callback and the webhook: both can arrive at once.</span>
+    $fresh = Booking::query()-&gt;whereKey($booking-&gt;getKey())-&gt;<mark>lockForUpdate()</mark>-&gt;first();
+    if ($fresh === null || $fresh-&gt;status !== BookingStatus::PendingPayment) {
+        return; <span class="c">// another request got here first</span>
+    }
+
+    $this-&gt;record($booking, $payment, $valid ? PaymentStatus::Paid : PaymentStatus::Failed);
+    <span class="c">// …</span>
+});</code></pre></figure>
+      </div>
+      <nav class="project-nav" aria-label="مشاريع أخرى"><a class="next" href="nuzul-os.html"><span class="pn-k">المشروع التالي ←</span><span class="pn-t">نُزُل عمرة</span></a></nav>
+    </div>
+  </section>
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <div data-i18n="en" lang="en">
+      <div class="footer-top">
+        <h2 class="display">Have an idea? I turn it into a working product.</h2>
+      </div>
+      <div class="contact-block" dir="ltr">
+        <div class="contact-line">
+          <a href="tel:+966543440396">+966 54 344 0396</a><span class="sep">|</span>
+          <a href="mailto:hashemalahdal17@gmail.com">hashemalahdal17@gmail.com</a><span class="sep">|</span>
+          <span>Makkah, Saudi Arabia</span>
+        </div>
+        <div class="contact-line">
+          <a href="https://github.com/hshoom17" target="_blank" rel="noopener">github.com/hshoom17</a><span class="sep">|</span>
+          <a href="https://linkedin.com/in/hashem-al-ahdal" target="_blank" rel="noopener">linkedin.com/in/hashem-al-ahdal</a>
+        </div>
+      </div>
+      <div class="foot-note"><span>PORTFOLIO — <span class="js-year">2026</span></span><span>SAUDI ARABIA &amp; REMOTE</span></div>
+    </div>
+    <div data-i18n="ar" lang="ar" dir="rtl">
+      <div class="footer-top">
+        <h2 class="display">عندك فكرة؟ أنا أحوّلها لمنتج يعمل.</h2>
+      </div>
+      <div class="contact-block" dir="ltr">
+        <div class="contact-line">
+          <a href="tel:+966543440396">+966 54 344 0396</a><span class="sep">|</span>
+          <a href="mailto:hashemalahdal17@gmail.com">hashemalahdal17@gmail.com</a><span class="sep">|</span>
+          <span>مكة، السعودية</span>
+        </div>
+        <div class="contact-line">
+          <a href="https://github.com/hshoom17" target="_blank" rel="noopener">github.com/hshoom17</a><span class="sep">|</span>
+          <a href="https://linkedin.com/in/hashem-al-ahdal" target="_blank" rel="noopener">linkedin.com/in/hashem-al-ahdal</a>
+        </div>
+      </div>
+      <div class="foot-note"><span>ملف أعمال — <span class="js-year" data-numerals="arab">٢٠٢٦</span></span><span>السعودية وعن بعد</span></div>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/site.js"></script>
+</body>
+</html>

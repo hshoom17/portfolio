@@ -17,317 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Amiri:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --paper:#EDEEE2;
-    --paper-dim:#E2E2D0;
-    --ink:#1C231F;
-    --ink-soft:#565F55;
-    --rule:#B9B39A;
-    --accent:#24586A;
-    --accent-soft:#DCE6E5;
-    --stamp:#A6402F;
-    --shadow-rgb:28,35,31;
-    --radius:3px;
-    --max:1120px;
-    color-scheme:light;
-  }
-
-  *{box-sizing:border-box;}
-  html{ scroll-behavior:smooth; }
-  section, footer{ scroll-margin-top:76px; }
-  body{
-    margin:0;
-    background:var(--paper);
-    color:var(--ink);
-    font-family:'IBM Plex Sans', sans-serif;
-    font-size:16px;
-    line-height:1.55;
-    -webkit-font-smoothing:antialiased;
-    overflow-x:hidden;
-  }
-  html[dir="rtl"] body{ font-family:'IBM Plex Sans Arabic', sans-serif; }
-
-  body::before{
-    content:"";
-    position:fixed; inset:0;
-    background-image:
-      linear-gradient(var(--rule) 1px, transparent 1px),
-      linear-gradient(90deg, var(--rule) 1px, transparent 1px);
-    background-size: 42px 42px;
-    opacity:0.12;
-    pointer-events:none;
-    z-index:0;
-  }
-
-  .mono{font-family:'IBM Plex Mono', monospace;}
-  .display{font-family:'Fraunces', serif; font-optical-sizing:auto;}
-  html[dir="rtl"] .display{font-family:'Amiri', serif;}
-  a{color:inherit;}
-
-  [data-i18n="ar"]{ display:none; }
-  html[data-lang="ar"] [data-i18n="en"]{ display:none; }
-  html[data-lang="ar"] [data-i18n="ar"]{ display:block; }
-  [data-i18n="en"].inline{ display:inline-flex; }
-  html[data-lang="ar"] [data-i18n="ar"].inline{ display:inline-flex; }
-
-  .wrap{max-width:var(--max); margin:0 auto; padding:0 28px; position:relative; z-index:1;}
-
-  /* ---------- NAV ---------- */
-  header.nav{
-    position:sticky; top:0; z-index:50;
-    background:color-mix(in srgb, var(--paper) 88%, transparent);
-    backdrop-filter:blur(6px);
-    border-bottom:1px solid var(--rule);
-  }
-  /* header layout is pinned RTL (logo right, toggle left) so nothing swaps sides on language change */
-  .nav-row{ display:flex; align-items:center; justify-content:space-between; padding:16px 0; direction:rtl; }
-  .nav-tags .inline[lang="en"]{ direction:ltr; }
-  .mark{
-    font-family:'Amiri', serif; font-weight:700; font-size:21px; line-height:1;
-    border:1px solid var(--ink); padding:3px 11px 6px; border-radius:var(--radius);
-    display:flex; flex-direction:column; align-items:center; gap:2px;
-  }
-  .mark .swash{ display:block; width:24px; height:5px; color:var(--accent); }
-  .nav-controls{ display:flex; align-items:center; gap:10px; }
-  .nav-tags{
-    display:flex; gap:18px; font-family:'IBM Plex Mono', monospace; font-size:11.5px;
-    letter-spacing:0.06em; color:var(--ink-soft); text-transform:uppercase;
-  }
-  .nav-tags .inline{ gap:18px; }
-  .nav-tags a{ color:var(--ink-soft); text-decoration:none; transition:color .2s ease; }
-  .nav-tags a:hover{ color:var(--ink); }
-  @media (max-width: 720px){ .nav-tags{display:none;} }
-
-  /* ---------- LANG TOGGLE ---------- */
-  .lang-toggle{
-    position:relative; display:inline-flex; align-items:center; width:104px; height:34px;
-    background:var(--ink); border-radius:999px; padding:3px; cursor:pointer; border:none;
-    font-family:'IBM Plex Mono', monospace; direction:ltr;
-  }
-  .lang-toggle .thumb{
-    position:absolute; top:3px; left:3px; width:50px; height:28px;
-    background:var(--paper); border-radius:999px; transition:transform .32s cubic-bezier(.65,0,.35,1); z-index:1;
-  }
-  html[data-lang="ar"] .lang-toggle .thumb{ transform:translateX(48px); }
-  .lang-toggle .opt{ position:relative; z-index:2; width:50px; text-align:center; font-size:12px; letter-spacing:0.04em; color:var(--paper); transition:color .3s ease; }
-  html[data-lang="en"] .lang-toggle .opt.en{ color:var(--ink); }
-  html[data-lang="ar"] .lang-toggle .opt.ar{ color:var(--ink); }
-
-  /* ---------- HERO ---------- */
-  .hero{ padding:96px 0 72px; }
-  .eyebrow{
-    font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.12em;
-    text-transform:uppercase; color:var(--accent); margin:0 0 18px;
-  }
-  h1.name{ font-size:clamp(42px, 7vw, 76px); line-height:1.02; margin:0 0 14px; font-weight:500; }
-  html[dir="rtl"] h1.name{ line-height:1.4; margin-bottom:30px; }
-  .role{ font-size:clamp(17px, 2.2vw, 21px); color:var(--ink-soft); max-width:640px; margin:0 0 28px; font-weight:500; }
-  .lede{ max-width:620px; font-size:16.5px; color:var(--ink); margin:0 0 34px; }
-  .stamps{ display:flex; flex-wrap:wrap; gap:12px; }
-  .stamp{
-    font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:0.05em; text-transform:uppercase;
-    padding:7px 13px; border:1px dashed var(--ink-soft); border-radius:999px; color:var(--ink-soft);
-  }
-  .stamp.red{ border-color:var(--stamp); color:var(--stamp); transform:rotate(-2deg); }
-
-  /* stamp-down: pills land like rubber stamps once their row reveals */
-  .reveal.in .stamp{ animation:stamp-down .45s cubic-bezier(.2,1.4,.4,1) backwards; }
-  .reveal.in .stamp:nth-child(2){ animation-delay:.13s; }
-  .reveal.in .stamp:nth-child(3){ animation-delay:.26s; }
-  @keyframes stamp-down{ from{ opacity:0; transform:scale(1.7) rotate(-8deg); } }
-
-  /* pen-written name */
-  h1.name{ width:max-content; max-width:100%; position:relative; }
-  .name-ink{ display:inline-block; }
-  /* quill — tip anchored at the ink edge, driven by JS */
-  .qalam{ position:absolute; top:0.66em; left:0; width:0; height:0; opacity:0; color:var(--ink); pointer-events:none; transition:opacity .35s ease; }
-  .qalam .pen{ position:absolute; left:-0.10em; bottom:-0.06em; width:1.05em; height:1.05em; }
-  html[dir="rtl"] .qalam .pen{ transform:scaleX(-1); left:-0.95em; }
-  .qalam svg{ width:100%; height:100%; display:block; transform-origin:10% 90%; }
-  .writing .qalam svg{ animation:pen-jig .16s ease-in-out infinite alternate; }
-  @keyframes pen-jig{ from{ transform:rotate(-1.2deg); } to{ transform:rotate(2.2deg); } }
-  .sec-head h2, footer h2{ position:relative; width:max-content; max-width:100%; }
-  .h2-ink{ display:inline-block; }
-
-  /* ink ruling scroll line */
-  #inkline{ position:fixed; top:0; inset-inline-start:0; height:2px; width:0; background:var(--accent); z-index:60; }
-
-  /* hero portrait */
-  .hero-grid{ display:flex; gap:56px; align-items:flex-start; justify-content:space-between; }
-  .hero-text{ flex:1; min-width:0; }
-  .hero-photo{ flex:0 0 250px; margin-top:20px; }
-  .photo-frame{
-    border:1px solid var(--ink); border-radius:var(--radius); background:var(--paper-dim);
-    padding:10px 10px 8px; box-shadow:0 16px 34px -18px rgba(var(--shadow-rgb),0.4);
-    transform:rotate(1.4deg);
-  }
-  html[dir="rtl"] .photo-frame{ transform:rotate(-1.4deg); }
-  .photo-frame img{ display:block; width:100%; height:auto; border-radius:2px; filter:saturate(0.94); }
-  .photo-caption{
-    text-align:center; font-family:'IBM Plex Mono', monospace; font-size:11px;
-    letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-soft); margin-top:12px;
-  }
-  @media (max-width:860px){ .hero-photo{ display:none; } }
-
-  /* connected Arabic script must not be letter-spaced */
-  html[dir="rtl"] .photo-caption, html[dir="rtl"] .phone-caption,
-  html[dir="rtl"] .stamp, html[dir="rtl"] .eyebrow, html[dir="rtl"] .stat .l,
-  .nav-tags .inline[lang="ar"]{ letter-spacing:0; }
-
-  /* ---------- SECTION SCAFFOLDING ---------- */
-  section{ padding:64px 0; border-top:1px solid var(--rule); }
-  .sec-head{ display:flex; align-items:baseline; gap:16px; margin-bottom:36px; flex-wrap:wrap; }
-  .sec-head h2{ font-family:'Fraunces', serif; font-weight:500; font-size:clamp(26px,3.6vw,34px); margin:0; }
-  html[dir="rtl"] .sec-head h2{ font-family:'Amiri', serif; }
-  .sec-num{ font-family:'IBM Plex Mono', monospace; color:var(--ink-soft); font-size:13px; }
-
-  /* ---------- LEDGER ---------- */
-  .ledger-row{ display:flex; align-items:baseline; gap:10px; padding:14px 0; border-bottom:1px solid var(--rule); }
-  .ledger-row .label{ font-size:16px; font-weight:500; white-space:nowrap; }
-  .ledger-row .dots{ flex:1; border-bottom:2px dotted var(--rule); height:0; margin-bottom:6px; }
-  /* dotted leaders draw themselves in */
-  .ledger-row.reveal .dots{ transform:scaleX(0); transform-origin:left; transition:transform .8s ease .15s; }
-  html[dir="rtl"] .ledger-row.reveal .dots{ transform-origin:right; }
-  .ledger-row.reveal.in .dots{ transform:scaleX(1); }
-  .ledger-row .value{ font-family:'IBM Plex Mono', monospace; font-size:13.5px; color:var(--accent); white-space:nowrap; text-align:right; }
-  html[dir="rtl"] .ledger-row .value{ text-align:left; }
-  @media (max-width:600px){
-    .ledger-row .label{ white-space:normal; }
-    .ledger-row .value{ white-space:normal; }
-  }
-
-  /* ---------- FEATURED PROJECT ---------- */
-  .feature-card{ background:var(--paper-dim); border:1px solid var(--rule); border-radius:var(--radius); padding:40px; }
-  @media (max-width:600px){ .feature-card{ padding:24px 18px; } }
-  .feature-top{ display:flex; justify-content:space-between; align-items:flex-start; gap:20px; flex-wrap:wrap; margin-bottom:8px; }
-  .feature-card h3{ font-family:'Fraunces', serif; font-size:clamp(24px,3vw,30px); margin:0 0 6px; font-weight:500; }
-  html[dir="rtl"] .feature-card h3{ font-family:'Amiri', serif; }
-  .feature-sub{ font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--ink-soft); text-transform:uppercase; letter-spacing:0.05em; }
-
-  .feature-desc{ max-width:700px; margin:18px 0 30px; color:var(--ink); }
-  .demo-link{
-    display:inline-flex; align-items:center; gap:8px;
-    font-family:'IBM Plex Mono', monospace; font-size:12.5px; letter-spacing:0.04em; text-transform:uppercase;
-    color:var(--paper); background:var(--accent); border-radius:999px; padding:11px 20px;
-    text-decoration:none; white-space:nowrap; align-self:flex-start;
-    box-shadow:0 10px 20px -12px rgba(var(--shadow-rgb),0.55);
-    transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
-  }
-  .demo-link:hover{
-    transform:translateY(-2px);
-    box-shadow:0 14px 26px -12px rgba(var(--shadow-rgb),0.6);
-    background:color-mix(in srgb, var(--accent) 85%, var(--ink));
-  }
-  html[dir="rtl"] .demo-link{ font-family:'IBM Plex Sans Arabic', sans-serif; font-size:14px; font-weight:600; letter-spacing:0; text-transform:none; }
-
-  /* browser + phone mockups */
-  .showcase-main{ margin-bottom:20px; }
-  .showcase-row{ display:grid; grid-template-columns:1fr 1fr; gap:20px; align-items:start; margin-bottom:24px; }
-  @media (max-width:700px){ .showcase-row{ grid-template-columns:1fr; } }
-
-  .browser-frame{
-    border:1px solid var(--rule); border-radius:8px; overflow:hidden; background:#fff;
-    box-shadow:0 18px 40px -20px rgba(var(--shadow-rgb),0.35);
-  }
-  .browser-bar{
-    display:flex; align-items:center; gap:8px; padding:9px 12px; background:var(--paper-dim); border-bottom:1px solid var(--rule);
-  }
-  .browser-dots{ display:flex; gap:5px; }
-  .browser-dots span{ width:8px; height:8px; border-radius:50%; background:var(--rule); }
-  .browser-url{
-    flex:1; font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:var(--ink-soft);
-    background:var(--paper); border:1px solid var(--rule); border-radius:999px; padding:4px 12px; text-align:center;
-  }
-  .browser-frame img{ display:block; width:100%; height:auto; }
-
-  .showcase-phones{ display:flex; gap:24px; justify-content:center; margin-bottom:32px; }
-  .phone-block{ display:flex; flex-direction:column; align-items:center; }
-  .phone-block .phone-frame{ max-width:210px; }
-  /* four phones: one row on desktop, two-by-two on small screens */
-  .showcase-phones.four{ display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
-  @media (max-width:700px){ .showcase-phones.four{ grid-template-columns:1fr 1fr; gap:16px; } }
-  .phone-frame{
-    width:100%; max-width:230px; border:8px solid var(--ink); border-radius:30px; overflow:hidden;
-    background:var(--ink); box-shadow:0 18px 40px -18px rgba(var(--shadow-rgb),0.4);
-    position:relative;
-  }
-  .phone-frame img{ display:block; width:100%; height:auto; border-radius:22px; }
-  .phone-caption{ text-align:center; font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-soft); margin-top:10px; }
-
-  .receipt-list{ margin:0 0 30px; }
-  /* receipt rows ink in one by one */
-  .reveal .receipt-row{ opacity:0; transform:translateY(6px); transition:opacity .45s ease, transform .45s ease; }
-  .reveal.in .receipt-row{ opacity:1; transform:none; }
-  .reveal.in .receipt-row:nth-child(2){ transition-delay:.08s; }
-  .reveal.in .receipt-row:nth-child(3){ transition-delay:.16s; }
-  .reveal.in .receipt-row:nth-child(4){ transition-delay:.24s; }
-  .reveal.in .receipt-row:nth-child(5){ transition-delay:.32s; }
-  .reveal.in .receipt-row:nth-child(6){ transition-delay:.40s; }
-  .receipt-row{ display:flex; gap:10px; align-items:baseline; padding:10px 0; border-bottom:1px dotted var(--rule); font-size:14.5px; }
-  .receipt-row:last-child{ border-bottom:none; }
-  .receipt-row .k{ font-weight:500; white-space:nowrap; }
-  .receipt-row .d{ flex:1; border-bottom:1px dotted var(--rule); height:0; margin-bottom:5px; }
-  .receipt-row .v{ color:var(--ink-soft); text-align:right; max-width:56%; }
-  html[dir="rtl"] .receipt-row .v{ text-align:left; }
-
-  .stat-row{ display:flex; gap:28px; flex-wrap:wrap; padding-top:18px; border-top:1px solid var(--rule); }
-  .stat{ font-family:'IBM Plex Mono', monospace; }
-  .stat .n{ font-size:22px; color:var(--accent); font-weight:500; display:block; }
-  .stat .l{ font-size:11px; color:var(--ink-soft); text-transform:uppercase; letter-spacing:0.05em; }
-
-  /* ---------- OTHER WORK ---------- */
-  .grid{ display:grid; grid-template-columns:repeat(3, 1fr); gap:20px; }
-  @media (max-width:860px){ .grid{ grid-template-columns:repeat(2,1fr); } }
-  @media (max-width:560px){ .grid{ grid-template-columns:1fr; } }
-  .card{
-    border:1px solid var(--rule); border-radius:var(--radius); padding:24px; background:transparent;
-    transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
-  }
-  .card:hover{ transform:translateY(-3px); background:var(--paper-dim); box-shadow:0 8px 22px -12px rgba(var(--shadow-rgb),0.35); }
-  .card .tag{ font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:var(--accent); text-transform:uppercase; letter-spacing:0.06em; }
-  .card h4{ font-size:17px; margin:10px 0 8px; font-weight:600; }
-  .card p{ font-size:14px; color:var(--ink-soft); margin:0; }
-  .card-tags{ display:flex; flex-wrap:wrap; gap:6px; margin-top:14px; }
-  .card-tags span{
-    font-family:'IBM Plex Mono', monospace; font-size:10px; letter-spacing:0.04em;
-    border:1px solid var(--rule); border-radius:999px; padding:3px 8px; color:var(--ink-soft);
-  }
-
-  /* ---------- SKILLS ---------- */
-  .tag-sheet{ display:flex; flex-wrap:wrap; gap:10px; }
-  .tag-sheet span{ font-family:'IBM Plex Mono', monospace; font-size:12.5px; padding:8px 14px; border:1px solid var(--ink); border-radius:999px; }
-  .tag-sheet.reveal span{ opacity:0; transform:translateY(5px); transition:opacity .3s ease, transform .3s ease; }
-  .tag-sheet.reveal.in span{ opacity:1; transform:none; }
-
-  /* ---------- FOOTER ---------- */
-  footer{ padding:56px 0 70px; }
-  .footer-top{ display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:24px; }
-  footer h2{ font-family:'Fraunces', serif; font-weight:500; font-size:clamp(26px,4vw,40px); margin:0 0 6px; max-width:520px; }
-  html[dir="rtl"] footer h2{ font-family:'Amiri', serif; }
-  .contact-block{ margin:26px 0 0; }
-  .contact-line{
-    display:flex; flex-wrap:wrap; align-items:center; gap:10px;
-    font-family:'IBM Plex Mono', monospace; font-size:14px; color:var(--ink-soft); margin-bottom:8px;
-  }
-  .contact-line a{ color:var(--ink); border-bottom:1px solid transparent; transition:border-color .2s ease; }
-  .contact-line a:hover{ border-bottom-color:var(--ink); }
-  .contact-line .sep{ color:var(--rule); }
-  .foot-note{ margin-top:40px; font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--ink-soft); display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; }
-
-  .reveal{ opacity:0; transform:translateY(14px); transition:opacity .6s ease, transform .6s ease; }
-  .reveal.in{ opacity:1; transform:translateY(0); }
-  @media (prefers-reduced-motion: reduce){
-    html{ scroll-behavior:auto; }
-    .reveal{ opacity:1; transform:none; transition:none; }
-    .lang-toggle .thumb{ transition:none; }
-    .reveal.in .stamp{ animation:none; }
-    .qalam{ display:none; }
-    .ledger-row.reveal .dots{ transform:none; transition:none; }
-    .reveal .receipt-row{ opacity:1; transform:none; transition:none; }
-    .tag-sheet.reveal span{ opacity:1; transform:none; transition:none; }
-  }
-</style>
+<link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
 
@@ -335,8 +25,8 @@
   <div class="wrap nav-row">
     <div class="mark" aria-label="Hashem Alahdal — هاشم الاهدل" lang="ar">هـ<svg class="swash" viewBox="0 0 40 6" aria-hidden="true"><path d="M1 5 C 13 1, 30 1, 39 3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div>
     <nav class="nav-tags" aria-label="Sections">
-      <span data-i18n="en" class="inline" lang="en"><a href="#about">About</a><a href="#nuzul">Nuzul</a><a href="#nuzul-os">Nuzul Umrah</a><a href="#meals">Healthy Meals</a><a href="#work">Work</a><a href="#skills">Skills</a><a href="#contact">Contact</a></span>
-      <span data-i18n="ar" class="inline" lang="ar"><a href="#about">نبذة</a><a href="#nuzul">نُزُل</a><a href="#nuzul-os">نُزُل عمرة</a><a href="#meals">وجبات صحية</a><a href="#work">الأعمال</a><a href="#skills">المهارات</a><a href="#contact">تواصل</a></span>
+      <span data-i18n="en" class="inline" lang="en"><a href="#about">About</a><a href="#projects">Projects</a><a href="#work">Work</a><a href="#skills">Skills</a><a href="#contact">Contact</a></span>
+      <span data-i18n="ar" class="inline" lang="ar"><a href="#about">نبذة</a><a href="#projects">المشاريع</a><a href="#work">الأعمال</a><a href="#skills">المهارات</a><a href="#contact">تواصل</a></span>
     </nav>
     <div class="nav-controls">
       <button class="lang-toggle" id="langToggle" aria-label="Switch language / تبديل اللغة">
@@ -419,272 +109,88 @@
     </div>
   </section>
 
-  <!-- FEATURED PROJECT — Nuzul -->
-  <section id="nuzul">
+  <!-- PROJECTS — one card each; the full write-up lives in projects/<id>.html -->
+  <section id="projects">
     <div data-i18n="en" lang="en">
-      <div class="sec-head"><span class="sec-num">02</span><h2>Featured project</h2></div>
-      <div class="feature-card reveal">
-        <div class="feature-top">
-          <div>
+      <div class="sec-head"><span class="sec-num">02</span><h2>Featured projects</h2></div>
+      <div class="proj-grid">
+        <a class="proj-card reveal" href="projects/nuzul.html">
+          <div class="browser-frame">
+            <div class="browser-bar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-url">nuzul.sa</div></div>
+            <img src="images/web-01-home.jpg" width="1600" height="1400" loading="lazy" decoding="async" alt="Nuzul web home page">
+          </div>
+          <div class="proj-body">
             <p class="feature-sub">Web + Mobile · Solo-built</p>
             <h3>Nuzul — Property Booking Marketplace</h3>
+            <p class="proj-line">Two-sided booking marketplace for short-term rentals — a web app and a native iOS app on one API.</p>
+            <div class="proj-foot"><span class="proj-stat"><b>175+</b>Pest tests</span><span class="proj-more">Details →</span></div>
           </div>
-        </div>
-        <p class="feature-desc">A full two-sided booking marketplace (Airbnb / Gathern-style) for short-term rentals in Saudi Arabia — guest and host web app, a native Flutter iOS app sharing one JSON API, and a full guest/host mode switch.</p>
-
-        <div class="showcase-main">
+        </a>
+        <a class="proj-card reveal" href="projects/nuzul-os.html">
           <div class="browser-frame">
-            <div class="browser-bar">
-              <div class="browser-dots"><span></span><span></span><span></span></div>
-              <div class="browser-url">nuzul.sa</div>
-            </div>
-            <img src="images/web-01-home.jpg" width="1600" height="1400" loading="lazy" decoding="async" alt="Nuzul web home page — Arabic RTL, Mecca skyline hero, property search">
+            <div class="browser-bar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-url">nuzul-umrah.app</div></div>
+            <img src="images/os-web-01-landing.jpg" width="1440" height="1150" loading="lazy" decoding="async" alt="Nuzul Umrah landing page">
           </div>
-        </div>
-        <div class="showcase-row">
+          <div class="proj-body">
+            <p class="feature-sub">Multi-tenant SaaS · Web + Mobile</p>
+            <h3>Nuzul Umrah — Operations Platform for Umrah Companies</h3>
+            <p class="proj-line">Multi-tenant SaaS that runs an Umrah company end to end — a company dashboard plus pilgrim and staff apps.</p>
+            <div class="proj-foot"><span class="proj-stat"><b>865</b>Pest tests</span><span class="proj-more">Details →</span></div>
+          </div>
+        </a>
+        <a class="proj-card reveal" href="projects/meals.html">
           <div class="browser-frame">
-            <div class="browser-bar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-url">nuzul.sa/search</div></div>
-            <img src="images/web-02-search.jpg" width="1600" height="1400" loading="lazy" decoding="async" alt="Nuzul search results page with filters">
+            <div class="browser-bar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-url">meals-platform.app/admin</div></div>
+            <img src="images/hf-web-01-dashboard.jpg" width="1600" height="900" loading="lazy" decoding="async" alt="Meal-subscription admin dashboard">
           </div>
-          <div class="browser-frame">
-            <div class="browser-bar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-url">nuzul.sa/property</div></div>
-            <img src="images/web-03-property.jpg" width="1600" height="1400" loading="lazy" decoding="async" alt="Nuzul property detail page with booking widget">
+          <div class="proj-body">
+            <p class="feature-sub">Web + Mobile · White-label</p>
+            <h3>Healthy Meals — Subscription Platform</h3>
+            <p class="proj-line">Meal-subscription platform with a nightly auto-fill engine, kitchen prep reports and delivery lists.</p>
+            <div class="proj-foot"><span class="proj-stat"><b>62</b>PHPUnit tests</span><span class="proj-more">Details →</span></div>
           </div>
-        </div>
-        <div class="showcase-phones">
-          <div class="phone-block">
-            <div class="phone-frame"><img src="images/mobile-01-guest-home.jpg" width="368" height="800" loading="lazy" decoding="async" alt="Nuzul mobile app — guest home screen"></div>
-            <p class="phone-caption">Guest — browse &amp; book</p>
-          </div>
-          <div class="phone-block">
-            <div class="phone-frame"><img src="images/mobile-02-host-properties.jpg" width="368" height="800" loading="lazy" decoding="async" alt="Nuzul mobile app — host property list"></div>
-            <p class="phone-caption">Host — manage properties</p>
-          </div>
-        </div>
-
-        <div class="receipt-list" style="margin-top:30px;">
-          <div class="receipt-row"><span class="k">Web app</span><span class="d"></span><span class="v">Laravel, Inertia.js, React 19 + TS, Tailwind v4</span></div>
-          <div class="receipt-row"><span class="k">Mobile app</span><span class="d"></span><span class="v">Native Flutter (iOS), shared JSON API</span></div>
-          <div class="receipt-row"><span class="k">Booking engine</span><span class="d"></span><span class="v">Race-safe date holds, auto refunds, post-stay reviews</span></div>
-          <div class="receipt-row"><span class="k">Payments</span><span class="d"></span><span class="v">Moyasar, webhook confirmation, idempotent transactions</span></div>
-          <div class="receipt-row"><span class="k">Messaging</span><span class="d"></span><span class="v">Guest/host chat with a strict, separate support channel</span></div>
-          <div class="receipt-row"><span class="k">Language</span><span class="d"></span><span class="v">Arabic RTL default + English, custom design system</span></div>
-        </div>
-        <div class="stat-row">
-          <div class="stat"><span class="n" data-count="175" data-suffix="+">175+</span><span class="l">Pest tests</span></div>
-          <div class="stat"><span class="n" data-count="2">2</span><span class="l">apps, one API</span></div>
-          <div class="stat"><span class="n">int</span><span class="l">money, not float</span></div>
-        </div>
+        </a>
       </div>
     </div>
-
     <div data-i18n="ar" lang="ar" dir="rtl">
-      <div class="sec-head"><span class="sec-num">٠٢</span><h2>المشروع الرئيسي</h2></div>
-      <div class="feature-card reveal">
-        <div class="feature-top">
-          <div>
+      <div class="sec-head"><span class="sec-num">٠٢</span><h2>المشاريع الرئيسية</h2></div>
+      <div class="proj-grid">
+        <a class="proj-card reveal" href="projects/nuzul.html">
+          <div class="browser-frame">
+            <div class="browser-bar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-url">nuzul.sa</div></div>
+            <img src="images/web-01-home.jpg" width="1600" height="1400" loading="lazy" decoding="async" alt="الصفحة الرئيسية لموقع نُزُل">
+          </div>
+          <div class="proj-body">
             <p class="feature-sub">ويب + جوال · بناء فردي كامل</p>
             <h3>نُزُل — منصة حجز عقارات</h3>
+            <p class="proj-line">منصة حجز عقارات ثنائية الاتجاه للإيجار قصير المدى — تطبيق ويب وتطبيق iOS على واجهة برمجية واحدة.</p>
+            <div class="proj-foot"><span class="proj-stat"><b>+١٧٥</b>اختبار Pest</span><span class="proj-more">التفاصيل ←</span></div>
           </div>
-        </div>
-        <p class="feature-desc">بنيت بمفردي منصة حجز عقارات ثنائية الاتجاه (على غرار Airbnb أو Gathern) للإيجار قصير المدى في السعودية — تطبيق ويب للضيوف والمضيفين، وتطبيق جوال أصلي بـ Flutter لنظام iOS يشارك واجهة برمجية (API) واحدة مع تطبيق الويب، مع إمكانية التبديل الكامل بين وضع الضيف ووضع المضيف.</p>
-
-        <div class="showcase-main">
+        </a>
+        <a class="proj-card reveal" href="projects/nuzul-os.html">
           <div class="browser-frame">
-            <div class="browser-bar">
-              <div class="browser-dots"><span></span><span></span><span></span></div>
-              <div class="browser-url">nuzul.sa</div>
-            </div>
-            <img src="images/web-01-home.jpg" width="1600" height="1400" loading="lazy" decoding="async" alt="الصفحة الرئيسية لموقع نُزُل — عربي RTL، أفق مكة، بحث عن عقارات">
+            <div class="browser-bar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-url">nuzul-umrah.app</div></div>
+            <img src="images/os-web-01-landing.jpg" width="1440" height="1150" loading="lazy" decoding="async" alt="الصفحة الرئيسية لنُزُل عمرة">
           </div>
-        </div>
-        <div class="showcase-row">
-          <div class="browser-frame">
-            <div class="browser-bar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-url">nuzul.sa/search</div></div>
-            <img src="images/web-02-search.jpg" width="1600" height="1400" loading="lazy" decoding="async" alt="نتائج البحث في نُزُل مع الفلاتر">
-          </div>
-          <div class="browser-frame">
-            <div class="browser-bar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-url">nuzul.sa/property</div></div>
-            <img src="images/web-03-property.jpg" width="1600" height="1400" loading="lazy" decoding="async" alt="صفحة تفاصيل العقار مع أداة الحجز">
-          </div>
-        </div>
-        <div class="showcase-phones">
-          <div class="phone-block">
-            <div class="phone-frame"><img src="images/mobile-01-guest-home.jpg" width="368" height="800" loading="lazy" decoding="async" alt="تطبيق نُزُل — شاشة الضيف الرئيسية"></div>
-            <p class="phone-caption">ضيف — تصفّح واحجز</p>
-          </div>
-          <div class="phone-block">
-            <div class="phone-frame"><img src="images/mobile-02-host-properties.jpg" width="368" height="800" loading="lazy" decoding="async" alt="تطبيق نُزُل — قائمة عقارات المضيف"></div>
-            <p class="phone-caption">مضيف — إدارة العقارات</p>
-          </div>
-        </div>
-
-        <div class="receipt-list" style="margin-top:30px;">
-          <div class="receipt-row"><span class="k">تطبيق الويب</span><span class="d"></span><span class="v">Laravel وInertia.js وReact 19 مع TypeScript وTailwind v4</span></div>
-          <div class="receipt-row"><span class="k">تطبيق الجوال</span><span class="d"></span><span class="v">Flutter أصلي لنظام iOS، بنفس الـ API</span></div>
-          <div class="receipt-row"><span class="k">محرك الحجوزات</span><span class="d"></span><span class="v">حجز آمن للتواريخ، استرداد تلقائي، تقييمات بعد الإقامة</span></div>
-          <div class="receipt-row"><span class="k">الدفع</span><span class="d"></span><span class="v">Moyasar، تأكيد عبر Webhook، معالجة آمنة تمنع التكرار</span></div>
-          <div class="receipt-row"><span class="k">المحادثات</span><span class="d"></span><span class="v">محادثات فورية ضيف/مضيف، دعم منفصل، خصوصية صارمة</span></div>
-          <div class="receipt-row"><span class="k">اللغة</span><span class="d"></span><span class="v">عربي RTL أساسي وإنجليزي، هوية بصرية مخصصة</span></div>
-        </div>
-        <div class="stat-row">
-          <div class="stat"><span class="n" data-count="175" data-suffix="+" data-numerals="arab">+١٧٥</span><span class="l">اختبار Pest</span></div>
-          <div class="stat"><span class="n" data-count="2" data-numerals="arab">٢</span><span class="l">تطبيقين، API واحد</span></div>
-          <div class="stat"><span class="n">int</span><span class="l">مبالغ، لا كسور</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SECOND FEATURED PROJECT — Nuzul Umrah -->
-  <section id="nuzul-os">
-    <div data-i18n="en" lang="en">
-      <div class="sec-head"><span class="sec-num">03</span><h2>Second feature</h2></div>
-      <div class="feature-card reveal">
-        <div class="feature-top">
-          <div>
-            <p class="feature-sub">Multi-tenant SaaS · Web + Mobile · Solo-built · Arabic-first</p>
-            <h3>Nuzul Umrah — Operations Platform for Umrah Companies</h3>
-          </div>
-          <a class="demo-link" href="demos/nuzul-os.html" target="_blank" rel="noopener">Try the live demo ↗</a>
-        </div>
-        <p class="feature-desc">A subscription platform that runs an Umrah company end to end. Staff manage packages, departures and seats, bookings and payments, leads, trips, room assignments, tasks and documents from one Arabic-first dashboard. Pilgrims get a single companion app that follows them through the whole journey — a day-by-day programme, their miqat, their room and group, announcements and support. Nuzul is a technology provider only: pilgrims pay the company's own merchant account, and Nuzul never holds customer funds.</p>
-
-        <div class="showcase-main">
-          <div class="browser-frame">
-            <div class="browser-bar">
-              <div class="browser-dots"><span></span><span></span><span></span></div>
-              <div class="browser-url">nuzul-umrah.app</div>
-            </div>
-            <img src="images/os-web-01-landing.jpg" alt="Nuzul Umrah landing page — the Grand Mosque in Makkah and the Prophet's Mosque in Madinah behind the arch" width="1440" height="1150" loading="lazy" decoding="async">
-          </div>
-        </div>
-        <div class="showcase-main">
-          <div class="browser-frame">
-            <div class="browser-bar">
-              <div class="browser-dots"><span></span><span></span><span></span></div>
-              <div class="browser-url">nuzul-umrah.app/os/today</div>
-            </div>
-            <img src="images/os-web-02-today.jpg" alt="Nuzul Umrah Today board — departures, returns, overdue tasks and payments for the day, Arabic RTL" width="1440" height="1118" loading="lazy" decoding="async">
-          </div>
-        </div>
-        <div class="showcase-row">
-          <div class="browser-frame">
-            <div class="browser-bar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-url">nuzul-umrah.app/os/trips</div></div>
-            <img src="images/os-web-03-trip.jpg" alt="Trip page — pilgrim roster, rooms, itinerary and tasks for one departure" width="1440" height="1500" loading="lazy" decoding="async">
-          </div>
-          <div class="browser-frame">
-            <div class="browser-bar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-url">nuzul-umrah.app/os/leads</div></div>
-            <img src="images/os-web-04-leads.jpg" alt="Leads board — five-stage pipeline with assignment and conversion to customers" width="1440" height="1338" loading="lazy" decoding="async">
-          </div>
-        </div>
-        <div class="showcase-phones four">
-          <div class="phone-block">
-            <div class="phone-frame"><img src="images/os-mobile-01-home.jpg" alt="Pilgrim app — home screen with the trip countdown and companion cards" width="716" height="1551" loading="lazy" decoding="async"></div>
-            <p class="phone-caption">Pilgrim — home</p>
-          </div>
-          <div class="phone-block">
-            <div class="phone-frame"><img src="images/os-mobile-02-trip.jpg" alt="Pilgrim app — my trip with booking, room and miqat" width="716" height="1551" loading="lazy" decoding="async"></div>
-            <p class="phone-caption">Pilgrim — my trip</p>
-          </div>
-          <div class="phone-block">
-            <div class="phone-frame"><img src="images/os-mobile-03-days.jpg" alt="Pilgrim app — day-by-day programme with collapsible days" width="716" height="1551" loading="lazy" decoding="async"></div>
-            <p class="phone-caption">Pilgrim — day by day</p>
-          </div>
-          <div class="phone-block">
-            <div class="phone-frame"><img src="images/os-mobile-04-staff.jpg" alt="Staff app — the company's trips in the field" width="716" height="1551" loading="lazy" decoding="async"></div>
-            <p class="phone-caption">Staff — trips in the field</p>
-          </div>
-        </div>
-
-        <div class="receipt-list" style="margin-top:30px;">
-          <div class="receipt-row"><span class="k">Company dashboard</span><span class="d"></span><span class="v">Laravel 13, Inertia.js, React 19 + TS, Tailwind v4</span></div>
-          <div class="receipt-row"><span class="k">Mobile apps</span><span class="d"></span><span class="v">Flutter / Dart — pilgrim + staff on a shared core package</span></div>
-          <div class="receipt-row"><span class="k">Multi-tenancy</span><span class="d"></span><span class="v">Fail-closed row-level isolation, tenant-isolation test gate</span></div>
-          <div class="receipt-row"><span class="k">Bookings</span><span class="d"></span><span class="v">Race-proof seat locking, price snapshot, idempotent actions</span></div>
-          <div class="receipt-row"><span class="k">Money</span><span class="d"></span><span class="v">Integer halalas; pilgrims pay the company directly</span></div>
-          <div class="receipt-row"><span class="k">Real time &amp; API</span><span class="d"></span><span class="v">Reverb live notifications, Sanctum mobile API</span></div>
-        </div>
-        <div class="stat-row">
-          <div class="stat"><span class="n" data-count="865">865</span><span class="l">Pest tests</span></div>
-          <div class="stat"><span class="n" data-count="58">58</span><span class="l">Flutter tests</span></div>
-          <div class="stat"><span class="n" data-count="3">3</span><span class="l">apps, one backend</span></div>
-        </div>
-      </div>
-    </div>
-
-    <div data-i18n="ar" lang="ar" dir="rtl">
-      <div class="sec-head"><span class="sec-num">٠٣</span><h2>المشروع الثاني</h2></div>
-      <div class="feature-card reveal">
-        <div class="feature-top">
-          <div>
-            <p class="feature-sub">SaaS متعدد الشركات · ويب + جوال · بناء فردي كامل · عربي أولًا</p>
+          <div class="proj-body">
+            <p class="feature-sub">SaaS متعدد الشركات · ويب + جوال</p>
             <h3>نُزُل عمرة — منصة تشغيل شركات العمرة</h3>
+            <p class="proj-line">منصة SaaS متعددة الشركات تدير شركة العمرة بالكامل — لوحة تحكم للشركة وتطبيقا المعتمر والموظف.</p>
+            <div class="proj-foot"><span class="proj-stat"><b>٨٦٥</b>اختبار Pest</span><span class="proj-more">التفاصيل ←</span></div>
           </div>
-          <a class="demo-link" href="demos/nuzul-os.html" target="_blank" rel="noopener">جرّب النموذج التفاعلي ↖</a>
-        </div>
-        <p class="feature-desc">منصة باشتراك شهري تدير شركة العمرة من البداية إلى النهاية. يدير الموظفون الباقات والمواعيد والمقاعد، والحجوزات والمدفوعات، والعملاء المحتملين، والرحلات والتسكين، والمهام والمستندات — من لوحة تحكم واحدة عربية أولًا. ويحصل المعتمر على تطبيق واحد عام يرافقه طوال رحلته: برنامج يومًا بيوم، وميقاته، وغرفته ومجموعته، والإعلانات والدعم. نُزُل مزوّد تقني فقط: يدفع المعتمر لحساب الشركة مباشرة، ولا تمسك المنصة أموال العملاء أبدًا.</p>
-
-        <div class="showcase-main">
+        </a>
+        <a class="proj-card reveal" href="projects/meals.html">
           <div class="browser-frame">
-            <div class="browser-bar">
-              <div class="browser-dots"><span></span><span></span><span></span></div>
-              <div class="browser-url">nuzul-umrah.app</div>
-            </div>
-            <img src="images/os-web-01-landing.jpg" alt="الصفحة الرئيسية لنُزُل عمرة — الحرم المكي والمسجد النبوي خلف القوس" width="1440" height="1150" loading="lazy" decoding="async">
+            <div class="browser-bar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-url">meals-platform.app/admin</div></div>
+            <img src="images/hf-web-01-dashboard.jpg" width="1600" height="900" loading="lazy" decoding="async" alt="لوحة تحكم منصة الوجبات">
           </div>
-        </div>
-        <div class="showcase-main">
-          <div class="browser-frame">
-            <div class="browser-bar">
-              <div class="browser-dots"><span></span><span></span><span></span></div>
-              <div class="browser-url">nuzul-umrah.app/os/today</div>
-            </div>
-            <img src="images/os-web-02-today.jpg" alt="لوحة «اليوم» في نُزُل عمرة — المغادرون والعائدون والمهام المتأخرة والمدفوعات، عربي RTL" width="1440" height="1118" loading="lazy" decoding="async">
+          <div class="proj-body">
+            <p class="feature-sub">ويب + جوال · قابل لإعادة العلامة</p>
+            <h3>وجبات صحية — منصة اشتراكات وجبات</h3>
+            <p class="proj-line">منصة اشتراكات وجبات بمحرك تعبئة ليلي وتقارير تحضير للمطبخ وقوائم توصيل.</p>
+            <div class="proj-foot"><span class="proj-stat"><b>٦٢</b>اختبار PHPUnit</span><span class="proj-more">التفاصيل ←</span></div>
           </div>
-        </div>
-        <div class="showcase-row">
-          <div class="browser-frame">
-            <div class="browser-bar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-url">nuzul-umrah.app/os/trips</div></div>
-            <img src="images/os-web-03-trip.jpg" alt="صفحة الرحلة — قائمة المعتمرين والغرف والبرنامج والمهام لموعد واحد" width="1440" height="1500" loading="lazy" decoding="async">
-          </div>
-          <div class="browser-frame">
-            <div class="browser-bar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-url">nuzul-umrah.app/os/leads</div></div>
-            <img src="images/os-web-04-leads.jpg" alt="لوحة العملاء المحتملين — خمس مراحل مع الإسناد والتحويل إلى عملاء" width="1440" height="1338" loading="lazy" decoding="async">
-          </div>
-        </div>
-        <div class="showcase-phones four">
-          <div class="phone-block">
-            <div class="phone-frame"><img src="images/os-mobile-01-home.jpg" alt="تطبيق المعتمر — الرئيسية مع العدّ التنازلي وبطاقات «معك طوال الرحلة»" width="716" height="1551" loading="lazy" decoding="async"></div>
-            <p class="phone-caption">المعتمر — الرئيسية</p>
-          </div>
-          <div class="phone-block">
-            <div class="phone-frame"><img src="images/os-mobile-02-trip.jpg" alt="تطبيق المعتمر — رحلتي مع الحجز والغرفة والميقات" width="716" height="1551" loading="lazy" decoding="async"></div>
-            <p class="phone-caption">المعتمر — رحلتي</p>
-          </div>
-          <div class="phone-block">
-            <div class="phone-frame"><img src="images/os-mobile-03-days.jpg" alt="تطبيق المعتمر — البرنامج يومًا بيوم بأيام قابلة للطي" width="716" height="1551" loading="lazy" decoding="async"></div>
-            <p class="phone-caption">المعتمر — يومًا بيوم</p>
-          </div>
-          <div class="phone-block">
-            <div class="phone-frame"><img src="images/os-mobile-04-staff.jpg" alt="تطبيق الموظف — رحلات الشركة في الميدان" width="716" height="1551" loading="lazy" decoding="async"></div>
-            <p class="phone-caption">الموظف — الرحلات في الميدان</p>
-          </div>
-        </div>
-
-        <div class="receipt-list" style="margin-top:30px;">
-          <div class="receipt-row"><span class="k">لوحة الشركات</span><span class="d"></span><span class="v">Laravel 13 وInertia.js وReact 19 مع TypeScript وTailwind v4</span></div>
-          <div class="receipt-row"><span class="k">تطبيقات الجوال</span><span class="d"></span><span class="v">Flutter وDart — المعتمر والموظف على حزمة مشتركة</span></div>
-          <div class="receipt-row"><span class="k">تعدد الشركات</span><span class="d"></span><span class="v">عزل تام على مستوى الصف، واختبار عزل شرط لأي دمج</span></div>
-          <div class="receipt-row"><span class="k">الحجوزات</span><span class="d"></span><span class="v">قفل المقاعد ضد التزامن، لقطة للسعر، عمليات بلا تكرار</span></div>
-          <div class="receipt-row"><span class="k">المال</span><span class="d"></span><span class="v">بالهللات فقط، والدفع مباشرة لحساب الشركة</span></div>
-          <div class="receipt-row"><span class="k">الوقت الحي والـ API</span><span class="d"></span><span class="v">إشعارات لحظية عبر Reverb، وواجهة جوال عبر Sanctum</span></div>
-        </div>
-        <div class="stat-row">
-          <div class="stat"><span class="n" data-count="865" data-numerals="arab">٨٦٥</span><span class="l">اختبار Pest</span></div>
-          <div class="stat"><span class="n" data-count="58" data-numerals="arab">٥٨</span><span class="l">اختبار Flutter</span></div>
-          <div class="stat"><span class="n" data-count="3" data-numerals="arab">٣</span><span class="l">تطبيقات بخادم واحد</span></div>
-        </div>
+        </a>
       </div>
     </div>
   </section>
@@ -709,129 +215,10 @@
     </div>
   </section>
 
-  <!-- THIRD FEATURED PROJECT -->
-  <section id="meals">
-    <div data-i18n="en" lang="en">
-      <div class="sec-head"><span class="sec-num">04</span><h2>Third feature</h2></div>
-      <div class="feature-card reveal">
-        <div class="feature-top">
-          <div>
-            <p class="feature-sub">Web + Mobile · Solo-built · Arabic-first</p>
-            <h3>Healthy Meals — Subscription Platform</h3>
-          </div>
-          <a class="demo-link" href="demos/healthy-food.html" target="_blank" rel="noopener">Try the live demo ↗</a>
-        </div>
-        <p class="feature-desc">A complete meal-subscription system for a healthy-food restaurant. Customers pick a plan — 1–4 meals a day, 100–200&nbsp;g portions, 26 or 30 days plus a daily snack — then choose the next day's meals in the app before the nightly cutoff; the kitchen cooks from an aggregated prep report and drivers deliver from a printable list. Built white-label ready — the same codebase has already been rebranded for a second restaurant.</p>
-
-        <div class="showcase-main">
-          <div class="browser-frame">
-            <div class="browser-bar">
-              <div class="browser-dots"><span></span><span></span><span></span></div>
-              <div class="browser-url">meals-platform.app/admin</div>
-            </div>
-            <img src="images/hf-web-01-dashboard.jpg" alt="Meal-subscription admin dashboard — active subscriptions, pending activations, Arabic RTL" width="1600" height="900" loading="lazy" decoding="async">
-          </div>
-        </div>
-        <div class="showcase-row">
-          <div class="browser-frame">
-            <div class="browser-bar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-url">meals-platform.app/admin/kitchen-report</div></div>
-            <img src="images/hf-web-02-kitchen.jpg" alt="Kitchen prep report — dishes aggregated by portion size for the day's cooking" width="1600" height="1400" loading="lazy" decoding="async">
-          </div>
-          <div class="browser-frame">
-            <div class="browser-bar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-url">meals-platform.app/admin/orders</div></div>
-            <img src="images/hf-web-03-orders.jpg" alt="Takeaway orders queue with statuses and totals" width="1600" height="1400" loading="lazy" decoding="async">
-          </div>
-        </div>
-        <div class="showcase-phones">
-          <div class="phone-block">
-            <div class="phone-frame"><img src="images/hf-mobile-01-home.jpg" alt="Meal-subscription mobile app — home screen with plan progress and tomorrow's meals call-to-action" width="716" height="1522" loading="lazy" decoding="async"></div>
-            <p class="phone-caption">Customer — plan at a glance</p>
-          </div>
-          <div class="phone-block">
-            <div class="phone-frame"><img src="images/hf-mobile-02-picker.jpg" alt="Meal-subscription mobile app — daily meal picker with calorie and macro totals" width="716" height="1522" loading="lazy" decoding="async"></div>
-            <p class="phone-caption">Customer — pick tomorrow's meals</p>
-          </div>
-        </div>
-
-        <div class="receipt-list" style="margin-top:30px;">
-          <div class="receipt-row"><span class="k">Admin app</span><span class="d"></span><span class="v">Laravel, Inertia.js, React 19 + TS, Tailwind v4</span></div>
-          <div class="receipt-row"><span class="k">Mobile app</span><span class="d"></span><span class="v">Expo / React Native, TypeScript, Arabic RTL</span></div>
-          <div class="receipt-row"><span class="k">Subscriptions</span><span class="d"></span><span class="v">pending → active → expired lifecycle, renewals</span></div>
-          <div class="receipt-row"><span class="k">Auto-fill engine</span><span class="d"></span><span class="v">Nightly cutoff, repeat-last → chef default, idempotent</span></div>
-          <div class="receipt-row"><span class="k">Kitchen ops</span><span class="d"></span><span class="v">Prep report + printable delivery list with Maps links</span></div>
-          <div class="receipt-row"><span class="k">Notifications</span><span class="d"></span><span class="v">Push reminders for meal selection and renewal</span></div>
-        </div>
-        <div class="stat-row">
-          <div class="stat"><span class="n" data-count="62">62</span><span class="l">PHPUnit tests</span></div>
-          <div class="stat"><span class="n" data-count="75">75</span><span class="l">menu items</span></div>
-          <div class="stat"><span class="n" data-count="24">24</span><span class="l">plan combinations</span></div>
-        </div>
-      </div>
-    </div>
-
-    <div data-i18n="ar" lang="ar" dir="rtl">
-      <div class="sec-head"><span class="sec-num">٠٤</span><h2>المشروع الثالث</h2></div>
-      <div class="feature-card reveal">
-        <div class="feature-top">
-          <div>
-            <p class="feature-sub">ويب + جوال · بناء فردي كامل · عربي أولًا</p>
-            <h3>وجبات صحية — منصة اشتراكات وجبات</h3>
-          </div>
-          <a class="demo-link" href="demos/healthy-food.html" target="_blank" rel="noopener">جرّب النموذج التفاعلي ↖</a>
-        </div>
-        <p class="feature-desc">نظام متكامل لاشتراكات الوجبات لمطعم أكل صحي. يختار العميل خطته — من وجبة إلى 4 وجبات يوميًا، بأحجام 100–200 جم، لمدة 26 أو 30 يومًا مع سناك يومي — ثم يحدد وجبات الغد من التطبيق قبل موعد الإغلاق الليلي؛ ويطبخ المطبخ من تقرير تحضير مجمّع، ويوصّل السائقون من قائمة قابلة للطباعة. مبني ليكون قابلًا لإعادة العلامة (White-label) — نفس الكود أُعيدت تهيئته فعليًا لمطعم ثانٍ بهوية جديدة.</p>
-
-        <div class="showcase-main">
-          <div class="browser-frame">
-            <div class="browser-bar">
-              <div class="browser-dots"><span></span><span></span><span></span></div>
-              <div class="browser-url">meals-platform.app/admin</div>
-            </div>
-            <img src="images/hf-web-01-dashboard.jpg" alt="لوحة تحكم منصة الوجبات — الاشتراكات النشطة وطلبات التفعيل، عربي RTL" width="1600" height="900" loading="lazy" decoding="async">
-          </div>
-        </div>
-        <div class="showcase-row">
-          <div class="browser-frame">
-            <div class="browser-bar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-url">meals-platform.app/admin/kitchen-report</div></div>
-            <img src="images/hf-web-02-kitchen.jpg" alt="تقرير المطبخ — تجميع الأطباق حسب حجم الحصة ليوم الطبخ" width="1600" height="1400" loading="lazy" decoding="async">
-          </div>
-          <div class="browser-frame">
-            <div class="browser-bar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-url">meals-platform.app/admin/orders</div></div>
-            <img src="images/hf-web-03-orders.jpg" alt="قائمة طلبات الاستلام مع الحالات والمجاميع" width="1600" height="1400" loading="lazy" decoding="async">
-          </div>
-        </div>
-        <div class="showcase-phones">
-          <div class="phone-block">
-            <div class="phone-frame"><img src="images/hf-mobile-01-home.jpg" alt="تطبيق منصة الوجبات — الشاشة الرئيسية مع تقدم الاشتراك واختيار وجبات الغد" width="716" height="1522" loading="lazy" decoding="async"></div>
-            <p class="phone-caption">العميل — نظرة على الاشتراك</p>
-          </div>
-          <div class="phone-block">
-            <div class="phone-frame"><img src="images/hf-mobile-02-picker.jpg" alt="تطبيق منصة الوجبات — اختيار وجبات الغد مع إجمالي السعرات والعناصر" width="716" height="1522" loading="lazy" decoding="async"></div>
-            <p class="phone-caption">العميل — اختيار وجبات الغد</p>
-          </div>
-        </div>
-
-        <div class="receipt-list" style="margin-top:30px;">
-          <div class="receipt-row"><span class="k">تطبيق الإدارة</span><span class="d"></span><span class="v">Laravel وInertia.js وReact 19 مع TypeScript وTailwind v4</span></div>
-          <div class="receipt-row"><span class="k">تطبيق الجوال</span><span class="d"></span><span class="v">Expo / React Native مع TypeScript، عربي RTL</span></div>
-          <div class="receipt-row"><span class="k">الاشتراكات</span><span class="d"></span><span class="v">قيد التفعيل ← نشط ← منتهي، مع التجديدات</span></div>
-          <div class="receipt-row"><span class="k">التعبئة التلقائية</span><span class="d"></span><span class="v">إغلاق ليلي، تكرار آخر اختيار ← اختيار الشيف، بلا تكرار</span></div>
-          <div class="receipt-row"><span class="k">تشغيل المطبخ</span><span class="d"></span><span class="v">تقرير تحضير مجمّع وقائمة توصيل بروابط خرائط Google</span></div>
-          <div class="receipt-row"><span class="k">الإشعارات</span><span class="d"></span><span class="v">تذكير فوري باختيار الوجبات وبتجديد الاشتراك</span></div>
-        </div>
-        <div class="stat-row">
-          <div class="stat"><span class="n" data-count="62" data-numerals="arab">٦٢</span><span class="l">اختبار PHPUnit</span></div>
-          <div class="stat"><span class="n" data-count="75" data-numerals="arab">٧٥</span><span class="l">صنفًا في المنيو</span></div>
-          <div class="stat"><span class="n" data-count="24" data-numerals="arab">٢٤</span><span class="l">تركيبة خطة</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- OTHER WORK -->
   <section id="work">
     <div data-i18n="en" lang="en">
-      <div class="sec-head"><span class="sec-num">05</span><h2>Other work</h2></div>
+      <div class="sec-head"><span class="sec-num">03</span><h2>Other work</h2></div>
       <div class="grid">
         <div class="card reveal"><p class="tag">Dashboard</p><h4>RSN Operations Dashboard</h4><p>Internal ops tool for a ride-hailing company — referral/coupon tracking and driver performance. Built the React data layer and visualizations, integrated with backend systems for real-time insight.</p><div class="card-tags"><span>React</span><span>TypeScript</span><span>Laravel</span><span>MySQL</span></div></div>
         <div class="card reveal"><p class="tag">Case management</p><h4>Tanfeeth — Legal Case System</h4><p>Case tracking for legal operations across Primary, Appeal and Supreme court levels — hearings, deadlines and document workflow in one queue. React + Vite frontend on a Laravel/Sanctum API, PHPUnit-tested.</p><div class="card-tags"><span>Laravel</span><span>Sanctum</span><span>React</span><span>Vite</span><span>MySQL</span></div></div>
@@ -842,7 +229,7 @@
       </div>
     </div>
     <div data-i18n="ar" lang="ar" dir="rtl">
-      <div class="sec-head"><span class="sec-num">٠٥</span><h2>مشاريع أخرى</h2></div>
+      <div class="sec-head"><span class="sec-num">٠٣</span><h2>مشاريع أخرى</h2></div>
       <div class="grid">
         <div class="card reveal"><p class="tag">لوحة تحكم</p><h4>لوحة تحكم عمليات RSN</h4><p>أداة تشغيلية داخلية لشركة نقل ركاب، لتتبع برامج الإحالة والكوبونات ومؤشرات أداء السائقين. بنيت طبقة البيانات والرسوم البيانية باستخدام React، مع ربطها بأنظمة الشركة الخلفية لعرض بيانات تشغيلية لحظية لفريق العمليات.</p><div class="card-tags"><span>React</span><span>TypeScript</span><span>Laravel</span><span>MySQL</span></div></div>
         <div class="card reveal"><p class="tag">إدارة قضايا</p><h4>تنفيذ — نظام قضايا قانونية</h4><p>نظام لتتبع القضايا القانونية عبر درجات التقاضي — الابتدائية والاستئناف والعليا — مع الجلسات والمواعيد وتدفق المستندات في مكان واحد. واجهة React مع Vite على واجهة برمجية بـ Laravel وSanctum، مع اختبارات PHPUnit.</p><div class="card-tags"><span>Laravel</span><span>Sanctum</span><span>React</span><span>Vite</span><span>MySQL</span></div></div>
@@ -857,13 +244,13 @@
   <!-- SKILLS -->
   <section id="skills">
     <div data-i18n="en" lang="en">
-      <div class="sec-head"><span class="sec-num">06</span><h2>Skills</h2></div>
+      <div class="sec-head"><span class="sec-num">04</span><h2>Skills</h2></div>
       <div class="tag-sheet reveal">
         <span>Laravel</span><span>PHP 8</span><span>Python</span><span>React</span><span>TypeScript</span><span>Inertia.js</span><span>Tailwind CSS</span><span>MySQL</span><span>Flutter / Dart</span><span>Multi-tenant SaaS</span><span>REST API design</span><span>Payment gateway integration</span><span>Docker</span>
       </div>
     </div>
     <div data-i18n="ar" lang="ar" dir="rtl">
-      <div class="sec-head"><span class="sec-num">٠٦</span><h2>المهارات</h2></div>
+      <div class="sec-head"><span class="sec-num">٠٤</span><h2>المهارات</h2></div>
       <div class="tag-sheet reveal">
         <span>Laravel</span><span>PHP 8</span><span>Python</span><span>React</span><span>TypeScript</span><span>Inertia.js</span><span>Tailwind CSS</span><span>MySQL</span><span>Flutter/Dart</span><span>SaaS متعدد الشركات</span><span>تصميم واجهات REST</span><span>ربط بوابات الدفع</span><span>Docker</span>
       </div>
@@ -911,246 +298,7 @@
   </div>
 </footer>
 
-<script>
-(function(){
-  var html = document.documentElement;
-  var META = {
-    en: { title: 'Hashem Alahdal — Full-Stack Developer',
-          desc: 'Full-stack developer specializing in Laravel, React/TypeScript and Flutter — production-grade web & mobile marketplaces.' },
-    ar: { title: 'هاشم الاهدل — مطوّر ويب متكامل',
-          desc: 'مطوّر ويب متكامل متخصص في Laravel وReact/TypeScript وFlutter — منصات ويب وجوال جاهزة للإنتاج.' }
-  };
-  var reduced = matchMedia('(prefers-reduced-motion: reduce)');
-  function fmt(n, arab){
-    return arab ? new Intl.NumberFormat('ar-SA-u-nu-arab', { useGrouping:false }).format(n) : String(n);
-  }
-
-  var stored = localStorage.getItem('lang');
-  var initial = stored || 'ar';
-  setLang(initial, false);
-
-  document.getElementById('langToggle').addEventListener('click', function(){
-    var next = html.getAttribute('data-lang') === 'en' ? 'ar' : 'en';
-    setLang(next, true);
-    writeName();
-  });
-
-  function setLang(lang, persist){
-    html.setAttribute('data-lang', lang);
-    html.setAttribute('lang', lang);
-    html.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
-    document.title = META[lang].title;
-    document.querySelector('meta[name="description"]').setAttribute('content', META[lang].desc);
-    document.querySelectorAll('[data-i18n]').forEach(function(el){
-      el.setAttribute('aria-hidden', el.getAttribute('data-i18n') !== lang ? 'true' : 'false');
-    });
-    if(persist) localStorage.setItem('lang', lang);
-  }
-
-  /* ink writer — reveals text letter by letter by stepping the ink edge
-     through each measured glyph, so Arabic letters stay perfectly joined */
-  var QUILL = '<span class="pen"><svg viewBox="0 0 48 48" fill="none">'
-    + '<path d="M13.5 31 C 15 19, 25 8, 43 3.5 C 41 13, 37.5 20, 31.5 26 C 26 31.5, 20 32.5, 13.8 31.6 Z" fill="currentColor"/>'
-    + '<path d="M5 43.5 C 13 35, 20 28, 30 17" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>'
-    + '<path d="M21 26 C 27 21, 31 16, 35 10.5 M18 29 C 24.5 23.5, 29.5 18.5, 34 13" stroke="var(--paper)" stroke-width="0.9" stroke-linecap="round" opacity="0.65"/>'
-    + '</svg></span>';
-
-  function inkWrite(el, quill, charDur, done){
-    var node = el.firstChild;
-    if(reduced.matches || !node || node.nodeType !== 3){ el.style.clipPath = ''; if(done) done(); return; }
-    var text = node.data;
-    var rtl = getComputedStyle(el).direction === 'rtl';
-    var box = el.getBoundingClientRect();
-    if(!box.width){ el.style.clipPath = ''; if(done) done(); return; }
-    var range = document.createRange();
-    var timeline = [], lines = [], t = 0, prevD = 0, li = -1;
-    for(var i = 0; i < text.length; i++){
-      if(text[i] === ' '){ t += 170; continue; }
-      range.setStart(node, i); range.setEnd(node, i + 1);
-      var r = range.getBoundingClientRect();
-      if(!r.width && !r.height) continue;
-      var top = r.top - box.top, bot = r.bottom - box.top;
-      if(li < 0 || top >= lines[li].bot - 2){
-        li++; lines.push({ top: top, bot: bot }); prevD = 0;
-      } else {
-        lines[li].top = Math.min(lines[li].top, top);
-        lines[li].bot = Math.max(lines[li].bot, bot);
-      }
-      var d = rtl ? (box.right - r.left) : (r.right - box.left);
-      if(d < prevD) d = prevD;
-      timeline.push({ t0: t, t1: t + charDur, d0: prevD, d1: d, li: li });
-      t += charDur; prevD = d;
-    }
-    var total = t, W = box.width, H = box.height, pad = Math.max(8, H * 0.2);
-    function setEdge(d, ln){
-      if(lines.length < 2){
-        el.style.clipPath = rtl
-          ? 'inset(-25% 0 -25% ' + Math.max(0, W - d) + 'px)'
-          : 'inset(-25% ' + Math.max(0, W - d) + 'px -25% 0)';
-      } else {
-        /* finished lines fully visible, current line revealed up to the ink edge, rest hidden */
-        var topB = ln === 0 ? -pad : (lines[ln - 1].bot + lines[ln].top) / 2;
-        var botB = ln === lines.length - 1 ? H + pad : (lines[ln].bot + lines[ln + 1].top) / 2;
-        var x = rtl ? Math.max(0, W - d) : Math.min(W, d);
-        el.style.clipPath = rtl
-          ? 'polygon(' + W + 'px ' + (-pad) + 'px, 0 ' + (-pad) + 'px, 0 ' + topB + 'px, ' + x + 'px ' + topB + 'px, ' + x + 'px ' + botB + 'px, ' + W + 'px ' + botB + 'px)'
-          : 'polygon(0 ' + (-pad) + 'px, ' + W + 'px ' + (-pad) + 'px, ' + W + 'px ' + topB + 'px, ' + x + 'px ' + topB + 'px, ' + x + 'px ' + botB + 'px, 0 ' + botB + 'px)';
-      }
-      if(quill){
-        quill.style.left = (rtl ? Math.max(0, W - d) : Math.min(W, d)) + 'px';
-        if(lines.length > 1) quill.style.top = (lines[ln].top + (lines[ln].bot - lines[ln].top) * 0.72) + 'px';
-      }
-    }
-    setEdge(0, 0);
-    if(quill) quill.style.opacity = '1';
-    var start = null;
-    function frame(ts){
-      if(start === null) start = ts;
-      var now = ts - start, d = 0, ln = 0;
-      for(var k = 0; k < timeline.length; k++){
-        var s = timeline[k];
-        if(now < s.t0){ d = s.d0; ln = s.li; break; }
-        if(now <= s.t1){ var p = (now - s.t0) / (s.t1 - s.t0); d = s.d0 + (s.d1 - s.d0) * (1 - Math.pow(1 - p, 2)); ln = s.li; break; }
-        d = s.d1; ln = s.li;
-      }
-      setEdge(d, ln);
-      if(now < total + 60){ requestAnimationFrame(frame); }
-      else { el.style.clipPath = ''; if(quill) quill.style.opacity = '0'; if(done) done(); }
-    }
-    requestAnimationFrame(frame);
-  }
-
-  function writeName(){
-    var h1 = document.querySelector('[data-i18n="' + html.getAttribute('data-lang') + '"] h1.name');
-    if(!h1) return;
-    h1.classList.add('in');
-    var inkEl = h1.querySelector('.name-ink');
-    if(reduced.matches || !inkEl) return;
-    var q = h1.querySelector('.qalam');
-    if(!q){
-      q = document.createElement('span');
-      q.className = 'qalam'; q.setAttribute('aria-hidden', 'true'); q.innerHTML = QUILL;
-      h1.appendChild(q);
-    }
-    var rtl = html.getAttribute('dir') === 'rtl';
-    inkEl.style.clipPath = rtl ? 'inset(-25% 0 -25% 100%)' : 'inset(-25% 100% -25% 0)';
-    h1.classList.add('writing');
-    nameBusy = true;
-    setTimeout(function(){
-      inkWrite(inkEl, q, 100, function(){
-        h1.classList.remove('writing');
-        nameBusy = false;
-        flushTitles();
-      });
-    }, 250);
-  }
-  /* titles wait for the name AND for the visitor's first scroll (6s safety release),
-     so nothing writes alongside the name on tall screens */
-  var titleQueue = [], nameBusy = false, titlesHeld = true;
-  function flushTitles(){
-    if(nameBusy || titlesHeld) return;
-    titleQueue.splice(0).forEach(function(h, i){
-      setTimeout(function(){ writeTitle(h); }, 150 + i * 300);
-    });
-  }
-  function releaseTitles(){ titlesHeld = false; flushTitles(); }
-  addEventListener('scroll', function onFirstScroll(){
-    if(scrollY > 40){ removeEventListener('scroll', onFirstScroll); releaseTitles(); }
-  }, { passive: true });
-  setTimeout(releaseTitles, 6000);
-  writeName();
-
-  /* section titles write themselves — with a small quill — as they scroll into view.
-     The clip lives on an inner .h2-ink wrapper so the quill itself is not clipped. */
-  if(!reduced.matches){
-    var h2s = document.querySelectorAll('.sec-head h2, footer h2');
-    h2s.forEach(function(h){
-      var rtlH = h.closest('[data-i18n]').getAttribute('data-i18n') === 'ar';
-      var w = document.createElement('span');
-      w.className = 'h2-ink';
-      while(h.firstChild) w.appendChild(h.firstChild);
-      h.appendChild(w);
-      w.style.clipPath = rtlH ? 'inset(-15% 0 -15% 100%)' : 'inset(-15% 100% -15% 0)';
-    });
-    var writeTitle = function(h){
-      var w = h.querySelector('.h2-ink');
-      var q = h.querySelector('.qalam');
-      if(!q){
-        q = document.createElement('span');
-        q.className = 'qalam'; q.setAttribute('aria-hidden', 'true'); q.innerHTML = QUILL;
-        h.appendChild(q);
-      }
-      h.classList.add('writing');
-      var len = (w.textContent || '').length || 1;
-      inkWrite(w, q, Math.max(30, Math.min(70, Math.round(1500 / len))), function(){ h.classList.remove('writing'); });
-    };
-    /* observe the parent .sec-head — a fully clipped element reports intersectionRatio 0 in Chrome.
-       Titles triggered while the hero name is still being written are queued until it finishes,
-       so only one quill writes at a time on load. */
-    var hio = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if(!e.isIntersecting) return;
-        hio.unobserve(e.target);
-        var h = e.target.querySelector('h2');
-        if(!h) return;
-        if(nameBusy || titlesHeld){ titleQueue.push(h); } else { writeTitle(h); }
-      });
-    }, { threshold: 0.6, rootMargin: '0px 0px -18% 0px' });
-    h2s.forEach(function(h){ hio.observe(h.parentNode); });
-  }
-
-  /* stat counters */
-  var cio = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(!e.isIntersecting) return;
-      cio.unobserve(e.target);
-      var el = e.target, target = +el.dataset.count, suffix = el.dataset.suffix || '', arab = el.dataset.numerals === 'arab';
-      if(reduced.matches){ el.textContent = fmt(target, arab) + suffix; return; }
-      var t0 = null, dur = 900;
-      function step(ts){
-        if(!t0) t0 = ts;
-        var p = Math.min(1, (ts - t0) / dur);
-        p = 1 - Math.pow(1 - p, 3);
-        el.textContent = fmt(Math.round(target * p), arab) + suffix;
-        if(p < 1) requestAnimationFrame(step);
-      }
-      requestAnimationFrame(step);
-    });
-  }, { threshold: 0.5 });
-  document.querySelectorAll('.stat .n[data-count]').forEach(function(el){ cio.observe(el); });
-
-  /* ink ruling scroll line */
-  var ink = document.getElementById('inkline'), inkTick = false;
-  function drawInk(){
-    var d = document.documentElement;
-    var max = d.scrollHeight - d.clientHeight;
-    ink.style.width = (max > 0 ? (d.scrollTop / max) * 100 : 0) + '%';
-    inkTick = false;
-  }
-  addEventListener('scroll', function(){
-    if(!inkTick){ inkTick = true; requestAnimationFrame(drawInk); }
-  }, { passive: true });
-  drawInk();
-
-  var y = new Date().getFullYear();
-  document.querySelectorAll('.js-year').forEach(function(el){
-    el.textContent = fmt(y, el.dataset.numerals === 'arab');
-  });
-
-  if(!reduced.matches){
-    document.querySelectorAll('.tag-sheet span').forEach(function(s, i){
-      s.style.transitionDelay = (i % 12) * 45 + 'ms';
-    });
-  }
-
-  var io = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
-    });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
-})();
-</script>
+<script src="assets/site.js"></script>
 
 </body>
 </html>
