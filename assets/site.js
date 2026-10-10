@@ -263,11 +263,11 @@
   var ITEMS = [
     { en: 'About', ar: 'نبذة', kind: 'section', go: 'index.html#about' },
     { en: 'Projects', ar: 'المشاريع', kind: 'section', go: 'index.html#projects' },
-    { en: 'Zad Control — restaurant operations', ar: 'زاد كنترول — تشغيل المطاعم', kind: 'project', go: 'projects/zad.html' },
+    { en: 'Zad — restaurant operations', ar: 'زاد — تشغيل المطاعم', kind: 'project', go: 'projects/zad.html' },
     { en: 'Nuzul — booking marketplace', ar: 'نُزُل — منصة حجز عقارات', kind: 'project', go: 'projects/nuzul.html' },
     { en: 'Nuzul Umrah — Umrah operations', ar: 'نُزُل عمرة — تشغيل شركات العمرة', kind: 'project', go: 'projects/nuzul-os.html' },
     { en: 'Healthy Meals — meal subscriptions', ar: 'وجبات صحية — اشتراكات الوجبات', kind: 'project', go: 'projects/meals.html' },
-    { en: 'Visit the Zad Control site', ar: 'اذهب إلى موقع زاد كنترول', kind: 'demo', go: 'https://zad.laravel.cloud/demo', tab: true },
+    { en: 'Visit the Zad site', ar: 'اذهب إلى موقع زاد', kind: 'demo', go: 'https://zad.laravel.cloud/demo', tab: true },
     { en: 'Try the Nuzul Umrah demo', ar: 'جرّب نموذج نُزُل عمرة', kind: 'demo', go: 'demos/nuzul-os.html', tab: true },
     { en: 'Try the Healthy Meals demo', ar: 'جرّب نموذج وجبات صحية', kind: 'demo', go: 'demos/healthy-food.html', tab: true },
     { en: 'Other work', ar: 'مشاريع أخرى', kind: 'section', go: 'index.html#work' },
