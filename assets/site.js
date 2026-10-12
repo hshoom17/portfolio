@@ -276,7 +276,7 @@
     { en: 'Copy my email', ar: 'انسخ بريدي الإلكتروني', kind: 'action', run: 'email' },
     { en: 'Switch to Arabic', ar: 'التبديل إلى الإنجليزية', kind: 'action', run: 'lang' },
     { en: 'GitHub', ar: 'GitHub', kind: 'link', go: 'https://github.com/hshoom17', tab: true },
-    { en: 'LinkedIn', ar: 'LinkedIn', kind: 'link', go: 'https://linkedin.com/in/hashem-al-ahdal', tab: true }
+    { en: 'LinkedIn', ar: 'LinkedIn', kind: 'link', go: 'https://www.linkedin.com/in/hashemalahdal', tab: true }
   ];
   var KIND = {
     section: { en: 'Section', ar: 'قسم' }, project: { en: 'Project', ar: 'مشروع' }, demo: { en: 'Live demo', ar: 'نموذج تفاعلي' },
