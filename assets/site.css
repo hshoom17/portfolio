@@ -219,6 +219,8 @@
     flex:1; font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:var(--ink-soft);
     background:var(--paper); border:1px solid var(--rule); border-radius:999px; padding:4px 12px; text-align:center;
   }
+  /* a screen name, not an address: for projects that are not online */
+  .browser-url.screen{ font-family:'IBM Plex Sans', 'IBM Plex Sans Arabic', sans-serif; font-size:11px; }
   .browser-frame img{ display:block; width:100%; height:auto; }
 
   .showcase-phones{ display:flex; gap:24px; justify-content:center; margin-bottom:32px; }
@@ -309,7 +311,10 @@
   }
 
   /* ---------- PROJECT CARDS (home) ---------- */
-  .proj-grid{ display:grid; grid-template-columns:repeat(auto-fill, minmax(300px, 1fr)); gap:24px; }
+  /* four projects: one row on wide screens, two by two on tablets, one column on phones */
+  .proj-grid{ display:grid; grid-template-columns:repeat(4, 1fr); gap:20px; }
+  @media (max-width:860px){ .proj-grid{ grid-template-columns:1fr 1fr; gap:24px; } }
+  @media (max-width:700px){ .proj-grid{ grid-template-columns:1fr; } }
   .proj-card{
     display:flex; flex-direction:column; text-decoration:none; color:inherit; overflow:hidden;
     background:var(--paper-dim); border:1px solid var(--rule); border-radius:var(--radius);
