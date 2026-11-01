@@ -5,9 +5,9 @@
   var D = html.dataset;
   var META = {
     en: { title: D.titleEn || 'Hashem Alahdal — Full-Stack Developer',
-          desc: D.descEn || 'Full-stack developer specializing in Laravel, React/TypeScript and Flutter — production-grade web & mobile marketplaces.' },
+          desc: D.descEn || 'Full-stack developer specializing in Laravel, React/TypeScript, React Native and Flutter — production-grade web & mobile marketplaces.' },
     ar: { title: D.titleAr || 'هاشم الاهدل — مطوّر ويب متكامل',
-          desc: D.descAr || 'مطوّر ويب متكامل متخصص في Laravel وReact/TypeScript وFlutter — منصات ويب وجوال جاهزة للإنتاج.' }
+          desc: D.descAr || 'مطوّر ويب متكامل متخصص في Laravel وReact/TypeScript وReact Native وFlutter — منصات ويب وجوال جاهزة للإنتاج.' }
   };
   var reduced = matchMedia('(prefers-reduced-motion: reduce)');
   function fmt(n, arab){
@@ -49,6 +49,8 @@
     if(reduced.matches || !node || node.nodeType !== 3){ el.style.clipPath = ''; if(done) done(); return; }
     var text = node.data;
     var rtl = getComputedStyle(el).direction === 'rtl';
+    /* a Latin word on an Arabic page runs against the pen: step along its width evenly instead */
+    var inkCount = rtl && !/[؀-ۿ]/.test(text) ? text.replace(/\s/g, '').length : 0;
     var box = el.getBoundingClientRect();
     if(!box.width){ el.style.clipPath = ''; if(done) done(); return; }
     var range = document.createRange();
@@ -66,6 +68,7 @@
         lines[li].bot = Math.max(lines[li].bot, bot);
       }
       var d = rtl ? (box.right - r.left) : (r.right - box.left);
+      if(inkCount) d = box.width * (timeline.length + 1) / inkCount;
       if(d < prevD) d = prevD;
       timeline.push({ t0: t, t1: t + charDur, d0: prevD, d1: d, li: li });
       t += charDur; prevD = d;
